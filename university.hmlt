@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University & College | Tanzania Student Portal</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f2f6fc;
+            color: #222;
+        }
+
+        header {
+            background: #0756a5;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        nav {
+            background: #063b73;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 8px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .course {
+            background: #eaf2ff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #063b73;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>University & College Portal</h1>
+    <p>Tanzania Student Portal</p>
+    <p>Past Papers, Study Materials & College Notices</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#papers">Past Papers</a>
+    <a href="#notices">Notices</a>
+</nav>
+
+<main>
+
+<section id="courses">
+    <h2>Popular Courses</h2>
+    <p>Explore learning resources for college and university students.</p>
+
+    <div class="courses">
+
+        <div class="course">
+            <h3>Mining & Mineral Processing</h3>
+            <p>Mineral Processing, Mining Engineering, Geology and Mine Safety.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Engineering</h3>
+            <p>Civil, Electrical, Mechanical and Chemical Engineering.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Computer Science & IT</h3>
+            <p>Computer Science, Information Technology and Software Development.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Business & Finance</h3>
+            <p>Accounting, Economics, Business Administration and Banking.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Health Sciences</h3>
+            <p>Nursing, Pharmacy, Laboratory Sciences and Public Health.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Education</h3>
+            <p>Teacher Education and Educational Studies.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Agriculture</h3>
+            <p>Agricultural Science, Animal Science and related fields.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Law & Social Sciences</h3>
+            <p>Law, Sociology, Political Science and Social Work.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+        <div class="course">
+            <h3>Tourism & Hospitality</h3>
+            <p>Tourism, Hotel Management and Hospitality.</p>
+            <p>Materials coming soon.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="papers">
+    <h2>University & College Past Papers</h2>
+    <p>Past examination papers will be organized by course and institution.</p>
+    <p>Past papers coming soon.</p>
+</section>
+
+<section id="notices">
+    <h2>College & University Notices</h2>
+    <p>Important announcements from colleges and universities in Tanzania.</p>
+
+    <ul>
+        <li>Examination timetables</li>
+        <li>Registration announcements</li>
+        <li>Scholarships and internships</li>
+        <li>Class timetable changes</li>
+        <li>Other official college announcements</li>
+    </ul>
+
+    <p><strong>Notice Board:</strong> Official notices will be added here.</p>
+</section>
+
+<p><a href="index.html">← Back to Home</a></p>
+
+</main>
+
+<footer>
+    <p>Tanzania Student Portal</p>
+    <p>Learning Resources and Opportunities for Students</p>
+</footer>
+
+</body>
+</html>
