@@ -207,6 +207,33 @@ button:hover {
 .categories button:nth-child(8) {
     background: #d62828;
 }
+        .sort-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.sort-box label {
+    font-weight: bold;
+    color: #0756a8;
+}
+
+.sort-box select {
+    padding: 10px 14px;
+    border: 2px solid #d0d7de;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    outline: none;
+    background: white;
+}
+
+.sort-box select:focus {
+    border-color: #0756a8;
+    box-shadow: 0 0 0 3px rgba(7,86,168,0.12);
+}
     </style>
 </head>
 
@@ -229,7 +256,10 @@ button:hover {
 
     <div id="status">Loading books...</div>
     
-    <div class="categories">
+    
+ <div id="status">Loading books...</div>
+
+<div class="categories">
     <button onclick="searchCategory('mineral processing')">All Books</button>
     <button onclick="searchCategory('hydrometallurgy')">Hydrometallurgy</button>
     <button onclick="searchCategory('comminution')">Comminution</button>
@@ -240,7 +270,17 @@ button:hover {
     <button onclick="searchCategory('ore characterization')">Ore Characterization</button>
 </div>
 
-    <div id="books" class="books"></div>
+<div class="sort-box">
+    <label for="sortBooks">Sort Books:</label>
+    <select id="sortBooks" onchange="sortBooks()">
+        <option value="default">Default</option>
+        <option value="title">Title A–Z</option>
+        <option value="year-new">Newest First</option>
+        <option value="year-old">Oldest First</option>
+    </select>
+</div>
+
+<div id="books" class="books"></div>
 
     <a class="back" href="index.html">← Back to Home</a>
 
@@ -300,6 +340,7 @@ async function searchBooks() {
             const card = document.createElement("div");
 
             card.className = "book";
+            card.dataset.year = year;
 
             card.innerHTML = `
                 <img src="${cover}" alt="${title} cover">
@@ -336,6 +377,38 @@ function searchCategory(category) {
     searchBooks();
 }
 searchBooks();
+    function sortBooks() {
+    const sortType = document.getElementById("sortBooks").value;
+    const booksContainer = document.getElementById("books");
+
+    const books = Array.from(booksContainer.querySelectorAll(".book"));
+
+    if (sortType === "title") {
+        books.sort((a, b) => {
+            const titleA = a.querySelector("h2").textContent.toLowerCase();
+            const titleB = b.querySelector("h2").textContent.toLowerCase();
+            return titleA.localeCompare(titleB);
+        });
+    }
+
+    if (sortType === "year-new") {
+        books.sort((a, b) => {
+            const yearA = parseInt(a.dataset.year) || 0;
+            const yearB = parseInt(b.dataset.year) || 0;
+            return yearB - yearA;
+        });
+    }
+
+    if (sortType === "year-old") {
+        books.sort((a, b) => {
+            const yearA = parseInt(a.dataset.year) || 9999;
+            const yearB = parseInt(b.dataset.year) || 9999;
+            return yearA - yearB;
+        });
+    }
+
+    books.forEach(book => booksContainer.appendChild(book));
+}
 
 </script>
 
