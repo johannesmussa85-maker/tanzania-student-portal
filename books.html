@@ -382,7 +382,7 @@ async function searchBooks() {
         status.textContent = data.docs.length + " books found";
 
         data.docs.forEach(book => {
-             console.log(book.availability);
+           
 
 
             const title = book.title || "Unknown title";
@@ -410,6 +410,15 @@ async function searchBooks() {
     book.ia && book.ia.length > 0
         ? "https://archive.org/details/" + book.ia[0]
         : "";
+            let availabilityText = "Not available";
+
+if (book.availability) {
+    if (book.availability.available_to_borrow) {
+        availabilityText = "Available to borrow";
+    } else if (book.availability.is_readable) {
+        availabilityText = "Available to read online";
+    }
+}
 
             const card = document.createElement("div");
 
@@ -424,6 +433,9 @@ async function searchBooks() {
                 <p><strong>Author:</strong> ${author}</p>
 
                 <p><strong>First published:</strong> ${year}</p>
+                
+                <p><strong>Availability:</strong> ${availabilityText}</p>
+              
 
                 <p>
                     <a href="${bookLink}"
