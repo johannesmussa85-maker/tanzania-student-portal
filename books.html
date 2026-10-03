@@ -478,10 +478,10 @@ function showPage(page) {
 
     const totalPages = Math.ceil(books.length / booksPerPage);
 
-    if (totalPages === 0) {
-        document.getElementById("pageInfo").textContent = "Page 0";
-        return;
-    }
+  if (totalPages === 0) {
+    document.getElementById("pageNumbers").innerHTML = "";
+    return;
+}
 
     if (page < 1) page = 1;
     if (page > totalPages) page = totalPages;
@@ -496,8 +496,7 @@ function showPage(page) {
                 : "none";
     });
 
-    document.getElementById("pageInfo").textContent =
-        `Page ${currentPage} of ${totalPages}`;
+  // Page numbers are displayed below
 
     document.getElementById("prevPage").disabled = currentPage === 1;
     document.getElementById("nextPage").disabled = currentPage === totalPages;
