@@ -135,6 +135,14 @@ button:hover {
     background: #043d78;
     transform: translateY(-2px);
 }
+       .book a.download-link {
+    background: #198754;
+    margin-left: 5px;
+}
+
+.book a.download-link:hover {
+    background: #146c43;
+} 
 
        .back {
     display: inline-block;
@@ -424,7 +432,7 @@ async function searchBooks() {
                 </p>
                                 ${downloadLink ? `
                 <p>
-                    <a href="${downloadLink}"
+                    <a class="download-link" href="${downloadLink}"
                        target="_blank"
                        rel="noopener">
                         Read / Download
