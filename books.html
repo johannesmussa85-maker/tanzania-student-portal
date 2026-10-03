@@ -125,6 +125,17 @@
     </div>
 
     <div id="status">Loading books...</div>
+    
+    <div class="categories">
+    <button onclick="searchCategory('mineral processing')">All Books</button>
+    <button onclick="searchCategory('hydrometallurgy')">Hydrometallurgy</button>
+    <button onclick="searchCategory('comminution')">Comminution</button>
+    <button onclick="searchCategory('flotation')">Flotation</button>
+    <button onclick="searchCategory('gravity separation')">Gravity Separation</button>
+    <button onclick="searchCategory('magnetic separation')">Magnetic Separation</button>
+    <button onclick="searchCategory('dewatering')">Dewatering</button>
+    <button onclick="searchCategory('ore characterization')">Ore Characterization</button>
+</div>
 
     <div id="books" class="books"></div>
 
@@ -217,7 +228,10 @@ async function searchBooks() {
         console.error(error);
     }
 }
-
+function searchCategory(category) {
+    document.getElementById("searchInput").value = category;
+    searchBooks();
+}
 searchBooks();
 
 </script>
