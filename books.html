@@ -142,6 +142,28 @@ button:hover {
 
 .book a.download-link:hover {
     background: #146c43;
+}.availability {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    background: #e9ecef;
+    color: #495057;
+}.availability.read {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.availability.borrow {
+    background: #fff3cd;
+    color: #664d03;
+}
+
+.availability.not-available {
+    background: #f8d7da;
+    color: #842029;
 } 
 
        .back {
@@ -411,12 +433,15 @@ async function searchBooks() {
         ? "https://archive.org/details/" + book.ia[0]
         : "";
             let availabilityText = "Not available";
+            let availabilityClass = "not-available";
 
 if (book.availability) {
     if (book.availability.available_to_borrow) {
         availabilityText = "Available to borrow";
+        availabilityClass = "borrow";
     } else if (book.availability.is_readable) {
         availabilityText = "Available to read online";
+        availabilityClass = "read";
     }
 }
 
@@ -434,8 +459,12 @@ if (book.availability) {
 
                 <p><strong>First published:</strong> ${year}</p>
                 
-                <p><strong>Availability:</strong> ${availabilityText}</p>
               
+         <p>
+    <span class="availability ${availabilityClass}">
+        ${availabilityText}
+    </span>
+</p> 
 
                 <p>
                     <a href="${bookLink}"
