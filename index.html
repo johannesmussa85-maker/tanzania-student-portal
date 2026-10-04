@@ -12,7 +12,9 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--tex
 a{text-decoration:none;color:inherit}
 header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 3px 14px #0002}
 .navbar{max-width:1200px;margin:auto;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font-size:21px;font-weight:800}.brand span{color:#fbbf24}
+.brand{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
+.brand-logo{width:38px;height:38px;flex:none;filter:drop-shadow(0 0 3px #f5c65a88)}
+.brand-name{color:#fff}.brand-name strong{color:#fbbf24}
 .nav-links{display:flex;gap:20px;align-items:center}.nav-links a{font-weight:600;font-size:14px}
 .menu-btn{display:none;background:transparent;border:1px solid #ffffff66;color:#fff;padding:8px 10px;border-radius:8px}
 .hero{background:linear-gradient(135deg,#172e72,#2563eb);color:#fff;padding:75px 5% 65px}
@@ -30,14 +32,23 @@ section{max-width:1100px;margin:auto;padding:55px 5%}.section-title{text-align:c
 .cta{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border-radius:16px;padding:35px;text-align:center}.cta h2{margin-bottom:8px}.cta p{margin-bottom:18px;color:#e6fffb}.cta .btn{background:#fff;color:#0f766e}
 footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin-top:20px}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:10px 0 15px}.footer-links a{color:#fff}
 @media(max-width:800px){.nav-links{display:none}.menu-btn{display:block}.navbar.mobile .nav-links{display:flex;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:18px 5%;flex-direction:column;align-items:flex-start}.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.hero{padding-top:55px}.search{flex-direction:column;background:transparent;gap:8px}.search input,.search button{border-radius:9px;padding:13px}.quick-grid,.cards{grid-template-columns:1fr}}
+@media(max-width:560px){.hero{padding-top:55px}.search{flex-direction:column;background:transparent;gap:8px}.search input,.search button{border-radius:9px;padding:13px}.quick-grid,.cards{grid-template-columns:1fr}.brand{font-size:17px}.brand-logo{width:34px;height:34px}}
 </style>
 <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <header>
 <div class="navbar" id="navbar">
-<a class="brand" href="index.html">🇹🇿 Tanzania <span>Student Portal</span></a>
+<a class="brand" href="index.html" aria-label="Tanzania Student Portal home">
+<svg class="brand-logo" viewBox="0 0 64 64" role="img" aria-label="Future and hope logo">
+<path d="M9 43c12-4 24-4 46 0v8c-17-4-30-4-46 0z" fill="#0d9488"/>
+<path d="M10 43c11-9 21-13 27-13s16 4 27 13c-17-4-35-4-54 0z" fill="#fff"/>
+<path d="M18 39c8-8 13-17 17-27 3 8 8 17 18 27" fill="none" stroke="#f5c65a" stroke-width="4" stroke-linecap="round"/>
+<path d="M35 12v-3" stroke="#f5c65a" stroke-width="2" stroke-linecap="round" opacity=".65"/>
+<circle cx="35" cy="7" r="2" fill="#f5c65a" opacity=".6"/>
+</svg>
+<span class="brand-name">Tanzania <strong>Student Portal</strong></span>
+</a>
 <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
 <nav class="nav-links">
 <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="#study">Study</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a>
@@ -46,62 +57,39 @@ footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin
 </header>
 
 <main>
-<section class="hero">
-<div class="hero-inner">
-<h1>Everything Students Need in One Portal</h1>
-<p>Study materials, books, past papers, career tools, scholarships and opportunities — built for students in Tanzania.</p>
-<div class="search">
-<input id="portalSearch" type="search" placeholder="Search books, past papers, CV, scholarships...">
-<button onclick="portalSearch()">Search</button>
-</div>
-</div>
-</section>
-
-<div class="quick">
-<div class="quick-grid">
+<section class="hero"><div class="hero-inner"><h1>Everything Students Need in One Portal</h1><p>Study materials, books, past papers, career tools, scholarships and opportunities — built for students in Tanzania.</p><div class="search"><input id="portalSearch" type="search" placeholder="Search books, past papers, CV, scholarships..."><button onclick="portalSearch()">Search</button></div></div></section>
+<div class="quick"><div class="quick-grid">
 <a class="quick-card" href="books.html"><span>📚</span><b>Digital Library</b><small>Find useful books</small></a>
 <a class="quick-card" href="secondary.html"><span>📝</span><b>Past Papers</b><small>Exam practice</small></a>
 <a class="quick-card" href="dashboard.html"><span>👤</span><b>Dashboard</b><small>Your student hub</small></a>
 <a class="quick-card" href="student-tools.html"><span>🧰</span><b>Student Tools</b><small>GPA & study planner</small></a>
-</div>
-</div>
+</div></div>
 
-<section id="study">
-<div class="section-title"><h2>Student Services</h2><p>Choose a service and start learning or planning your career.</p></div>
-<div class="cards">
+<section id="study"><div class="section-title"><h2>Student Services</h2><p>Choose a service and start learning or planning your career.</p></div><div class="cards">
 <div class="card"><div class="icon">📚</div><h3>Study Materials</h3><p>Organized learning resources for secondary, advanced and university students.</p><a class="btn" href="#subjects">Explore Subjects</a></div>
 <div class="card"><div class="icon">📝</div><h3>Past Papers</h3><p>Practice with secondary, advanced and university examination resources.</p><a class="btn" href="secondary.html">Open Past Papers</a></div>
 <div class="card"><div class="icon">📖</div><h3>Digital Library</h3><p>Search academic books using the library already connected to the portal.</p><a class="btn" href="books.html">Open Library</a></div>
 <div class="card"><div class="icon">📄</div><h3>CV & Application Letters</h3><p>Create professional career documents designed for students and graduates.</p><a class="btn teal" href="cv-builder.html">Build Documents</a></div>
 <div class="card"><div class="icon">💼</div><h3>Jobs & Internships</h3><p>Use the opportunities hub to find career and internship resources.</p><a class="btn amber" href="opportunities.html#jobs">View Jobs</a></div>
 <div class="card"><div class="icon">🎓</div><h3>Scholarships & Admissions</h3><p>Find useful links and guidance for scholarships and university applications.</p><a class="btn teal" href="opportunities.html#scholarships">Explore</a></div>
-</div>
-</section>
+</div></section>
 
-<section id="subjects">
-<div class="section-title"><h2>Study by Level & Subject</h2><p>Expandable navigation keeps the portal simple as more courses are added.</p></div>
-<div class="accordion">
+<section id="subjects"><div class="section-title"><h2>Study by Level & Subject</h2><p>Expandable navigation keeps the portal simple as more courses are added.</p></div><div class="accordion">
 <div class="acc"><button onclick="toggleAcc(this)">Secondary Education <span>＋</span></button><div class="acc-content"><a href="secondary.html">Past Papers</a><a href="secondary.html">Subjects</a><a href="secondary.html">Exam Practice</a></div></div>
 <div class="acc"><button onclick="toggleAcc(this)">Advanced Level (A-Level) <span>＋</span></button><div class="acc-content"><a href="advanced.html">Past Papers</a><a href="advanced.html">Subjects</a><a href="advanced.html">Exam Practice</a></div></div>
 <div class="acc"><button onclick="toggleAcc(this)">University & College <span>＋</span></button><div class="acc-content"><a href="university.html">University Portal</a><a href="books.html">Academic Books</a><a href="opportunities.html">Career Opportunities</a></div></div>
 <div class="acc"><button onclick="toggleAcc(this)">Engineering & Mineral Processing <span>＋</span></button><div class="acc-content"><a href="books.html">Books</a><a href="books.html">Hydrometallurgy</a><a href="books.html">Comminution</a><a href="books.html">Flotation</a><a href="books.html">Gravity Separation</a><a href="books.html">Magnetic Separation</a><a href="books.html">Dewatering</a><a href="books.html">Ore Characterization</a></div></div>
-</div>
-</section>
+</div></section>
 
-<section>
-<div class="cta"><h2>Build Your Student Career</h2><p>Prepare a professional CV and discover opportunities from one place.</p><a class="btn" href="cv-builder.html">Open CV Builder</a></div>
-</section>
+<section><div class="cta"><h2>Build Your Student Career</h2><p>Prepare a professional CV and discover opportunities from one place.</p><a class="btn" href="cv-builder.html">Open CV Builder</a></div></section>
 </main>
 
-<footer>
-<div class="footer-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a></div>
-<p>© 2026 Tanzania Student Portal · Built for students</p>
-</footer>
+<footer><div class="footer-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a></div><p>© 2026 Tanzania Student Portal · Built for students</p></footer>
 
 <script>
 function toggleMenu(){document.getElementById('navbar').classList.toggle('mobile')}
 function toggleAcc(btn){const acc=btn.parentElement;acc.classList.toggle('open');btn.querySelector('span').textContent=acc.classList.contains('open')?'−':'＋'}
-function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return; if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
+function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return;if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
 </script>
 <script src="theme.js"></script>
 </body>
