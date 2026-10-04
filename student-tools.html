@@ -37,4 +37,5 @@ addCourse();addCourse();
 function calcGpa(){let c=document.querySelectorAll('.credit'),p=document.querySelectorAll('.point'),tc=0,tp=0;c.forEach((x,i)=>{let cr=Number(x.value)||0;tc+=cr;tp+=cr*(Number(p[i].value)||0)});document.getElementById('gpaResult').textContent=tc?'GPA: '+(tp/tc).toFixed(2):'Enter your credits first.'}
 function plan(){let m=Number(document.getElementById('minutes').value),s=Number(document.getElementById('subjects').value);document.getElementById('planResult').textContent=s>0&&m>0?'About '+Math.floor(m/s)+' minutes per subject.':'Enter valid values.'}
 </script><script src="theme.js"></script>
+<script src="language.js"></script>
 </body></html>
