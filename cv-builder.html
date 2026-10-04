@@ -23,10 +23,77 @@ button:hover,.wrap a:not(:first-child):hover{background:#115647;transform:transl
 @media(max-width:620px){#cvForm{grid-template-columns:1fr}#cvForm label,#cvForm input,#cvForm textarea,#cvForm button{grid-column:1!important}.wrap{padding-top:18px!important}}
 @media print{body{background:#fff!important}.wrap{max-width:none!important;padding:0!important}.wrap>h1,.wrap>p,.wrap>a,#cvForm,.actions{display:none!important}.preview{border:0!important;box-shadow:none!important;padding:0!important}}
 
+
+/* Career & Admissions Hub — unified, categorized experience */
+:root{--forest:#183b36;--green:#176b5b;--gold:#e8a34b;--paper:#f7f3eb;--ink:#1e302b;--muted:#68746d}
+.hub-intro{max-width:760px;color:#e0eee5!important;font-size:15px;margin:0!important}
+.hub-eyebrow{font-size:11px;letter-spacing:.14em;font-weight:900;color:#f3c778;margin-bottom:10px}
+.hub-nav{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 28px}
+.hub-nav a{display:inline-flex;align-items:center;gap:7px;padding:10px 14px;background:#e4eee4;color:#185849;border:1px solid #d3e2d2;border-radius:999px;font-size:13px;font-weight:800;text-decoration:none;transition:transform .18s,background .18s}
+.hub-nav a:hover{background:#d4e7d6;transform:translateY(-2px)}
+.hub-section{margin:32px 0}
+.hub-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:15px}
+.hub-section-head h2{margin:0;color:#183b36;font-size:clamp(22px,3vw,28px);letter-spacing:-.03em}
+.hub-section-head p{margin:5px 0 0;color:#68746d;font-size:14px}
+.hub-kicker{font-size:10px;letter-spacing:.12em;color:#176b5b;font-weight:900;text-transform:uppercase}
+.hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.hub-card{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;min-height:218px;padding:22px;border:1px solid #e7e4d9;border-radius:19px;background:#fffdf7;box-shadow:0 8px 25px #183b3608;transition:transform .2s,border-color .2s,box-shadow .2s}
+.hub-card:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#176b5b,#e8a34b)}
+.hub-card:hover{transform:translateY(-3px);border-color:#b9d0bd;box-shadow:0 16px 34px #183b3614}
+.hub-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:#e4eee4;font-size:24px;margin-bottom:13px}
+.hub-card h3{margin:0 0 7px;font-size:18px;line-height:1.3;color:#183b36}
+.hub-card p{margin:0 0 16px;color:#68746d;font-size:13px;line-height:1.65;flex:1}
+.hub-card .hub-btn{display:inline-flex;align-items:center;gap:8px;background:#176b5b;color:#fff;border-radius:10px;padding:10px 13px;text-decoration:none;font-size:12px;font-weight:850;border:0;cursor:pointer}
+.hub-card .hub-btn:hover{background:#115647}
+.hub-card .hub-btn.secondary{background:#e4eee4;color:#185849}
+.hub-search{width:100%;padding:13px 15px;border:1px solid #d9dfd4;border-radius:12px;background:#fffdf7;font:inherit;margin:4px 0 18px}
+.hub-search:focus{outline:3px solid #176b5b1c;border-color:#176b5b}
+.hub-note{padding:14px 16px;border-left:4px solid #d99a3d;background:#f8f0df;border-radius:10px;color:#65563d;font-size:13px;line-height:1.65;margin-top:20px}
+#cvWorkspace{scroll-margin-top:25px}
+@media(max-width:620px){.hub-grid{grid-template-columns:1fr}.hub-card{min-height:0;padding:19px}.hub-section-head{display:block}.hub-nav{gap:7px}.hub-nav a{font-size:12px;padding:9px 11px}}
+
 </style><link rel="stylesheet" href="theme.css">
 </head>
-<body><div class="wrap"><a href="index.html">← Home</a><h1>📄 Student CV Builder</h1><p class="muted">Fill in your details, preview your CV, then print or save it as PDF.</p>
+<body><div class="wrap"><a href="index.html">← Home</a>
+<h1>Career &amp; Admissions Hub</h1>
+<p class="muted">One place to prepare your CV, explore work opportunities and find official college or university admission routes in Tanzania.</p>
+<input class="hub-search" id="hubSearch" type="search" placeholder="Search categories: jobs, university, diploma, CV…" aria-label="Search all career and admissions categories" oninput="filterHub()"><div class="hub-nav" aria-label="Jump to a category"><a href="#cvWorkspace">📄 CV Builder</a><a href="#workCategory">💼 Work &amp; Internships</a><a href="#universityCategory">🎓 Universities</a><a href="#collegeCategory">🏫 Colleges &amp; Training</a></div>
+<section class="hub-section" id="cvWorkspace">
+<div class="hub-section-head"><div><span class="hub-kicker">01 · Career documents</span><h2>Build your professional CV</h2><p>Create a clean CV, preview it and save it as PDF.</p></div></div>
 <form id="cvForm"><label>Full name</label><input id="name" required><label>Email</label><input id="email" type="email"><label>Phone</label><input id="phone"><label>Education</label><textarea id="education" placeholder="Example: Diploma in Mining Engineering — Jema Institute of Technology"></textarea><label>Skills</label><textarea id="skills" placeholder="Example: Communication, teamwork, computer skills"></textarea><label>Experience</label><textarea id="experience"></textarea><label>Profile / Career objective</label><textarea id="profile"></textarea><button type="button" onclick="buildCV()">Generate CV</button></form>
+</section>
+<section class="hub-section" id="workCategory">
+<div class="hub-section-head"><div><span class="hub-kicker">02 · Work opportunities</span><h2>Work, jobs &amp; internships</h2><p>Go to trusted recruitment portals to review requirements and apply.</p></div></div>
+<div class="hub-grid" id="workGrid">
+<article class="hub-card" data-search="government public service jobs ajira employment vacancies recruitment"><span class="hub-icon">💼</span><h3>Government Jobs — Ajira Portal</h3><p>Search public-service vacancies and follow the official application process.</p><a class="hub-btn" href="https://portal.ajira.go.tz/" target="_blank" rel="noopener noreferrer">Open Ajira Portal ↗</a></article>
+<article class="hub-card" data-search="public service recruitment secretariat vacancies announcements jobs employment"><span class="hub-icon">📣</span><h3>Recruitment Announcements</h3><p>Check vacancy announcements and recruitment guidance from the Public Service Recruitment Secretariat.</p><a class="hub-btn" href="https://www.ajira.go.tz/" target="_blank" rel="noopener noreferrer">View Announcements ↗</a></article>
+<article class="hub-card" data-search="private sector jobs internships career opportunities employment"><span class="hub-icon">🌱</span><h3>Private-sector opportunities</h3><p>Use employer career pages and confirm every vacancy, deadline and application requirement before submitting.</p><a class="hub-btn secondary" href="https://www.kazi.go.tz/" target="_blank" rel="noopener noreferrer">Explore job resources ↗</a></article>
+<article class="hub-card" data-search="cover letter application letter cv resume career document"><span class="hub-icon">✍️</span><h3>Prepare your application documents</h3><p>Start with the CV Builder above and tailor your profile and experience to each role.</p><a class="hub-btn secondary" href="#cvWorkspace">Create a CV ↑</a></article>
+</div></section>
+<section class="hub-section" id="universityCategory">
+<div class="hub-section-head"><div><span class="hub-kicker">03 · University admissions</span><h2>Universities &amp; degree programmes</h2><p>Find recognised universities and use their official admission instructions.</p></div></div>
+<div class="hub-grid" id="universityGrid">
+<article class="hub-card" data-search="tcu registered recognised universities Tanzania institution list accreditation"><span class="hub-icon">🏛️</span><h3>Registered Universities in Tanzania</h3><p>Use the Tanzania Commission for Universities to check recognised universities and official institution information.</p><a class="hub-btn" href="https://www.tcu.go.tz/" target="_blank" rel="noopener noreferrer">Open TCU ↗</a></article>
+<article class="hub-card" data-search="university application undergraduate admissions guidebook admission requirements Tanzania"><span class="hub-icon">🎓</span><h3>University Application Guidance</h3><p>Review current admission notices, guidebooks and the application instructions published by TCU and your chosen university.</p><a class="hub-btn" href="https://www.tcu.go.tz/" target="_blank" rel="noopener noreferrer">Find official guidance ↗</a></article>
+<article class="hub-card" data-search="university direct application portal selected university admissions online form"><span class="hub-icon">📝</span><h3>Apply through a university</h3><p>Choose a recognised university, then open its own admissions portal to submit your application.</p><a class="hub-btn secondary" href="https://www.tcu.go.tz/" target="_blank" rel="noopener noreferrer">Find a university ↗</a></article>
+<article class="hub-card" data-search="university fees deadlines entry requirements programmes admissions"><span class="hub-icon">📅</span><h3>Before you apply</h3><p>Check programme requirements, application dates, fees and required documents directly with the institution.</p><a class="hub-btn secondary" href="https://www.tcu.go.tz/" target="_blank" rel="noopener noreferrer">Check TCU updates ↗</a></article>
+</div></section>
+<section class="hub-section" id="collegeCategory">
+<div class="hub-section-head"><div><span class="hub-kicker">04 · Colleges &amp; technical training</span><h2>Colleges, diplomas &amp; certificates</h2><p>Find registered technical and vocational institutions and follow their official application routes.</p></div></div>
+<div class="hub-grid" id="collegeGrid">
+<article class="hub-card" data-search="nactvet registered institutions colleges technical vocational diploma certificate health training Tanzania"><span class="hub-icon">🏫</span><h3>Registered Colleges &amp; Training Institutions</h3><p>Use NACTVET’s official website to find institution registration information and current guidance.</p><a class="hub-btn" href="https://www.nactvet.go.tz/" target="_blank" rel="noopener noreferrer">Open NACTVET ↗</a></article>
+<article class="hub-card" data-search="technical vocational college diploma certificate admission application requirements"><span class="hub-icon">🧰</span><h3>Technical &amp; Vocational Programmes</h3><p>Check course availability, entry requirements and the application procedure with the registered institution.</p><a class="hub-btn secondary" href="https://www.nactvet.go.tz/" target="_blank" rel="noopener noreferrer">Find training guidance ↗</a></article>
+<article class="hub-card" data-search="college application admission portal application form institution Tanzania"><span class="hub-icon">📝</span><h3>Apply to a college</h3><p>Open your selected college’s official application portal from its verified website or admissions notice.</p><a class="hub-btn secondary" href="https://www.nactvet.go.tz/" target="_blank" rel="noopener noreferrer">Find a college ↗</a></article>
+<article class="hub-card" data-search="verify registered institution recognition accreditation college course Tanzania"><span class="hub-icon">✅</span><h3>Verify before applying</h3><p>Confirm that the institution and programme are recognised and read the current admission notice before paying any fee.</p><a class="hub-btn secondary" href="https://www.nactvet.go.tz/" target="_blank" rel="noopener noreferrer">Check official information ↗</a></article>
+</div></section>
+<div class="hub-note"><strong>Important:</strong> This page groups official directories and application routes in one place, but does not submit applications to institutions or employers on your behalf. Applications are completed through each authorised portal. Verify institution registration, deadlines, entry requirements and any fees on the official site.</div>
 <div class="preview" id="preview"><h2>Your CV Preview</h2><p class="muted">Complete the form and select Generate CV.</p></div><div class="actions"><button onclick="window.print()">Print / Save as PDF</button></div></div>
+<script>
+document.getElementById('cvForm').addEventListener('submit',function(e){e.preventDefault()});
+function filterHub(){
+ const q=document.getElementById('hubSearch').value.trim().toLowerCase();
+ document.querySelectorAll('.hub-card').forEach(card=>{card.style.display=(!q||(card.innerText+' '+(card.dataset.search||'')).toLowerCase().includes(q))?'flex':'none'});
+}
+</script>
 <script>function buildCV(){const v=id=>document.getElementById(id).value.trim();document.getElementById('preview').innerHTML='<h2>'+esc(v('name'))+'</h2><p>'+esc(v('email'))+' · '+esc(v('phone'))+'</p><hr><h3>PROFILE</h3><p>'+nl(esc(v('profile')))+'</p><h3>EDUCATION</h3><p>'+nl(esc(v('education')))+'</p><h3>SKILLS</h3><p>'+nl(esc(v('skills')))+'</p><h3>EXPERIENCE</h3><p>'+nl(esc(v('experience')))+'</p>'}function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function nl(s){return s.replace(/\n/g,'<br>')}</script><script src="theme.js"></script>
 </body></html>
