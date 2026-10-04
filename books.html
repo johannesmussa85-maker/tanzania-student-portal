@@ -343,8 +343,15 @@ button:hover {
             value="mineral processing"
             placeholder="Search for a book..."
         >
+       
+<input
+    type="text"
+    id="authorInput"
+    placeholder="Search by author..."
+>
 
-        <button onclick="searchBooks()">Search</button>
+        
+<button onclick="searchBooks()">Search</button>
     </div>
 
     <div id="status">Loading books...</div>
@@ -391,6 +398,7 @@ button:hover {
 async function searchBooks() {
 
     const query = document.getElementById("searchInput").value;
+    const authorQuery = document.getElementById("authorInput").value.trim().toLowerCase();
     const booksContainer = document.getElementById("books");
     const status = document.getElementById("status");
 
@@ -411,11 +419,24 @@ async function searchBooks() {
             status.textContent = "No books found.";
             return;
         }
+       
+const filteredBooks = authorQuery
+    ? data.docs.filter(book =>
+        (book.author_name || []).some(author =>
+            author.toLowerCase().includes(authorQuery)
+        )
+    )
+    : data.docs;
+        if (filteredBooks.length === 0) {
+    status.textContent = "No books found for this author.";
+    return;
+}
 
-        status.textContent = data.docs.length + " books found";
 
-        data.docs.forEach(book => {
-           
+
+        status.textContent = filteredBooks.length + " books found";
+
+        filteredBooks.forEach(book => {   
 
 
             const title = book.title || "Unknown title";
