@@ -32,6 +32,7 @@ footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin
 @media(max-width:800px){.nav-links{display:none}.menu-btn{display:block}.navbar.mobile .nav-links{display:flex;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:18px 5%;flex-direction:column;align-items:flex-start}.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.hero{padding-top:55px}.search{flex-direction:column;background:transparent;gap:8px}.search input,.search button{border-radius:9px;padding:13px}.quick-grid,.cards{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <header>
@@ -102,5 +103,6 @@ function toggleMenu(){document.getElementById('navbar').classList.toggle('mobile
 function toggleAcc(btn){const acc=btn.parentElement;acc.classList.toggle('open');btn.querySelector('span').textContent=acc.classList.contains('open')?'−':'＋'}
 function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return; if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
 </script>
+<script src="theme.js"></script>
 </body>
 </html>
