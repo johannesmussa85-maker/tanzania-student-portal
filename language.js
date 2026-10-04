@@ -53,7 +53,22 @@
     "Examination timetables":"Ratiba za mitihani","Registration announcements":"Matangazo ya usajili",
     "Scholarships and internships":"Scholarship na mafunzo kwa vitendo","Class timetable changes":"Mabadiliko ya ratiba za darasa",
     "Other official college announcements":"Matangazo mengine rasmi ya vyuo","Notice Board:":"Ubao wa Matangazo:",
-    "Official notices will be added here.":"Matangazo rasmi yataongezwa hapa."
+    "Official notices will be added here.":"Matangazo rasmi yataongezwa hapa.",
+"University & College Portal":"University & College Portal",
+    "Universities, colleges & admission pathways":"Vyuo vikuu, vyuo na njia za udahili",
+    "Higher education guide":"Mwongozo wa elimu ya juu",
+    "Choose your pathway":"Chagua njia yako ya masomo",
+    "Application checklist":"Orodha ya kujiandaa kuomba",
+    "Helpful student links":"Viungo muhimu kwa wanafunzi",
+    "Verify before applying":"Thibitisha kabla ya kutuma maombi",
+    "Form 5 & Form 6 Study Hub":"Kituo cha masomo cha Kidato cha Tano na Sita",
+    "Study smarter for ACSEE":"Jiandae vizuri zaidi kwa ACSEE",
+    "Form 5 study focus":"Mambo ya kuzingatia Kidato cha Tano",
+    "Form 6 exam readiness":"Maandalizi ya mtihani wa Kidato cha Sita",
+    "A simple weekly revision plan":"Mpango rahisi wa marudio ya kila wiki",
+    "Word-compatible document":"Hati inayofunguka kwenye Word",
+    "Search library":"Tafuta maktaba",
+    "Check catalogue":"Angalia taarifa za katalogi"
   };
   const attrMap = {
     "Search books, exam papers, career tools…":"Tafuta vitabu, mitihani, zana za kazi…",
