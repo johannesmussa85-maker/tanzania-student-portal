@@ -90,4 +90,5 @@ search.addEventListener('input',applyFilters);level.addEventListener('change',ap
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');quick=b.dataset.filter;search.value=quick;applyFilters()}));
 applyFilters();
 </script>
+<script src="language.js"></script>
 </body></html>
