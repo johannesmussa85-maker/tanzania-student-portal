@@ -96,4 +96,5 @@ function filterHub(){
 }
 </script>
 <script>function buildCV(){const v=id=>document.getElementById(id).value.trim();document.getElementById('preview').innerHTML='<h2>'+esc(v('name'))+'</h2><p>'+esc(v('email'))+' · '+esc(v('phone'))+'</p><hr><h3>PROFILE</h3><p>'+nl(esc(v('profile')))+'</p><h3>EDUCATION</h3><p>'+nl(esc(v('education')))+'</p><h3>SKILLS</h3><p>'+nl(esc(v('skills')))+'</p><h3>EXPERIENCE</h3><p>'+nl(esc(v('experience')))+'</p>'}function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}function nl(s){return s.replace(/\n/g,'<br>')}</script><script src="theme.js"></script>
+<script src="language.js"></script>
 </body></html>
