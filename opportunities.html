@@ -1,4 +1,23 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Opportunities | Tanzania Student Portal</title><style>body{font-family:Arial;background:#f6f8fc;color:#172033;margin:0}.wrap{max-width:1000px;margin:auto;padding:35px 5%}h1,h2{color:#1e3a8a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 15px #0001}.card p{color:#64748b}.btn{display:inline-block;background:#1e3a8a;color:#fff;padding:9px 13px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:8px}</style><link rel="stylesheet" href="theme.css">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Opportunities | Tanzania Student Portal</title><style>body{font-family:Arial;background:#f6f8fc;color:#172033;margin:0}.wrap{max-width:1000px;margin:auto;padding:35px 5%}h1,h2{color:#1e3a8a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 15px #0001}.card p{color:#64748b}.btn{display:inline-block;background:#1e3a8a;color:#fff;padding:9px 13px;border-radius:8px;text-decoration:none;font-weight:bold;margin-top:8px}
+/* Opportunities Hub — polished opportunity directory */
+:root{--forest:#183b36;--green:#176b5b;--gold:#e8a34b;--paper:#f7f3eb;--ink:#1e302b;--muted:#68746d}
+*{box-sizing:border-box}body{font-family:Inter,"Segoe UI",Arial,sans-serif!important;background:var(--paper)!important;color:var(--ink)!important;line-height:1.65}
+.wrap{max-width:1160px!important;padding:30px clamp(16px,5vw,58px) 76px!important}
+.wrap>a:first-child{display:inline-flex;padding:9px 13px;border-radius:999px;background:#e4eee4;color:#185849}
+.wrap>h1{font-size:clamp(32px,4.4vw,47px);letter-spacing:-.04em;color:#fff;background:radial-gradient(circle at 90% 10%,#e8a34b44,transparent 28%),linear-gradient(125deg,#183b36,#246452);border-radius:22px;padding:clamp(26px,4vw,44px);margin:0 0 14px;box-shadow:0 16px 40px #183b3617}
+.wrap>p{color:#68746d;max-width:720px;margin-bottom:30px}
+.wrap>h2{display:flex;align-items:center;gap:10px;color:#183b36!important;font-size:clamp(22px,3vw,29px);letter-spacing:-.025em;margin:35px 0 17px!important}
+.grid{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))!important;gap:18px!important}
+.card{position:relative;overflow:hidden;background:#fffdf7!important;border:1px solid #e9e2d5;border-radius:19px!important;padding:24px!important;box-shadow:0 9px 26px #183b3609!important;transition:transform .2s,border-color .2s,box-shadow .2s}
+.card:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#176b5b,#e8a34b)}
+.card:hover{transform:translateY(-4px);border-color:#b9d0bd;box-shadow:0 18px 35px #183b3616!important}
+.card h3{color:#183b36;margin:4px 0 9px;font-size:19px;letter-spacing:-.015em}
+.card p{color:#68746d;font-size:14px;line-height:1.7;min-height:70px}
+.btn{display:inline-flex;align-items:center;justify-content:center;background:#176b5b!important;color:#fff!important;padding:10px 14px!important;border-radius:10px!important;text-decoration:none;font-weight:800;margin-top:12px;transition:background .18s,transform .18s}
+.btn:hover{background:#115647!important;transform:translateY(-1px)}
+@media(max-width:600px){.wrap{padding-top:18px!important}.grid{grid-template-columns:1fr!important}.card p{min-height:0}}
+
+</style><link rel="stylesheet" href="theme.css">
 </head><body><div class="wrap"><a href="index.html">← Home</a><h1>🎓 Opportunities Hub</h1><p>Useful starting points for scholarships, admissions, jobs and internships.</p><h2 id="scholarships">Scholarships & Admissions</h2><div class="grid"><div class="card"><h3>HESLB</h3><p>Student financing and higher-education support information.</p><a class="btn" href="https://www.heslb.go.tz/" target="_blank" rel="noopener">Visit HESLB</a></div><div class="card"><h3>TCU</h3><p>University admissions and higher education information.</p><a class="btn" href="https://www.tcu.go.tz/" target="_blank" rel="noopener">Visit TCU</a></div><div class="card"><h3>Scholarship Search</h3><p>Use reputable scholarship providers and always verify deadlines and eligibility.</p><a class="btn" href="https://www.chevening.org/" target="_blank" rel="noopener">Chevening</a></div></div><h2 id="jobs" style="margin-top:40px">💼 Jobs & Internships</h2><div class="grid"><div class="card"><h3>Ajira Portal</h3><p>Official Tanzania public service recruitment portal.</p><a class="btn" href="https://portal.ajira.go.tz/" target="_blank" rel="noopener">Open Ajira</a></div><div class="card"><h3>Career Preparation</h3><p>Create your CV and application documents before applying.</p><a class="btn" href="cv-builder.html">Build CV</a></div></div></div><script src="theme.js"></script>
 </body></html>
