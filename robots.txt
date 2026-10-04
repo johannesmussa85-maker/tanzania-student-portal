@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://johannesmussa85-maker.github.io/tanzania-student-portal/sitemap.xml
