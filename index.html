@@ -7,29 +7,29 @@
 <title>Tanzania Student Portal | Students First</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#1e3a8a;--blue:#2563eb;--teal:#0d9488;--amber:#f59e0b;--bg:#f6f8fc;--text:#172033;--muted:#64748b;--white:#fff}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+:root{--navy:#0F172A;--blue:#7C3AED;--teal:#06B6D4;--amber:#22D3EE;--bg:#0F172A;--text:#E5E7EB;--muted:#94A3B8;--white:#fff}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% 0%,#172554 0,#0F172A 48%,#020617 100%);color:var(--text);line-height:1.6;min-height:100vh}
 a{text-decoration:none;color:inherit}
-header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 3px 14px #0002}
+header{background:#0f172acc;color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 8px 30px #0005;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #ffffff14}
 .navbar{max-width:1200px;margin:auto;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
 .brand-logo{width:38px;height:38px;flex:none;filter:drop-shadow(0 0 3px #f5c65a88)}
-.brand-name{color:#fff}.brand-name strong{color:#fbbf24}
+.brand-name{color:#fff}.brand-name strong{color:#22d3ee}
 .nav-links{display:flex;gap:20px;align-items:center}.nav-links a{font-weight:600;font-size:14px}
 .menu-btn{display:none;background:transparent;border:1px solid #ffffff66;color:#fff;padding:8px 10px;border-radius:8px}
-.hero{background:linear-gradient(135deg,#172e72,#2563eb);color:#fff;padding:75px 5% 65px}
-.hero-inner{max-width:1050px;margin:auto;text-align:center}.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.1;margin-bottom:15px}
+.hero{background:radial-gradient(circle at 50% 15%,#312e81aa 0,#0F172A 55%,#020617 100%);color:#fff;padding:75px 5% 65px;border-bottom:1px solid #ffffff0d}
+.hero-inner{max-width:1050px;margin:auto;text-align:center}.hero-panel{max-width:780px;margin:28px auto 0;padding:18px;border:1px solid #ffffff1c;background:#ffffff09;border-radius:22px;box-shadow:0 20px 70px #0006;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}.hero-status{font-size:12px;color:#a5f3fc;margin-bottom:10px;letter-spacing:.5px}.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.1;margin-bottom:15px}
 .hero p{font-size:18px;max-width:720px;margin:0 auto 28px;color:#e7efff}
-.search{max-width:720px;margin:auto;display:flex;background:#fff;padding:6px;border-radius:12px}
-.search input{flex:1;border:0;outline:0;padding:13px;font-size:16px}.search button{border:0;background:var(--amber);padding:0 22px;border-radius:9px;font-weight:800;cursor:pointer}
+.search{max-width:720px;margin:auto;display:flex;background:#ffffff12;padding:6px;border:1px solid #ffffff20;border-radius:14px;backdrop-filter:blur(12px)}
+.search input{flex:1;border:0;outline:0;padding:13px;font-size:16px;background:transparent;color:#fff}.search input::placeholder{color:#94a3b8}.search button{border:0;background:linear-gradient(135deg,#7c3aed,#06b6d4);color:#fff;padding:0 22px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 0 18px #7c3aed55;transition:.2s}.search button:hover{box-shadow:0 0 28px #06b6d477;transform:translateY(-1px)}
 .quick{max-width:1100px;margin:-25px auto 0;padding:0 5%;position:relative}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.quick-card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 7px 22px #0b1f4a18;text-align:center}.quick-card b{display:block;color:var(--navy);margin-top:5px}.quick-card small{color:var(--muted)}
-section{max-width:1100px;margin:auto;padding:55px 5%}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:30px;color:var(--navy)}.section-title p{color:var(--muted)}
+.quick-card{background:#ffffff0a;padding:18px;border-radius:16px;box-shadow:0 12px 35px #0004;text-align:center;border:1px solid #ffffff16;backdrop-filter:blur(14px);transition:.25s}.quick-card:hover{transform:translateY(-4px);border-color:#22d3ee66;box-shadow:0 16px 40px #0006,0 0 20px #7c3aed22}.quick-card b{display:block;color:#e5e7eb;margin-top:5px}.quick-card small{color:#94a3b8}
+section{max-width:1100px;margin:auto;padding:55px 5%}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:30px;color:#e5e7eb}.section-title p{color:var(--muted)}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 15px #0b1f4a12;border:1px solid #e7ebf3;transition:.2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #0b1f4a1c}.icon{font-size:30px}.card h3{margin:8px 0;color:var(--navy)}.card p{color:var(--muted);margin-bottom:15px}.btn{display:inline-block;background:var(--navy);color:#fff;padding:9px 14px;border-radius:8px;font-weight:700;font-size:14px}.btn.teal{background:var(--teal)}.btn.amber{background:#d97706}
-.accordion{max-width:900px;margin:auto}.acc{background:#fff;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:10px;overflow:hidden}.acc button{width:100%;padding:17px 18px;border:0;background:#fff;text-align:left;font-size:16px;font-weight:800;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between}.acc-content{display:none;padding:0 18px 18px;color:var(--muted)}.acc.open .acc-content{display:block}.acc-content a{display:inline-block;margin:6px 7px 0 0;color:var(--blue);font-weight:700}
-.cta{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border-radius:16px;padding:35px;text-align:center}.cta h2{margin-bottom:8px}.cta p{margin-bottom:18px;color:#e6fffb}.cta .btn{background:#fff;color:#0f766e}
+.card{background:#ffffff09;padding:24px;border-radius:16px;box-shadow:0 10px 35px #0004;border:1px solid #ffffff14;transition:.25s;backdrop-filter:blur(14px)}
+.card:hover{transform:translateY(-4px);box-shadow:0 18px 42px #0006,0 0 24px #7c3aed22;border-color:#7c3aed66}.icon{font-size:30px}.card h3{margin:8px 0;color:#a5f3fc}.card p{color:#94a3b8;margin-bottom:15px}.btn{display:inline-block;background:linear-gradient(135deg,#7c3aed,#06b6d4);color:#fff;padding:9px 14px;border-radius:8px;font-weight:700;font-size:14px}.btn.teal{background:var(--teal)}.btn.amber{background:#d97706}
+.accordion{max-width:900px;margin:auto}.acc{background:#ffffff09;border:1px solid #ffffff14;border-radius:10px;margin-bottom:10px;overflow:hidden}.acc button{width:100%;padding:17px 18px;border:0;background:transparent;text-align:left;font-size:16px;font-weight:800;color:#e5e7eb;cursor:pointer;display:flex;justify-content:space-between}.acc-content{display:none;padding:0 18px 18px;color:var(--muted)}.acc.open .acc-content{display:block}.acc-content a{display:inline-block;margin:6px 7px 0 0;color:var(--blue);font-weight:700}
+.cta{background:linear-gradient(135deg,#312e81,#0e7490);color:#fff;border-radius:16px;padding:35px;text-align:center}.cta h2{margin-bottom:8px}.cta p{margin-bottom:18px;color:#e6fffb}.cta .btn{background:#fff;color:#0f766e}
 footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin-top:20px}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:10px 0 15px}.footer-links a{color:#fff}
 @media(max-width:800px){.nav-links{display:none}.menu-btn{display:block}.navbar.mobile .nav-links{display:flex;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:18px 5%;flex-direction:column;align-items:flex-start}.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.hero{padding-top:55px}.search{flex-direction:column;background:transparent;gap:8px}.search input,.search button{border-radius:9px;padding:13px}.quick-grid,.cards{grid-template-columns:1fr}.brand{font-size:17px}.brand-logo{width:34px;height:34px}}
@@ -57,7 +57,7 @@ footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin
 </header>
 
 <main>
-<section class="hero"><div class="hero-inner"><h1>Everything Students Need in One Portal</h1><p>Study materials, books, past papers, career tools, scholarships and opportunities — built for students in Tanzania.</p><div class="search"><input id="portalSearch" type="search" placeholder="Search books, past papers, CV, scholarships..."><button onclick="portalSearch()">Search</button></div></div></section>
+<section class="hero"><div class="hero-inner"><h1>Everything Students Need in One Portal</h1><p>Study materials, books, past papers, career tools, scholarships and opportunities — built for students in Tanzania.</p><div class="hero-panel"><div class="hero-status">● Portal ready · Search, study and plan your future</div><div class="search"><input id="portalSearch" type="search" placeholder="Search books, past papers, CV, scholarships..."><button onclick="portalSearch()">Search</button></div></div></section>
 <div class="quick"><div class="quick-grid">
 <a class="quick-card" href="books.html"><span>📚</span><b>Digital Library</b><small>Find useful books</small></a>
 <a class="quick-card" href="secondary.html"><span>📝</span><b>Past Papers</b><small>Exam practice</small></a>
