@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Tanzania Student Portal helps students find secondary exam practice, digital books, courses, career resources, scholarships and practical study tools.">
+<meta name="application-name" content="Tanzania Student Portal">
 <meta name="author" content="Tanzania Student Portal"><meta name="keywords" content="Tanzania students, NECTA past papers, student resources, digital library, open textbooks, university admissions Tanzania, college courses, student CV, study tools">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://johannesmussa85-maker.github.io/tanzania-student-portal/">
@@ -14,6 +15,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="manifest" href="manifest.webmanifest">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Tanzania Student Portal">
 <meta property="og:title" content="Tanzania Student Portal | Students First">
 <meta property="og:description" content="Study resources, past papers, digital library, courses, career tools and student opportunities for learners in Tanzania.">
 <meta property="og:url" content="https://johannesmussa85-maker.github.io/tanzania-student-portal/">
@@ -246,11 +248,28 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Tanzania Student Portal",
-  "alternateName": "TSP",
-  "url": "https://johannesmussa85-maker.github.io/tanzania-student-portal/",
-  "description": "Student resources for secondary exam practice, digital books, courses, careers and study tools in Tanzania."
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://johannesmussa85-maker.github.io/tanzania-student-portal/#website",
+      "name": "Tanzania Student Portal",
+      "alternateName": "TSP",
+      "url": "https://johannesmussa85-maker.github.io/tanzania-student-portal/",
+      "description": "Student resources for secondary exam practice, digital books, courses, careers and study tools in Tanzania.",
+      "publisher": {
+        "@id": "https://johannesmussa85-maker.github.io/tanzania-student-portal/#organization"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://johannesmussa85-maker.github.io/tanzania-student-portal/#organization",
+      "name": "Tanzania Student Portal",
+      "alternateName": "TSP",
+      "url": "https://johannesmussa85-maker.github.io/tanzania-student-portal/",
+      "logo": "https://johannesmussa85-maker.github.io/tanzania-student-portal/favicon.svg",
+      "description": "A student resource portal for learners in Tanzania, covering study materials, exam practice, books, courses, career tools and opportunities."
+    }
+  ]
 }
 </script>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -370,6 +389,15 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
   <p class="resource-disclaimer">Tanzania Student Portal links to external sources; it does not host or claim ownership of their files. Use each publisher's legal read, borrow or download option. A link is a catalogue or resource entry point, not a guarantee that every item is free to download.</p>
 </section>
 
+<section id="about-portal" class="trust-section" aria-labelledby="about-title">
+  <div class="section-head"><span class="eyebrow">About the portal</span><h2 id="about-title">Tanzania Student Portal</h2><p>A student-focused resource hub designed to make learning, exam preparation, career planning and further-study research easier to find in one place.</p></div>
+  <div class="trust-grid">
+    <article class="trust-card"><span>01</span><h3>One student home</h3><p>Find study resources, books, courses, career documents and opportunities through a single portal.</p></article>
+    <article class="trust-card"><span>02</span><h3>Practical and clear</h3><p>Use organized links and simple tools while checking important details with the official provider.</p></article>
+    <article class="trust-card"><span>03</span><h3>Built for Tanzania</h3><p>Resources are selected with Tanzanian students and local education pathways in mind.</p></article>
+  </div>
+</section>
+
 <section class="trust-section" aria-labelledby="trust-title">
   <div class="section-head"><span class="eyebrow">Use the portal wisely</span><h2 id="trust-title">Reliable study habits &amp; source checks</h2><p>Simple steps that help students get more value from every resource.</p></div>
   <div class="trust-grid">
@@ -381,7 +409,7 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 <section><div class="cta"><h2>Build Your Student Career</h2><p>Prepare a professional CV and discover opportunities from one place.</p><a class="btn" href="cv-builder.html">Open CV Builder</a></div></section>
 </main>
 
-<footer><div class="footer-links"><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="secondary.html">Past Papers</a><a href="advanced.html">Form 5 &amp; 6</a><a href="university.html">Universities &amp; Colleges</a><a href="courses.html">Courses</a><a href="books.html">Digital Library</a><a href="cv-builder.html">Career Hub</a><a href="student-tools.html">Student Tools</a><a href="opportunities.html">Opportunities</a></div><p>© 2026 Tanzania Student Portal · Built for students</p><p style="font-size:12px;color:#b7c8c0">Verify admissions, examination details and opportunities with the relevant official provider.</p></footer>
+<footer><div class="footer-links"><a href="index.html">Home</a><a href="#about-portal">About</a><a href="dashboard.html">Dashboard</a><a href="secondary.html">Past Papers</a><a href="advanced.html">Form 5 &amp; 6</a><a href="university.html">Universities &amp; Colleges</a><a href="courses.html">Courses</a><a href="books.html">Digital Library</a><a href="cv-builder.html">Career Hub</a><a href="student-tools.html">Student Tools</a><a href="opportunities.html">Opportunities</a></div><p>© 2026 Tanzania Student Portal · Built for students</p><p style="font-size:12px;color:#b7c8c0">Verify admissions, examination details and opportunities with the relevant official provider.</p></footer>
 
 <script>
 function toggleMenu(){const nav=document.getElementById('navbar');const button=nav.querySelector('.menu-btn');const open=nav.classList.toggle('mobile');if(button){button.setAttribute('aria-expanded',String(open));button.textContent=open?'✕ Close':'☰ Menu'}}
