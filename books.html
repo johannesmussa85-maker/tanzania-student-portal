@@ -142,7 +142,18 @@ button:hover {
 
 .book a.download-link:hover {
     background: #146c43;
-}.availability {
+}
+      
+.book a.buy-link {
+    background: #f08c00;
+    margin-left: 5px;
+}
+
+.book a.buy-link:hover {
+    background: #cc7000;
+}
+
+ .availability {
     display: inline-block;
     margin-top: 10px;
     padding: 8px 14px;
@@ -427,6 +438,9 @@ async function searchBooks() {
 
             const bookLink =
                 "https://openlibrary.org" + bookKey;
+            const buyLink =
+    "https://www.google.com/search?q=" +
+    encodeURIComponent(title + " book price buy");
             const downloadLink =
                 
     book.ia && book.ia.length > 0
@@ -464,16 +478,25 @@ if (book.availability) {
     <span class="availability ${availabilityClass}">
         ${availabilityText}
     </span>
-</p> 
+</p>  html
+<p>
+    <a href="${bookLink}"
+       target="_blank"
+       rel="noopener">
+        View Book
+    </a>
+</p>
 
-                <p>
-                    <a href="${bookLink}"
-                       target="_blank"
-                       rel="noopener">
-                        View Book
-                    </a>
-                </p>
-                                ${downloadLink ? `
+<p>
+    <a class="buy-link"
+       href="${buyLink}"
+       target="_blank"
+       rel="noopener">
+        Buy / Check Price
+    </a>
+</p>
+
+     ${downloadLink ? `
                 <p>
                     <a class="download-link" href="${downloadLink}"
                        target="_blank"
