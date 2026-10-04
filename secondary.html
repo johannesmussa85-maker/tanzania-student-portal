@@ -56,7 +56,7 @@ footer{text-align:center;padding:22px;color:#64748b;font-size:13px}
 <div class="notice"><strong>Important:</strong> This page focuses on Tanzania national examination levels: Form 2 (FTNA), Form 4 (CSEE) and Form 6 (ACSEE). Form 1 and Form 3 are classroom levels rather than the standard national NECTA exam-paper categories shown here. External archives may list different years and subjects; each link opens the source collection, not necessarily a direct PDF.</div>
 <div class="toolbar">
 <input id="search" type="search" placeholder="Search subject or resource..." aria-label="Search subject or resource">
-<select id="yearFilter" aria-label="Filter by year"><option value="all">All years — browse verified collections</option></select>
+<select id="yearFilter" aria-label="Filter by year"><option value="all">All years</option></select>
 <select id="subjectFilter" aria-label="Filter by subject"><option value="all">All subjects</option><option>Mathematics</option><option>English</option><option>Kiswahili</option><option>Biology</option><option>Chemistry</option><option>Physics</option><option>Geography</option><option>History</option><option>Civics</option><option>Commerce</option><option>Book Keeping</option><option>Computer Studies</option></select>
 </div>
 <div class="form-tabs" role="tablist" aria-label="Choose form">
@@ -95,9 +95,7 @@ function renderPapers(){
   const year = document.getElementById('yearFilter').value;
   const subject = document.getElementById('subjectFilter').value;
   const query = document.getElementById('search').value.trim().toLowerCase();
-  const yearFilter = document.getElementById('yearFilter');
-  yearFilter.disabled = true;
-  yearFilter.title = 'Year-specific links will be added when an exact paper is verified. Choose All years to browse source collections.';
+
   document.getElementById('formTitle').textContent = 'Form ' + selectedForm + ' resources';
   document.getElementById('formDescription').textContent = descriptions[selectedForm];
   const list = (resources[selectedForm] || []).filter(p =>
