@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Student Tools | Tanzania Student Portal</title>
+<style>
+body{margin:0;font-family:Arial;background:#f6f8fc;color:#172033}.wrap{max-width:950px;margin:auto;padding:30px 5%}a{color:#1e3a8a;font-weight:700;text-decoration:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 15px #0001}.card h2{color:#1e3a8a}input,select{width:100%;padding:10px;margin:6px 0 12px;border:1px solid #ccd5e1;border-radius:8px;box-sizing:border-box}button{background:#1e3a8a;color:#fff;border:0;border-radius:8px;padding:10px 15px;font-weight:bold;cursor:pointer}.result{margin-top:12px;font-weight:bold;color:#0d9488}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+</style></head><body><div class="wrap"><p><a href="index.html">← Back to Home</a></p><h1>🧰 Student Tools</h1><p>Simple tools to help students study and plan their academic work.</p>
+<div class="grid">
+<div class="card"><h2>GPA Calculator</h2><p>Add courses, credits and grade points.</p><div id="courses"></div><button onclick="addCourse()">+ Add Course</button> <button onclick="calcGpa()">Calculate</button><div class="result" id="gpaResult"></div></div>
+<div class="card"><h2>Study Planner</h2><p>Set your available study time and divide it across subjects.</p><label>Minutes available</label><input id="minutes" type="number" min="1" value="120"><label>Number of subjects</label><input id="subjects" type="number" min="1" value="4"><button onclick="plan()">Create Plan</button><div class="result" id="planResult"></div></div>
+</div></div>
+<script>
+function addCourse(){const d=document.createElement('div');d.className='row';d.innerHTML='<input class="credit" type="number" min="0" step="0.5" placeholder="Credits"><select class="point"><option value="5">A / 5</option><option value="4">B / 4</option><option value="3">C / 3</option><option value="2">D / 2</option><option value="1">E / 1</option><option value="0">F / 0</option></select>';document.getElementById('courses').appendChild(d)}
+addCourse();addCourse();
+function calcGpa(){let c=document.querySelectorAll('.credit'),p=document.querySelectorAll('.point'),tc=0,tp=0;c.forEach((x,i)=>{let cr=Number(x.value)||0;tc+=cr;tp+=cr*(Number(p[i].value)||0)});document.getElementById('gpaResult').textContent=tc?'GPA: '+(tp/tc).toFixed(2):'Enter your credits first.'}
+function plan(){let m=Number(document.getElementById('minutes').value),s=Number(document.getElementById('subjects').value);document.getElementById('planResult').textContent=s>0&&m>0?'About '+Math.floor(m/s)+' minutes per subject.':'Enter valid values.'}
+</script></body></html>
