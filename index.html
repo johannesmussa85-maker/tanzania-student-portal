@@ -231,7 +231,7 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 </a>
 <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
 <nav class="nav-links">
-<a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="#study">Study</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a>
+<a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="#study">Study</a><a href="books.html">Books</a><a href="courses.html">Courses</a><a href="cv-builder.html">Career Hub</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a>
 </nav>
 </div>
 </header>
@@ -239,6 +239,7 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 <main>
 <section class="hero"><div class="hero-inner"><h1>Your journey.<br>Your knowledge.<br><span style="color:#f3c778">Your future.</span></h1><p>A welcoming home for Tanzania’s learners. Find study resources, prepare for exams, shape your career and take your next step with confidence.</p><div class="hero-panel"><div class="hero-status">✦ A LITTLE PROGRESS EVERY DAY</div><div class="search"><input id="portalSearch" type="search" placeholder="Search books, exam papers, career tools…" aria-label="Search student resources"><button onclick="portalSearch()">Find resources&nbsp; ↗</button></div><p style="font-size:12px;color:#dbeafe;margin:14px 0 0;line-height:1.5">Popular: Past papers · Digital library · CV builder</p></div></div></section>
 <div class="quick"><div class="quick-grid">
+<a class="quick-card" href="courses.html"><span>🎓</span><b>Courses & Resources</b><small>Books, videos & study guides</small></a>
 <a class="quick-card" href="books.html"><span>📚</span><b>Digital Library</b><small>Find useful books</small></a>
 <a class="quick-card" href="secondary.html"><span>📝</span><b>Past Papers</b><small>Exam practice</small></a>
 <a class="quick-card" href="dashboard.html"><span>👤</span><b>Dashboard</b><small>Your student hub</small></a>
@@ -326,12 +327,12 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 <section><div class="cta"><h2>Build Your Student Career</h2><p>Prepare a professional CV and discover opportunities from one place.</p><a class="btn" href="cv-builder.html">Open CV Builder</a></div></section>
 </main>
 
-<footer><div class="footer-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a></div><p>© 2026 Tanzania Student Portal · Built for students</p></footer>
+<footer><div class="footer-links"><a href="index.html">Home</a><a href="courses.html">Courses</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a></div><p>© 2026 Tanzania Student Portal · Built for students</p></footer>
 
 <script>
 function toggleMenu(){document.getElementById('navbar').classList.toggle('mobile')}
 function toggleAcc(btn){const acc=btn.parentElement;acc.classList.toggle('open');btn.querySelector('span').textContent=acc.classList.contains('open')?'−':'＋'}
-function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return;if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
+function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return;if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('course')||q.includes('degree')||q.includes('diploma')||q.includes('nursing')||q.includes('agriculture')||q.includes('ict'))location.href='courses.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
 </script>
 <script src="theme.js"></script>
 </body>
