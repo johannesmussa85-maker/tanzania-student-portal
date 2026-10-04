@@ -172,6 +172,47 @@ footer{margin-top:0;background:#122d28;color:#dbe8df;padding:35px 5%}.footer-lin
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 
+
+/* Final homepage art direction: editorial layout, warm neutrals, clear hierarchy */
+body{background:#f7f3eb!important;color:#1e302b!important}
+header{background:rgba(250,248,241,.94)!important;border-bottom:1px solid #e4dfd2!important;box-shadow:0 5px 24px #183b360b!important}
+.nav-links a{font-size:13px!important;font-weight:750!important}
+.nav-links a:last-child{background:#176b5b;color:#fff!important;padding:10px 15px!important;border-radius:999px}
+.nav-links a:last-child:hover{background:#115647!important}
+.hero{padding-top:clamp(52px,7vw,90px)!important;padding-bottom:clamp(70px,8vw,100px)!important}
+.hero-inner{position:relative}
+.hero-inner:after{content:"STUDENT\A PORTAL";white-space:pre;position:absolute;right:0;top:-25px;color:#ffffff16;font-size:clamp(60px,10vw,130px);font-weight:900;line-height:.8;letter-spacing:-.08em;text-align:right;pointer-events:none;z-index:-1}
+.hero-inner h1{position:relative;z-index:1;text-wrap:balance}
+.hero-inner>p{position:relative;z-index:1}
+.hero-panel{position:relative;z-index:2;border-radius:22px!important}
+.hero-panel:after{content:"FREE LEARNING · CAREER TOOLS · EXAM PRACTICE";display:block;margin-top:18px;padding-top:13px;border-top:1px solid #dfe4d8;color:#64746a;font-size:10px;font-weight:850;letter-spacing:.07em;line-height:1.7}
+.quick-card{min-height:145px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px}
+.quick-card>span{transition:transform .2s}
+.quick-card:hover>span{transform:rotate(-5deg) scale(1.05)}
+#study,#subjects,#free-resources{position:relative}
+#study .section-title:before{content:"EXPLORE THE PORTAL";display:block;color:#176b5b;font-size:11px;font-weight:900;letter-spacing:.14em;margin-bottom:10px}
+.section-title h2{font-weight:850}
+.cards .card{min-height:300px}
+.cards .card .btn{margin-top:12px}
+.card-image{border-radius:14px!important;background-color:#e6eee3!important}
+.card-image.library{background-color:#dfe9dc!important}
+.card-image.papers{background-color:#f3e6ce!important}
+#subjects .acc button{font-weight:800}
+#subjects .acc button span{color:#176b5b}
+#free-resources{background:#f0eee5;border-radius:28px;margin:20px auto 60px!important;width:90%;max-width:1080px;padding:clamp(28px,5vw,58px)!important}
+#free-resources .section-title:before{content:"YOUR LEARNING TOOLKIT";display:block;color:#176b5b;font-size:11px;font-weight:900;letter-spacing:.14em;margin-bottom:10px}
+.resource-categories a{font-weight:800;transition:transform .18s,background .18s}
+.resource-categories a:hover{transform:translateY(-2px)}
+.resource-card{transition:transform .2s,box-shadow .2s,border-color .2s}
+.resource-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px #183b3614;border-color:#b9d0bd}
+.cta{position:relative;overflow:hidden}
+.cta:after{content:"✦";position:absolute;right:6%;top:0;color:#f3c77838;font-size:150px;line-height:1;pointer-events:none}
+footer{padding-top:38px!important;padding-bottom:38px!important}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin-bottom:16px}
+.footer-links a{font-weight:750}
+@media(max-width:800px){.hero-inner:after{font-size:80px;top:-12px;opacity:.7}.nav-links a:last-child{background:transparent;color:inherit!important;padding:8px!important}}
+@media(max-width:560px){.hero-inner:after{font-size:60px;top:-14px}.quick-card{min-height:125px}.cards .card{min-height:0}#free-resources{width:90%;border-radius:20px;margin-bottom:38px!important}.cta:after{font-size:95px;right:3%}}
+
 </style>
 <link rel="stylesheet" href="theme.css">
 </head>
