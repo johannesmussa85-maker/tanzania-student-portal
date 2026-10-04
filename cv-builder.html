@@ -64,7 +64,16 @@ button:hover,.wrap a:not(:first-child):hover{background:#115647;transform:transl
 <input class="hub-search" id="hubSearch" type="search" placeholder="Search categories: jobs, university, diploma, CV…" aria-label="Search all career and admissions categories" oninput="filterHub()"><div class="hub-nav" aria-label="Jump to a category"><a href="#cvWorkspace">📄 CV Builder</a><a href="#workCategory">💼 Work &amp; Internships</a><a href="#universityCategory">🎓 Universities</a><a href="#collegeCategory">🏫 Colleges &amp; Training</a></div>
 <section class="hub-section" id="cvWorkspace">
 <div class="hub-section-head"><div><span class="hub-kicker">01 · Career documents</span><h2>Build your professional CV</h2><p>Create a clean CV, preview it and save it as PDF.</p></div></div>
-<form id="cvForm"><label>Full name</label><input id="name" required><label>Email</label><input id="email" type="email"><label>Phone</label><input id="phone"><label>Education</label><textarea id="education" placeholder="Example: Diploma in Mining Engineering — Jema Institute of Technology"></textarea><label>Skills</label><textarea id="skills" placeholder="Example: Communication, teamwork, computer skills"></textarea><label>Experience</label><textarea id="experience"></textarea><label>Profile / Career objective</label><textarea id="profile"></textarea><button type="button" onclick="buildCV()">Generate CV</button></form>
+<form id="cvForm">
+<label for="name">Full name *</label><input id="name" autocomplete="name" required>
+<label for="email">Email</label><input id="email" type="email" autocomplete="email">
+<label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel">
+<label for="location">Town / Region (optional)</label><input id="location" autocomplete="address-level2" placeholder="e.g. Mwanza, Tanzania">
+<label for="education">Education</label><textarea id="education" placeholder="Qualification, institution, dates and relevant coursework"></textarea>
+<label for="skills">Skills</label><textarea id="skills" placeholder="Skills you can genuinely demonstrate"></textarea>
+<label for="experience">Experience / Projects</label><textarea id="experience" placeholder="Work, volunteering, projects or industrial attachment"></textarea>
+<label for="profile">Profile / Career objective</label><textarea id="profile" placeholder="A short summary of your goals and strengths"></textarea>
+<button type="button" onclick="buildCV()">Generate CV</button></form>
 </section>
 <section class="hub-section" id="workCategory">
 <div class="hub-section-head"><div><span class="hub-kicker">02 · Work opportunities</span><h2>Work, jobs &amp; internships</h2><p>Go to trusted recruitment portals to review requirements and apply.</p></div></div>
