@@ -109,10 +109,10 @@ const resources = {
 };
 let selectedForm = 1;
 const descriptions = {
-  1:"Practice by subject, with links to learning materials and available mock-paper collections.",
-  2:"Form Two National Assessment (FTNA) past-paper collections grouped by year.",
-  3:"Practice by subject, with links to learning materials and available mock-paper collections.",
-  4:"Form Four Certificate of Secondary Education Examination (CSEE) collections grouped by year."
+  1:"Form 1 school revision and mock-exam collections. Choose a year, then select the subject on the source website.",
+  2:"Form Two National Assessment (FTNA) archive collections. Choose a year, then select the subject on the source website.",
+  3:"Form 3 school revision and mock-exam collections. Choose a year, then select the subject on the source website.",
+  4:"Form Four Certificate of Secondary Education Examination (CSEE) archive collections. Choose a year, then select the subject on the source website."
 };
 function renderPapers(){
   const year = document.getElementById('yearFilter').value;
@@ -122,8 +122,7 @@ function renderPapers(){
   document.getElementById('formDescription').textContent = descriptions[selectedForm];
   const list = (resources[selectedForm] || []).filter(p =>
     (year === 'all' || p.year === year) &&
-    (subject === 'all' || p.subject === subject || p.subject === 'All subjects') &&
-    (p.title + ' ' + p.source + ' ' + p.subject + ' ' + p.type + ' ' + p.year).toLowerCase().includes(query)
+    (p.title + ' ' + p.source + ' ' + p.subject + ' ' + p.type + ' ' + p.year + ' ' + (subject === 'all' ? '' : subject)).toLowerCase().includes(query)
   );
   const grid = document.getElementById('paperGrid');
   grid.innerHTML = '';
@@ -132,8 +131,8 @@ function renderPapers(){
   list.forEach(p=>{
     const card=document.createElement('article');card.className='paper-card';
     card.innerHTML='<div class="meta"><span class="pill">Form '+selectedForm+'</span><span class="pill">'+p.year+'</span><span class="pill">'+p.type+'</span></div><h3></h3><p></p><p><strong>Source:</strong> '+p.source+'</p><div class="actions"><a target="_blank" rel="noopener noreferrer">Open resource ↗</a></div>';
-    card.querySelector('h3').textContent=p.title;
-    card.querySelectorAll('p')[0].textContent=p.subject==='All subjects'?'Browse subjects on the linked collection.':'Subject: '+p.subject;
+    card.querySelector('h3').textContent=(subject==='all' ? p.title : subject + ' — ' + p.year + ' collection');
+    card.querySelectorAll('p')[0].textContent='Open '+p.source+' and choose the exact subject and examination year available in its archive. This card links to the collection page, not to a verified individual PDF.';
     card.querySelector('.actions a').href=p.url;
     grid.appendChild(card);
   });
