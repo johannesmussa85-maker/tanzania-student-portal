@@ -335,5 +335,6 @@ function toggleAcc(btn){const acc=btn.parentElement;acc.classList.toggle('open')
 function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return;if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('course')||q.includes('degree')||q.includes('diploma')||q.includes('nursing')||q.includes('agriculture')||q.includes('ict'))location.href='courses.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
 </script>
 <script src="theme.js"></script>
+<script src="language.js"></script>
 </body>
 </html>
