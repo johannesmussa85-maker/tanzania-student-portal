@@ -1,0 +1,11 @@
+{
+  "name": "Tanzania Student Portal",
+  "short_name": "Student Portal",
+  "description": "Study resources, past papers, digital library and career tools for students in Tanzania.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3eb",
+  "theme_color": "#0f172a",
+  "lang": "en"
+}
