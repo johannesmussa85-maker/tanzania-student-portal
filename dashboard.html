@@ -1,14 +1,128 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Student Dashboard | Tanzania Student Portal</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Your student dashboard for learning resources, exam practice, study tools and career opportunities.">
+<title>Student Dashboard | Tanzania Student Portal</title>
+<link rel="stylesheet" href="theme.css">
 <style>
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f6f8fc;color:#172033}.top{background:#1e3a8a;color:#fff;padding:16px 5%;display:flex;justify-content:space-between;align-items:center}.top a{color:#fff;text-decoration:none;font-weight:700}.wrap{max-width:1050px;margin:auto;padding:30px 5%}.welcome{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:30px;border-radius:16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px}.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 15px #0001}.card h3{color:#1e3a8a}.btn{display:inline-block;background:#1e3a8a;color:#fff;padding:9px 13px;border-radius:8px;text-decoration:none;font-weight:bold}.muted{color:#64748b}.stat{font-size:28px;font-weight:800;color:#0d9488}</style><link rel="stylesheet" href="theme.css">
+:root{--dash-blue:#1e3a8a;--dash-accent:#2563eb;--dash-teal:#0f9b8e}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--portal-bg);color:var(--portal-text)}
+.top{background:#142b68;color:#fff;padding:15px clamp(16px,5vw,64px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:800;letter-spacing:.1px}.top nav{display:flex;gap:16px;flex-wrap:wrap}.top a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}.top a:hover{text-decoration:underline}
+.wrap{max-width:1160px;margin:auto;padding:28px clamp(16px,4vw,44px) 90px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#1e3a8a,#2563eb 70%,#0f9b8e);color:#fff;border-radius:24px;padding:clamp(24px,4vw,42px);box-shadow:0 16px 40px #1e3a8a24}
+.hero:after{content:"";position:absolute;width:220px;height:220px;border:35px solid #ffffff18;border-radius:50%;right:-45px;top:-80px;pointer-events:none}
+.eyebrow{text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:1.5px;opacity:.86}
+.hero h1{font-size:clamp(28px,4vw,42px);margin:10px 0}.hero p{max-width:620px;line-height:1.65;margin:0;color:#eef4ff}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--dash-blue);color:#fff!important;padding:11px 15px;border-radius:10px;text-decoration:none;font-weight:800;border:1px solid transparent;transition:transform .18s,box-shadow .18s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px #0002}.btn-light{background:#fff;color:#173579!important}.btn-outline{border-color:#ffffff70;background:#ffffff12;color:#fff!important}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:30px 0 14px;flex-wrap:wrap}.section-head h2{margin:0;font-size:22px}.section-head p{margin:5px 0 0;color:var(--portal-muted);font-size:14px;line-height:1.5}
+.search-wrap{position:relative;min-width:min(100%,290px)}.search-wrap input{width:100%;padding:12px 14px 12px 40px;border:1px solid var(--portal-border);border-radius:12px;background:var(--portal-surface);color:var(--portal-text);font:inherit;outline:none}.search-wrap input:focus{border-color:#4f7ee8;box-shadow:0 0 0 3px #2563eb22}.search-icon{position:absolute;left:14px;top:11px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.card{background:var(--portal-surface);border:1px solid var(--portal-border);border-radius:17px;padding:20px;box-shadow:0 5px 18px #0f172a08;min-width:0}
+.resource-card{display:flex;flex-direction:column;min-height:225px;transition:transform .18s,border-color .18s,box-shadow .18s}.resource-card:hover{transform:translateY(-3px);border-color:#93b4f7;box-shadow:0 12px 28px #1e3a8a12}
+.iconbox{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#eaf0ff;font-size:24px;margin-bottom:15px}.resource-card h3{margin:0 0 8px;font-size:17px;color:var(--portal-primary)}.resource-card p{margin:0 0 18px;color:var(--portal-muted);font-size:14px;line-height:1.55;flex:1}.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}.tag{font-size:11px;font-weight:800;padding:5px 8px;border-radius:20px;background:#e9f8f5;color:#087f72}.card .btn{font-size:13px;padding:9px 11px}
+.lower-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:18px}
+.task-list{display:grid;gap:12px;margin-top:14px}.task{display:flex;align-items:flex-start;gap:11px;padding:12px;border:1px solid var(--portal-border);border-radius:12px;background:var(--portal-bg)}.task input{width:18px;height:18px;margin-top:2px;accent-color:var(--dash-teal);flex:0 0 auto}.task label{line-height:1.45;font-size:14px;cursor:pointer}.task small{display:block;color:var(--portal-muted);margin-top:3px}.progress-row{display:flex;justify-content:space-between;gap:12px;margin-top:16px;font-size:13px;color:var(--portal-muted);font-weight:700}.progress{height:8px;border-radius:10px;background:var(--portal-border);overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#0f9b8e,#55c5a7);border-radius:10px;transition:width .2s}
+.link-list{display:grid;gap:10px;margin-top:14px}.link-row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--portal-border);border-radius:12px;text-decoration:none;color:var(--portal-text);background:var(--portal-surface)}.link-row:hover{border-color:#93b4f7}.link-row .mini-icon{font-size:21px}.link-row b{display:block;font-size:14px}.link-row small{display:block;color:var(--portal-muted);font-size:12px;margin-top:3px}.arrow{margin-left:auto;color:var(--portal-muted)}
+.tip{margin-top:18px;border-radius:15px;padding:16px;background:#eef8ff;border:1px solid #d7eafe;color:#21406d;font-size:14px;line-height:1.55}
+.empty{display:none;padding:20px;color:var(--portal-muted);text-align:center}.footer{text-align:center;padding:26px 12px;color:var(--portal-muted);font-size:12px}
+.portal-dark .top{background:#0b0f15!important}.portal-dark .iconbox{background:#202c43}.portal-dark .tag{background:#123c37;color:#9ce8d9}.portal-dark .tip{background:#15263a;border-color:#2b4968;color:#d6e7ff}.portal-dark .btn-light{background:#e7edf6;color:#173579!important}.portal-high .top{background:#000!important;border-bottom:2px solid #fff}.portal-high .iconbox{background:#222}.portal-high .tag{background:#000;color:#fff;border:1px solid #fff}.portal-high .tip{background:#000;color:#fff;border:1px solid #fff}
+@media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lower-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.top{align-items:flex-start}.top nav{gap:11px}.grid{grid-template-columns:1fr}.resource-card{min-height:0}.hero{border-radius:18px}.section-head{align-items:stretch}.search-wrap{width:100%}.wrap{padding-top:18px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
-<body><div class="top"><span>🇹🇿 Tanzania Student Portal</span><a href="index.html">Home</a></div>
-<div class="wrap"><div class="welcome"><h1>Student Dashboard</h1><p>Your personal starting point for study, career and student tools.</p></div>
-<div class="grid"><div class="card"><div class="stat">📚</div><h3>Digital Library</h3><p class="muted">Search academic books and Mineral Processing resources.</p><a class="btn" href="books.html">Open Library</a></div>
-<div class="card"><div class="stat">📝</div><h3>Past Papers</h3><p class="muted">Practice with available examination resources.</p><a class="btn" href="secondary.html">Practice</a></div>
-<div class="card"><div class="stat">📄</div><h3>Career Documents</h3><p class="muted">Create and print a professional student CV.</p><a class="btn" href="cv-builder.html">Build CV</a></div>
-<div class="card"><div class="stat">🧰</div><h3>Study Tools</h3><p class="muted">Calculate GPA and create a simple study plan.</p><a class="btn" href="student-tools.html">Open Tools</a></div></div>
-<div class="card" style="margin-top:20px"><h2>Recommended Next Steps</h2><p>1. Build your CV</p><p>2. Search for a useful academic book</p><p>3. Practice past papers</p><p>4. Create a study plan</p><a class="btn" href="opportunities.html">Explore Opportunities</a></div>
-</div><script src="theme.js"></script>
-</body></html>
+<body>
+<header class="top">
+  <div class="brand">🇹🇿 Tanzania Student Portal</div>
+  <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="books.html">Library</a><a href="secondary.html">Past Papers</a></nav>
+</header>
+<main class="wrap">
+  <section class="hero" aria-labelledby="welcome-title">
+    <div class="eyebrow">Your learning space</div>
+    <h1 id="welcome-title">Welcome to your dashboard 👋</h1>
+    <p>Keep your learning organised. Jump into study resources, practise exam questions, prepare career documents and find your next opportunity.</p>
+    <div class="hero-actions"><a class="btn btn-light" href="secondary.html">📝 Practise exams</a><a class="btn btn-outline" href="books.html">📚 Explore the library</a></div>
+  </section>
+
+  <div class="section-head">
+    <div><h2>Quick access</h2><p>Find the student tool or resource you need.</p></div>
+    <label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input id="quickSearch" type="search" placeholder="Search dashboard tools…" aria-label="Search dashboard tools"></label>
+  </div>
+  <section class="grid" id="resourceGrid" aria-label="Student resources">
+    <article class="card resource-card" data-search="digital library books textbooks mineral processing engineering reading">
+      <div class="iconbox" aria-hidden="true">📚</div><h3>Digital Library</h3><p>Explore academic books, textbooks and learning resources, including engineering topics.</p><div class="card-foot"><span class="tag">READ & LEARN</span><a class="btn" href="books.html">Open library ↗</a></div>
+    </article>
+    <article class="card resource-card" data-search="past papers exams revision form 2 form 4 form 6 necta practice">
+      <div class="iconbox" aria-hidden="true">📝</div><h3>Past Papers</h3><p>Browse available national exam resources and build confidence through practice.</p><div class="card-foot"><span class="tag">EXAM PRACTICE</span><a class="btn" href="secondary.html">Start practice ↗</a></div>
+    </article>
+    <article class="card resource-card" data-search="career documents cv resume job application professional">
+      <div class="iconbox" aria-hidden="true">📄</div><h3>CV Builder</h3><p>Prepare a clear, professional CV for internships, scholarships and job applications.</p><div class="card-foot"><span class="tag">CAREER</span><a class="btn" href="cv-builder.html">Build CV ↗</a></div>
+    </article>
+    <article class="card resource-card" data-search="study tools gpa calculator study plan productivity">
+      <div class="iconbox" aria-hidden="true">🧰</div><h3>Study Tools</h3><p>Use student tools to organise study time and work through academic calculations.</p><div class="card-foot"><span class="tag">STAY ORGANISED</span><a class="btn" href="student-tools.html">Open tools ↗</a></div>
+    </article>
+    <article class="card resource-card" data-search="opportunities scholarships internships jobs courses education">
+      <div class="iconbox" aria-hidden="true">🎯</div><h3>Opportunities</h3><p>Explore opportunities that may support your education and career journey.</p><div class="card-foot"><span class="tag">NEXT STEP</span><a class="btn" href="opportunities.html">Explore ↗</a></div>
+    </article>
+  </section>
+  <div class="empty" id="emptyState" role="status">No dashboard tools match that search. Try another keyword.</div>
+
+  <section class="lower-grid" aria-label="Study organisation">
+    <div class="card">
+      <h2 style="margin:0;font-size:20px">My study checklist</h2>
+      <p style="color:var(--portal-muted);font-size:14px;line-height:1.5;margin:7px 0 0">Tick tasks as you complete them. Your checklist is saved in this browser on this device.</p>
+      <div class="task-list" id="taskList">
+        <div class="task"><input type="checkbox" id="task1"><label for="task1">Review one topic today<small>Start with a topic you find challenging.</small></label></div>
+        <div class="task"><input type="checkbox" id="task2"><label for="task2">Practise questions or a past paper<small>Try questions before checking notes.</small></label></div>
+        <div class="task"><input type="checkbox" id="task3"><label for="task3">Read or save a useful resource<small>Use the library to support your learning.</small></label></div>
+      </div>
+      <div class="progress-row"><span>Today's checklist</span><span id="progressLabel">0 of 3 complete</span></div><div class="progress" role="progressbar" aria-label="Study checklist progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
+      <button type="button" id="resetTasks" class="btn" style="margin-top:15px;border:0;cursor:pointer">Reset checklist</button>
+    </div>
+    <aside class="card">
+      <h2 style="margin:0;font-size:20px">Useful shortcuts</h2><p style="color:var(--portal-muted);font-size:14px;line-height:1.5;margin:7px 0 0">A few simple ways to keep moving forward.</p>
+      <div class="link-list">
+        <a class="link-row" href="books.html"><span class="mini-icon">🔎</span><span><b>Find a learning resource</b><small>Books and academic materials</small></span><span class="arrow">›</span></a>
+        <a class="link-row" href="student-tools.html"><span class="mini-icon">📅</span><span><b>Plan your study time</b><small>Open your study tools</small></span><span class="arrow">›</span></a>
+        <a class="link-row" href="opportunities.html"><span class="mini-icon">🌱</span><span><b>Explore opportunities</b><small>Education and career pathways</small></span><span class="arrow">›</span></a>
+      </div>
+      <div class="tip"><strong>Study tip:</strong> Choose one clear goal, study in a focused block, then test yourself without looking at your notes.</div>
+    </aside>
+  </section>
+</main>
+<footer class="footer">Tanzania Student Portal · Learning resources to help you move forward</footer>
+<script src="theme.js"></script>
+<script>
+(function(){
+  const search=document.getElementById('quickSearch');
+  const cards=Array.from(document.querySelectorAll('.resource-card'));
+  const empty=document.getElementById('emptyState');
+  search.addEventListener('input',function(){
+    const q=this.value.trim().toLowerCase();let shown=0;
+    cards.forEach(card=>{const match=(card.dataset.search+' '+card.innerText).toLowerCase().includes(q);card.style.display=match?'flex':'none';if(match)shown++;});
+    empty.style.display=shown?'none':'block';
+  });
+  const ids=['task1','task2','task3'];
+  const storageKey='tsp-dashboard-checklist-v1';
+  function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){return {}}}
+  function updateProgress(){
+    const done=ids.filter(id=>document.getElementById(id).checked).length;
+    document.getElementById('progressLabel').textContent=done+' of '+ids.length+' complete';
+    document.getElementById('progressFill').style.width=(done/ids.length*100)+'%';
+    document.getElementById('progressBar').setAttribute('aria-valuenow',String(done));
+    const state={};ids.forEach(id=>state[id]=document.getElementById(id).checked);
+    try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}
+  }
+  const saved=readSaved();ids.forEach(id=>{const el=document.getElementById(id);el.checked=saved[id]===true;el.addEventListener('change',updateProgress)});
+  document.getElementById('resetTasks').addEventListener('click',()=>{ids.forEach(id=>document.getElementById(id).checked=false);updateProgress()});
+  updateProgress();
+})();
+</script>
+</body>
+</html>
