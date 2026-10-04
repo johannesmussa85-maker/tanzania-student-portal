@@ -419,14 +419,21 @@ button:hover {
 
     try {
 
-      let searchUrl =
-    "https://openlibrary.org/search.json?q=" +
-    encodeURIComponent(
-    yearQuery
-        ? query + " first_publish_year:" + yearQuery
-        : query
-)
-    "&limit=20&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
+  let searchUrl;
+
+if (yearQuery) {
+    searchUrl =
+        "https://openlibrary.org/search.json?q=" +
+        encodeURIComponent(query) +
+        "&first_publish_year=" +
+        encodeURIComponent(yearQuery) +
+        "&limit=100&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
+} else {
+    searchUrl =
+        "https://openlibrary.org/search.json?q=" +
+        encodeURIComponent(query) +
+        "&limit=100&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
+}
 
 
 const response = await fetch(searchUrl);
