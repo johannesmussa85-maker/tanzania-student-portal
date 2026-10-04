@@ -1,299 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Tanzania Student Portal</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
-
-        header {
-            background: #0b3d91;
-            color: white;
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header h1 {
-            font-size: 24px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #0b3d91, #1261c9);
-            color: white;
-            padding: 70px 8%;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
-
-        .search {
-            max-width: 600px;
-            margin: auto;
-            display: flex;
-        }
-
-        .search input {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 8px 0 0 8px;
-            font-size: 16px;
-        }
-
-        .search button {
-            padding: 15px 25px;
-            border: none;
-            background: #ffb703;
-            cursor: pointer;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .services {
-            padding: 50px 8%;
-        }
-
-        .services h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-        }
-
-        .card h3 {
-            color: #0b3d91;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.5;
-        }
-
-        footer {
-            background: #172033;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 30px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tanzania Student Portal - study materials, past papers, careers, scholarships and student tools.">
+<title>Tanzania Student Portal | Students First</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1e3a8a;--blue:#2563eb;--teal:#0d9488;--amber:#f59e0b;--bg:#f6f8fc;--text:#172033;--muted:#64748b;--white:#fff}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none;color:inherit}
+header{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 3px 14px #0002}
+.navbar{max-width:1200px;margin:auto;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{font-size:21px;font-weight:800}.brand span{color:#fbbf24}
+.nav-links{display:flex;gap:20px;align-items:center}.nav-links a{font-weight:600;font-size:14px}
+.menu-btn{display:none;background:transparent;border:1px solid #ffffff66;color:#fff;padding:8px 10px;border-radius:8px}
+.hero{background:linear-gradient(135deg,#172e72,#2563eb);color:#fff;padding:75px 5% 65px}
+.hero-inner{max-width:1050px;margin:auto;text-align:center}.hero h1{font-size:clamp(32px,6vw,54px);line-height:1.1;margin-bottom:15px}
+.hero p{font-size:18px;max-width:720px;margin:0 auto 28px;color:#e7efff}
+.search{max-width:720px;margin:auto;display:flex;background:#fff;padding:6px;border-radius:12px}
+.search input{flex:1;border:0;outline:0;padding:13px;font-size:16px}.search button{border:0;background:var(--amber);padding:0 22px;border-radius:9px;font-weight:800;cursor:pointer}
+.quick{max-width:1100px;margin:-25px auto 0;padding:0 5%;position:relative}.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.quick-card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 7px 22px #0b1f4a18;text-align:center}.quick-card b{display:block;color:var(--navy);margin-top:5px}.quick-card small{color:var(--muted)}
+section{max-width:1100px;margin:auto;padding:55px 5%}.section-title{text-align:center;margin-bottom:30px}.section-title h2{font-size:30px;color:var(--navy)}.section-title p{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:#fff;padding:24px;border-radius:12px;box-shadow:0 4px 15px #0b1f4a12;border:1px solid #e7ebf3;transition:.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px #0b1f4a1c}.icon{font-size:30px}.card h3{margin:8px 0;color:var(--navy)}.card p{color:var(--muted);margin-bottom:15px}.btn{display:inline-block;background:var(--navy);color:#fff;padding:9px 14px;border-radius:8px;font-weight:700;font-size:14px}.btn.teal{background:var(--teal)}.btn.amber{background:#d97706}
+.accordion{max-width:900px;margin:auto}.acc{background:#fff;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:10px;overflow:hidden}.acc button{width:100%;padding:17px 18px;border:0;background:#fff;text-align:left;font-size:16px;font-weight:800;color:var(--navy);cursor:pointer;display:flex;justify-content:space-between}.acc-content{display:none;padding:0 18px 18px;color:var(--muted)}.acc.open .acc-content{display:block}.acc-content a{display:inline-block;margin:6px 7px 0 0;color:var(--blue);font-weight:700}
+.cta{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border-radius:16px;padding:35px;text-align:center}.cta h2{margin-bottom:8px}.cta p{margin-bottom:18px;color:#e6fffb}.cta .btn{background:#fff;color:#0f766e}
+footer{background:#111827;color:#cbd5e1;text-align:center;padding:30px 5%;margin-top:20px}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin:10px 0 15px}.footer-links a{color:#fff}
+@media(max-width:800px){.nav-links{display:none}.menu-btn{display:block}.navbar.mobile .nav-links{display:flex;position:absolute;top:62px;left:0;right:0;background:var(--navy);padding:18px 5%;flex-direction:column;align-items:flex-start}.quick-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hero{padding-top:55px}.search{flex-direction:column;background:transparent;gap:8px}.search input,.search button{border-radius:9px;padding:13px}.quick-grid,.cards{grid-template-columns:1fr}}
+</style>
 </head>
-
 <body>
-
 <header>
-    <h1>🇹🇿 Tanzania Student Portal</h1>
-
-    <nav>
-        <a href="#">Home</a>
-        <a href="#services">Services</a>
-    </nav>
+<div class="navbar" id="navbar">
+<a class="brand" href="index.html">🇹🇿 Tanzania <span>Student Portal</span></a>
+<button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+<nav class="nav-links">
+<a href="index.html">Home</a><a href="#study">Study</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="opportunities.html">Opportunities</a>
+</nav>
+</div>
 </header>
 
+<main>
 <section class="hero">
-    <h2>Everything Students Need</h2>
-
-    <p>
-        Study materials, past papers, opportunities and useful student tools.
-    </p>
-
-    <div class="search">
-        <input type="text" placeholder="Search study materials...">
-        <button>Search</button>
-    </div>
+<div class="hero-inner">
+<h1>Everything Students Need in One Portal</h1>
+<p>Study materials, books, past papers, career tools, scholarships and opportunities — built for students in Tanzania.</p>
+<div class="search">
+<input id="portalSearch" type="search" placeholder="Search books, past papers, CV, scholarships...">
+<button onclick="portalSearch()">Search</button>
+</div>
+</div>
 </section>
 
-<section class="services" id="services">
-
-    <h2>Student Services</h2>
-
-    <div class="cards">
-
-        <div class="card">
-            <h3>📚 Study Materials</h3>
-            <p>Access useful notes, books and learning resources.</p>
-        </div>
-
-      <div class="card">
-    <h3>📝 Past Papers</h3>
-    <p>Find past examination papers for Secondary, Advanced and University students.</p>
-
-    <h4>Secondary</h4>
-         <a href="secondary.html">Open Secondary Past Papers</a> 
-    
-
-    <h4>Advanced (A-Level)</h4>
-    <a href="advanced.html">Open Advanced Past Papers</a>
-
-    <h4>University & College</h4>
-    <a href="university.html""">Open University & College Portal</a>
+<div class="quick">
+<div class="quick-grid">
+<a class="quick-card" href="books.html"><span>📚</span><b>Digital Library</b><small>Find useful books</small></a>
+<a class="quick-card" href="secondary.html"><span>📝</span><b>Past Papers</b><small>Exam practice</small></a>
+<a class="quick-card" href="cv-builder.html"><span>📄</span><b>CV Builder</b><small>Create your CV</small></a>
+<a class="quick-card" href="opportunities.html"><span>🎓</span><b>Opportunities</b><small>Scholarships & jobs</small></a>
+</div>
 </div>
 
-        <div class="card">
-            <h3>📄 CV & Letters</h3>
-            <p>Create professional CVs, application letters and other documents.</p>
-        </div>
-
-        <div class="card">
-            <h3>🤖 AI Study Assistant</h3>
-            <p>Get help understanding topics, creating notes and preparing for exams.</p>
-        </div>
-
-        <div class="card">
-            <h3>💼 Jobs & Internships</h3>
-            <p>Discover student jobs, internships and career opportunities.</p>
-        </div>
-
-        <div class="card">
-            <h3>🎓 Scholarships</h3>
-            <p>Find scholarship and educational opportunities.</p>
-        </div>
-
-    </div>
-
+<section id="study">
+<div class="section-title"><h2>Student Services</h2><p>Choose a service and start learning or planning your career.</p></div>
+<div class="cards">
+<div class="card"><div class="icon">📚</div><h3>Study Materials</h3><p>Organized learning resources for secondary, advanced and university students.</p><a class="btn" href="#subjects">Explore Subjects</a></div>
+<div class="card"><div class="icon">📝</div><h3>Past Papers</h3><p>Practice with secondary, advanced and university examination resources.</p><a class="btn" href="secondary.html">Open Past Papers</a></div>
+<div class="card"><div class="icon">📖</div><h3>Digital Library</h3><p>Search academic books using the library already connected to the portal.</p><a class="btn" href="books.html">Open Library</a></div>
+<div class="card"><div class="icon">📄</div><h3>CV & Application Letters</h3><p>Create professional career documents designed for students and graduates.</p><a class="btn teal" href="cv-builder.html">Build Documents</a></div>
+<div class="card"><div class="icon">💼</div><h3>Jobs & Internships</h3><p>Use the opportunities hub to find career and internship resources.</p><a class="btn amber" href="opportunities.html#jobs">View Jobs</a></div>
+<div class="card"><div class="icon">🎓</div><h3>Scholarships & Admissions</h3><p>Find useful links and guidance for scholarships and university applications.</p><a class="btn teal" href="opportunities.html#scholarships">Explore</a></div>
+</div>
 </section>
 
-<section id="study-materials" class="services">
-    <h2>Study Materials</h2>
-    <p>Welcome! Choose your subject to find learning resources.</p>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Computer Studies</h3>
-            <p>Computer notes and learning resources.</p>
-        </div>
-
-      <div class="card">
-    <h3>Engineering</h3>
-         <h4>Mineral Processing</h4>
-
-<h5>Hydrometallurgy</h5>
-<p>Hydrometallurgy notes and technical resources.</p>
-<p>📚 <a href="books.html">Books</a></p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-
-<h5>Comminution</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-          
-<h5>Mineral Separation</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Mineral Separation materials coming soon.</p>
-          
-<h5>Gravity Separation</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Gravity Separation materials coming soon.</p>
-          
-<h5>Magnetic Separation</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Magnetic Separation materials coming soon.</p>
-          
-<h5>Flotation</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Flotation materials coming soon.</p>
-          
-          <h5>Dewatering</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Dewatering materials coming soon.</p>
-          
-          <h5>Ore Characterization</h5>
-<p>📚 Books</p>
-<p>📄 Documents</p>
-<p>📜 Course Policies</p>
-<p>🎥 Documentaries</p>
-<p>📝 Lecture Notes</p>
-<p>📑 Past Papers</p>
-<p>Ore Characterization materials coming soon.</p>
-</div>   
-
-    <a href="./Hydro%20Notes.pdf" target="_blank" rel="noopener">
-        Open Hydro Notes PDF
-    </a>
-
-    <br><br>
-
-    <a href="./Hydro%20Notes.pdf" download="Hydro-Notes.pdf">
-        Download Hydro Notes
-    </a>
-</div> 
-    </div>
+<section id="subjects">
+<div class="section-title"><h2>Study by Level & Subject</h2><p>Expandable navigation keeps the portal simple as more courses are added.</p></div>
+<div class="accordion">
+<div class="acc"><button onclick="toggleAcc(this)">Secondary Education <span>＋</span></button><div class="acc-content"><a href="secondary.html">Past Papers</a><a href="secondary.html">Subjects</a><a href="secondary.html">Exam Practice</a></div></div>
+<div class="acc"><button onclick="toggleAcc(this)">Advanced Level (A-Level) <span>＋</span></button><div class="acc-content"><a href="advanced.html">Past Papers</a><a href="advanced.html">Subjects</a><a href="advanced.html">Exam Practice</a></div></div>
+<div class="acc"><button onclick="toggleAcc(this)">University & College <span>＋</span></button><div class="acc-content"><a href="university.html">University Portal</a><a href="books.html">Academic Books</a><a href="opportunities.html">Career Opportunities</a></div></div>
+<div class="acc"><button onclick="toggleAcc(this)">Engineering & Mineral Processing <span>＋</span></button><div class="acc-content"><a href="books.html">Books</a><a href="books.html">Hydrometallurgy</a><a href="books.html">Comminution</a><a href="books.html">Flotation</a><a href="books.html">Gravity Separation</a><a href="books.html">Magnetic Separation</a><a href="books.html">Dewatering</a><a href="books.html">Ore Characterization</a></div></div>
+</div>
 </section>
+
+<section>
+<div class="cta"><h2>Build Your Student Career</h2><p>Prepare a professional CV and discover opportunities from one place.</p><a class="btn" href="cv-builder.html">Open CV Builder</a></div>
+</section>
+</main>
+
 <footer>
-    <p>© 2026 Tanzania Student Portal</p>
+<div class="footer-links"><a href="index.html">Home</a><a href="books.html">Books</a><a href="cv-builder.html">CV Builder</a><a href="opportunities.html">Opportunities</a></div>
+<p>© 2026 Tanzania Student Portal · Built for students</p>
 </footer>
 
+<script>
+function toggleMenu(){document.getElementById('navbar').classList.toggle('mobile')}
+function toggleAcc(btn){const acc=btn.parentElement;acc.classList.toggle('open');btn.querySelector('span').textContent=acc.classList.contains('open')?'−':'＋'}
+function portalSearch(){const q=document.getElementById('portalSearch').value.trim().toLowerCase();if(!q)return; if(q.includes('book')||q.includes('hydro')||q.includes('mineral'))location.href='books.html';else if(q.includes('cv')||q.includes('letter'))location.href='cv-builder.html';else if(q.includes('job')||q.includes('scholar')||q.includes('intern'))location.href='opportunities.html';else if(q.includes('paper')||q.includes('exam'))location.href='secondary.html';else document.getElementById('study').scrollIntoView({behavior:'smooth'})}
+</script>
 </body>
 </html>
