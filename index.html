@@ -215,7 +215,15 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 
 </style>
 <link rel="stylesheet" href="theme.css">
-</head>
+<style>
+.home-account-actions{display:flex;align-items:center;gap:9px;margin-left:auto}
+.home-account-actions a{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:850;white-space:nowrap;transition:transform .18s,background .18s}
+.home-account-actions .login{border:1px solid #ffffff38;background:#ffffff0d;color:#f8fafc}
+.home-account-actions .signup{border:1px solid #f5c65a;background:linear-gradient(135deg,#f5c65a,#fbbf24);color:#172554;box-shadow:0 6px 18px #f5c65a20}
+.home-account-actions a:hover{transform:translateY(-2px)}
+@media(max-width:850px){.navbar{flex-wrap:wrap}.home-account-actions{margin-left:0}.nav-links{order:3;width:100%}}
+@media(max-width:480px){.home-account-actions{width:100%}.home-account-actions a{flex:1}.brand{font-size:17px}}
+</style></head>
 <body>
 <header>
 <div class="navbar" id="navbar">
@@ -233,6 +241,10 @@ footer{padding-top:38px!important;padding-bottom:38px!important}
 <nav class="nav-links">
 <a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="#study">Study</a><a href="books.html">Books</a><a href="courses.html">Courses</a><a href="cv-builder.html">Career Hub</a><a href="student-tools.html">Tools</a><a href="opportunities.html">Opportunities</a>
 </nav>
+<div class="home-account-actions" aria-label="Optional account access">
+<a class="login" href="auth.html">↪ Log in</a>
+<a class="signup" href="auth.html?mode=signup">＋ Sign up</a>
+</div>
 </div>
 </header>
 
