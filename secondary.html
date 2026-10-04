@@ -124,7 +124,8 @@ function renderPapers(){
   document.getElementById('formDescription').textContent = descriptions[selectedForm];
   const list = (resources[selectedForm] || []).filter(p =>
     (year === 'all' || p.year === year) &&
-    (p.title + ' ' + p.source + ' ' + p.subject + ' ' + p.type + ' ' + p.year + ' ' + (subject === 'all' ? '' : subject)).toLowerCase().includes(query)
+    (subject === 'all' || p.subject === subject || p.subject === 'All subjects') &&
+    (p.title + ' ' + p.source + ' ' + p.subject + ' ' + p.type + ' ' + p.year + ' Form ' + selectedForm).toLowerCase().includes(query)
   );
   const grid = document.getElementById('paperGrid');
   grid.innerHTML = '';
