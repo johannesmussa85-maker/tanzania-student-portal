@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,56 +20,59 @@
             margin: auto;
         }
 
-       h1 {
-    background: linear-gradient(135deg, #0756a8, #043d78);
-    color: white;
-    padding: 30px 20px;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-    letter-spacing: 0.5px;
-}
+        h1 {
+            background: linear-gradient(135deg, #0756a8, #043d78);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
 
-       .search-box {
-    background: white;
-    padding: 25px;
-    margin: 20px 0;
-    border-radius: 16px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+        .search-box {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
 
-      input {
-    width: 65%;
-    padding: 13px 16px;
-    border: 2px solid #d0d7de;
-    border-radius: 10px;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s ease;
-}
+        input {
+            width: 65%;
+            padding: 13px 16px;
+            margin: 5px;
+            border: 2px solid #d0d7de;
+            border-radius: 10px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
 
-input:focus {
-    border-color: #0756a8;
-    box-shadow: 0 0 0 3px rgba(7,86,168,0.12);
-}
-      button {
-    padding: 13px 22px;
-    background: #0756a8;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-left: 5px;
-    font-size: 15px;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
+        input:focus {
+            border-color: #0756a8;
+            box-shadow: 0 0 0 3px rgba(7,86,168,0.12);
+        }
 
-button:hover {
-    background: #043d78;
-    transform: translateY(-2px);
-}
+        button {
+            padding: 13px 22px;
+            background: #0756a8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 5px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #043d78;
+            transform: translateY(-2px);
+        }
 
         .books {
             display: grid;
@@ -79,254 +80,277 @@ button:hover {
             gap: 20px;
         }
 
-           .book {
-    background: white;
-    padding: 18px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-    transition: 0.3s ease;
-    text-align: center;
-}
+        .book {
+            background: white;
+            padding: 18px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: 0.3s ease;
+            text-align: center;
+        }
 
-.book:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-}
+        .book:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
 
+        .book img {
+            width: 100%;
+            height: 280px;
+            object-fit: contain;
+            background: #eee;
+            border-radius: 12px;
+            transition: 0.3s ease;
+        }
 
-    .book img {
-    width: 100%;
-    height: 280px;
-    object-fit: contain;
-    background: #eee;
-    border-radius: 12px;
-    transition: 0.3s ease;
-}
         .book:hover img {
-    transform: scale(1.03);
-}
-       .book h2 {
-    color: #0756a8;
-    font-size: 18px;
-    line-height: 1.4;
-    margin: 15px 0 10px;
-}
+            transform: scale(1.03);
+        }
 
-       .book p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
-    margin: 8px 0;
-}
+        .book h2 {
+            color: #0756a8;
+            font-size: 18px;
+            line-height: 1.4;
+            margin: 15px 0 10px;
+        }
 
-       .book a {
-    display: inline-block;
-    margin-top: 10px;
-    background: #0756a8;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
+        .book p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin: 8px 0;
+        }
 
-.book a:hover {
-    background: #043d78;
-    transform: translateY(-2px);
-}
-       .book a.download-link {
-    background: #198754;
-    margin-left: 5px;
-}
+        .book a {
+            display: inline-block;
+            margin-top: 10px;
+            background: #0756a8;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
 
-.book a.download-link:hover {
-    background: #146c43;
-}
-      
-.book a.buy-link {
-    background: #f08c00;
-    margin-left: 5px;
-}
+        .book a:hover {
+            background: #043d78;
+            transform: translateY(-2px);
+        }
 
-.book a.buy-link:hover {
-    background: #cc7000;
-}
+        .book a.download-link {
+            background: #198754;
+            margin-left: 5px;
+        }
 
- .availability {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: bold;
-    background: #e9ecef;
-    color: #495057;
-}.availability.read {
-    background: #d1e7dd;
-    color: #0f5132;
-}
+        .book a.download-link:hover {
+            background: #146c43;
+        }
 
-.availability.borrow {
-    background: #fff3cd;
-    color: #664d03;
-}
+        .book a.buy-link {
+            background: #f08c00;
+            margin-left: 5px;
+        }
 
-.availability.not-available {
-    background: #f8d7da;
-    color: #842029;
-} 
+        .book a.buy-link:hover {
+            background: #cc7000;
+        }
 
-       .back {
-    display: inline-block;
-    margin-top: 25px;
-    background: #0756a8;
-    color: white;
-    padding: 12px 18px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s ease;
-}
+        .availability {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            background: #e9ecef;
+            color: #495057;
+        }
 
-.back:hover {
-    background: #043d78;
-    transform: translateY(-2px);
-}
+        .availability.read {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .availability.borrow {
+            background: #fff3cd;
+            color: #664d03;
+        }
+
+        .availability.not-available {
+            background: #f8d7da;
+            color: #842029;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 25px;
+            background: #0756a8;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .back:hover {
+            background: #043d78;
+            transform: translateY(-2px);
+        }
+
         #status {
             text-align: center;
             margin: 20px;
             font-weight: bold;
         }
+
         .categories {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
 
-.categories button {
-    margin: 0;
-    padding: 10px 16px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        .categories button {
+            margin: 0;
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-.categories button:hover {
-    transform: translateY(-2px);
-    opacity: 0.85;
-}
+        .categories button:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
 
-.categories button:nth-child(1) {
-    background: #0756a8;
-}
+        .categories button:nth-child(1) {
+            background: #0756a8;
+        }
 
-.categories button:nth-child(2) {
-    background: #7b2cbf;
-}
+        .categories button:nth-child(2) {
+            background: #7b2cbf;
+        }
 
-.categories button:nth-child(3) {
-    background: #f08c00;
-}
+        .categories button:nth-child(3) {
+            background: #f08c00;
+        }
 
-.categories button:nth-child(4) {
-    background: #198754;
-}
+        .categories button:nth-child(4) {
+            background: #198754;
+        }
 
-.categories button:nth-child(5) {
-    background: #795548;
-}
+        .categories button:nth-child(5) {
+            background: #795548;
+        }
 
-.categories button:nth-child(6) {
-    background: #0096c7;
-}
+        .categories button:nth-child(6) {
+            background: #0096c7;
+        }
 
-.categories button:nth-child(7) {
-    background: #00897b;
-}
+        .categories button:nth-child(7) {
+            background: #00897b;
+        }
 
-.categories button:nth-child(8) {
-    background: #d62828;
-}
+        .categories button:nth-child(8) {
+            background: #d62828;
+        }
+
         .sort-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin: 20px 0;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
 
-.sort-box label {
-    font-weight: bold;
-    color: #0756a8;
-}
+        .sort-box label {
+            font-weight: bold;
+            color: #0756a8;
+        }
 
-.sort-box select {
-    padding: 10px 14px;
-    border: 2px solid #d0d7de;
-    border-radius: 10px;
-    font-size: 15px;
-    cursor: pointer;
-    outline: none;
-    background: white;
-}
+        .sort-box select {
+            padding: 10px 14px;
+            border: 2px solid #d0d7de;
+            border-radius: 10px;
+            font-size: 15px;
+            cursor: pointer;
+            outline: none;
+            background: white;
+        }
 
-.sort-box select:focus {
-    border-color: #0756a8;
-    box-shadow: 0 0 0 3px rgba(7,86,168,0.12);
-}
+        .sort-box select:focus {
+            border-color: #0756a8;
+            box-shadow: 0 0 0 3px rgba(7,86,168,0.12);
+        }
+
         .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin: 30px 0;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
 
-.pagination button {
-    margin: 0;
-    padding: 11px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    background: #0756a8;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
+        .pagination button {
+            margin: 0;
+            padding: 11px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            background: #0756a8;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
 
-.pagination button:hover:not(:disabled) {
-    background: #043d78;
-    transform: translateY(-2px);
-}
+        .pagination button:hover:not(:disabled) {
+            background: #043d78;
+            transform: translateY(-2px);
+        }
 
-.pagination button:disabled {
-    background: #b8c4d1;
-    cursor: not-allowed;
-    transform: none;
-}
+        .pagination button:disabled {
+            background: #b8c4d1;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         #pageNumbers {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
 
-#pageNumbers button {
-    margin: 0;
-    padding: 9px 13px;
-    border-radius: 8px;
-    font-weight: bold;
-    background: white;
-    color: #0756a8;
-    border: 2px solid #0756a8;
-}
+        #pageNumbers button {
+            margin: 0;
+            padding: 9px 13px;
+            border-radius: 8px;
+            font-weight: bold;
+            background: white;
+            color: #0756a8;
+            border: 2px solid #0756a8;
+        }
 
-#pageNumbers button.active {
-    background: #0756a8;
-    color: white;
-}
+        #pageNumbers button.active {
+            background: #0756a8;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            input {
+                width: 100%;
+            }
+
+            .search-box button {
+                margin-top: 10px;
+            }
+
+            .sort-box {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -337,68 +361,65 @@ button:hover {
     <h1>📚 Mineral Processing Books</h1>
 
     <div class="search-box">
+
         <input
             type="text"
             id="searchInput"
             value="mineral processing"
             placeholder="Search for a book..."
         >
-        
-<input
- 
-    type="number"
-    id="yearInput"
-    placeholder="Publication year..."
-    min="1000"
-    max="2026"
->
 
+        <input
+            type="number"
+            id="yearInput"
+            placeholder="Publication year..."
+            min="1000"
+            max="2026"
+        >
 
-       
-<input
-    type="text"
-    id="authorInput"
-    placeholder="Search by author..."
->
+        <input
+            type="text"
+            id="authorInput"
+            placeholder="Search by author..."
+        >
 
-        
-<button onclick="searchBooks()">Search</button>
+        <button onclick="searchBooks()">Search</button>
+
     </div>
 
     <div id="status">Loading books...</div>
-    
-    
- <div id="status">Loading books...</div>
 
-<div class="categories">
-    <button onclick="searchCategory('mineral processing')">All Books</button>
-    <button onclick="searchCategory('hydrometallurgy')">Hydrometallurgy</button>
-    <button onclick="searchCategory('comminution')">Comminution</button>
-    <button onclick="searchCategory('flotation')">Flotation</button>
-    <button onclick="searchCategory('gravity separation')">Gravity Separation</button>
-    <button onclick="searchCategory('magnetic separation')">Magnetic Separation</button>
-    <button onclick="searchCategory('dewatering')">Dewatering</button>
-    <button onclick="searchCategory('ore characterization')">Ore Characterization</button>
-</div>
+    <div class="categories">
+        <button onclick="searchCategory('mineral processing')">All Books</button>
+        <button onclick="searchCategory('hydrometallurgy')">Hydrometallurgy</button>
+        <button onclick="searchCategory('comminution')">Comminution</button>
+        <button onclick="searchCategory('flotation')">Flotation</button>
+        <button onclick="searchCategory('gravity separation')">Gravity Separation</button>
+        <button onclick="searchCategory('magnetic separation')">Magnetic Separation</button>
+        <button onclick="searchCategory('dewatering')">Dewatering</button>
+        <button onclick="searchCategory('ore characterization')">Ore Characterization</button>
+    </div>
 
-<div class="sort-box">
-    <label for="sortBooks">Sort Books:</label>
-    <select id="sortBooks" onchange="sortBooks()">
-        <option value="default">Default</option>
-        <option value="title">Title A–Z</option>
-        <option value="year-new">Newest First</option>
-        <option value="year-old">Oldest First</option>
-    </select>
-</div>
+    <div class="sort-box">
+        <label for="sortBooks">Sort Books:</label>
 
-<div id="books" class="books"></div>
- #page
-    <button id="prevPage" onclick="changePage(-1)">Previous</button>
+        <select id="sortBooks" onchange="sortBooks()">
+            <option value="default">Default</option>
+            <option value="title">Title A–Z</option>
+            <option value="year-new">Newest First</option>
+            <option value="year-old">Oldest First</option>
+        </select>
+    </div>
 
-    <div id="pageNumbers"></div>
+    <div id="books" class="books"></div>
 
-    <button id="nextPage" onclick="changePage(1)">Next</button>
-</div>
+    <div class="pagination">
+        <button id="prevPage" onclick="changePage(-1)">Previous</button>
+
+        <div id="pageNumbers"></div>
+
+        <button id="nextPage" onclick="changePage(1)">Next</button>
+    </div>
 
     <a class="back" href="index.html">← Back to Home</a>
 
@@ -406,37 +427,47 @@ button:hover {
 
 <script>
 
-() {
+async function searchBooks() {
 
-    const query = document.getElementById("searchInput").value;
-    const authorQuery = document.getElementById("authorInput").value.trim().toLowerCase();
-   const yearQuery = document.getElementById("yearInput").value.trim();
-    const booksContainer = document.getElementById("books");
-    const status = document.getElementById("status");
+    const query =
+        document.getElementById("searchInput").value.trim();
+
+    const authorQuery =
+        document.getElementById("authorInput").value
+        .trim()
+        .toLowerCase();
+
+    const yearQuery =
+        document.getElementById("yearInput").value.trim();
+
+    const booksContainer =
+        document.getElementById("books");
+
+    const status =
+        document.getElementById("status");
 
     booksContainer.innerHTML = "";
     status.textContent = "Loading books...";
 
     try {
 
-  let searchUrl;
+        let finalQuery = query;
 
-if (yearQuery) {
-    searchUrl =
-        "https://openlibrary.org/search.json?q=" +
-        encodeURIComponent(query) +
-        "&first_publish_year=" +
-        encodeURIComponent(yearQuery) +
-        "&limit=100&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
-} else {
-    searchUrl =
-        "https://openlibrary.org/search.json?q=" +
-        encodeURIComponent(query) +
-        "&limit=100&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
-}
+        if (yearQuery) {
+            finalQuery += " first_publish_year:" + yearQuery;
+        }
 
+        const searchUrl =
+            "https://openlibrary.org/search.json?q=" +
+            encodeURIComponent(finalQuery) +
+            "&limit=100" +
+            "&fields=key,title,author_name,first_publish_year,cover_i,ebook_access,ia,availability";
 
-const response = await fetch(searchUrl);
+        const response = await fetch(searchUrl);
+
+        if (!response.ok) {
+            throw new Error("Open Library request failed");
+        }
 
         const data = await response.json();
 
@@ -444,121 +475,176 @@ const response = await fetch(searchUrl);
             status.textContent = "No books found.";
             return;
         }
-       
-const filteredBooks = data.docs.filter(book => {
 
-    const matchesAuthor =
-        !authorQuery ||
-        (book.author_name || []).some(author =>
-            author.toLowerCase().includes(authorQuery)
-        );
+        const filteredBooks = data.docs.filter(book => {
 
-    return matchesAuthor;
-});
+            const matchesAuthor =
+                !authorQuery ||
+                (book.author_name || []).some(author =>
+                    author.toLowerCase().includes(authorQuery)
+                );
+
+            const matchesYear =
+                !yearQuery ||
+                String(book.first_publish_year || "") === yearQuery;
+
+            return matchesAuthor && matchesYear;
+        });
+
         if (filteredBooks.length === 0) {
-    status.textContent = "No books found for your search.";
-    return;
-}
+            status.textContent =
+                "No books found for your search.";
+            return;
+        }
 
+        status.textContent =
+            filteredBooks.length + " books found";
 
+        filteredBooks.forEach(book => {
 
-        status.textContent = filteredBooks.length + " books found";
-
-        filteredBooks.forEach(book => {   
-
-
-            const title = book.title || "Unknown title";
+            const title =
+                book.title || "Unknown title";
 
             const author =
                 book.author_name
-                ? book.author_name.join(", ")
-                : "Unknown author";
+                    ? book.author_name.join(", ")
+                    : "Unknown author";
 
             const year =
-                book.first_publish_year || "Unknown year";
+                book.first_publish_year ||
+                "Unknown year";
 
-            const cover = book.cover_i
-                ? "https://covers.openlibrary.org/b/id/" +
-                  book.cover_i +
-                  "-M.jpg"
-                : "https://via.placeholder.com/180x260?text=No+Cover";
+            const cover =
+                book.cover_i
+                    ? "https://covers.openlibrary.org/b/id/" +
+                      book.cover_i +
+                      "-M.jpg"
+                    : "https://via.placeholder.com/180x260?text=No+Cover";
 
-            const bookKey = book.key || "";
+            const bookKey =
+                book.key || "";
 
             const bookLink =
-                "https://openlibrary.org" + bookKey;
+                "https://openlibrary.org" +
+                bookKey;
+
             const buyLink =
-    "https://www.google.com/search?q=" +
-    encodeURIComponent(title + " book price buy");
+                "https://www.google.com/search?q=" +
+                encodeURIComponent(
+                    title + " book price buy"
+                );
+
             const downloadLink =
-                
-    book.ia && book.ia.length > 0
-        ? "https://archive.org/details/" + book.ia[0]
-        : "";
-            let availabilityText = "Not available";
-            let availabilityClass = "not-available";
+                book.ia &&
+                book.ia.length > 0
+                    ? "https://archive.org/details/" +
+                      book.ia[0]
+                    : "";
 
-if (book.availability) {
-    if (book.availability.available_to_borrow) {
-        availabilityText = "Available to borrow";
-        availabilityClass = "borrow";
-    } else if (book.availability.is_readable) {
-        availabilityText = "Available to read online";
-        availabilityClass = "read";
-    }
-}
+            let availabilityText =
+                "Not available";
 
-            const card = document.createElement("div");
+            let availabilityClass =
+                "not-available";
 
-            card.className = "book";
-            card.dataset.year = year;
+            if (book.availability) {
+
+                if (
+                    book.availability.available_to_borrow
+                ) {
+                    availabilityText =
+                        "Available to borrow";
+
+                    availabilityClass =
+                        "borrow";
+
+                } else if (
+                    book.availability.is_readable
+                ) {
+                    availabilityText =
+                        "Available to read online";
+
+                    availabilityClass =
+                        "read";
+                }
+            }
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "book";
+
+            card.dataset.year =
+                year;
 
             card.innerHTML = `
-                <img src="${cover}" alt="${title} cover">
+                <img
+                    src="${cover}"
+                    alt="${title} cover"
+                >
 
                 <h2>${title}</h2>
 
-                <p><strong>Author:</strong> ${author}</p>
-
-                <p><strong>First published:</strong> ${year}</p>
-                
-              
-         <p>
-    <span class="availability ${availabilityClass}">
-        ${availabilityText}
-    </span>
-</p>  html
-<p>
-    <a href="${bookLink}"
-       target="_blank"
-       rel="noopener">
-        View Book
-    </a>
-</p>
-
-<p>
-    <a class="buy-link"
-       href="${buyLink}"
-       target="_blank"
-       rel="noopener">
-        Buy / Check Price
-    </a>
-</p>
-
-     ${downloadLink ? `
                 <p>
-                    <a class="download-link" href="${downloadLink}"
-                       target="_blank"
-                       rel="noopener">
-                        Read / Download
+                    <strong>Author:</strong>
+                    ${author}
+                </p>
+
+                <p>
+                    <strong>First published:</strong>
+                    ${year}
+                </p>
+
+                <p>
+                    <span class="availability ${availabilityClass}">
+                        ${availabilityText}
+                    </span>
+                </p>
+
+                <p>
+                    <a
+                        href="${bookLink}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        View Book
                     </a>
                 </p>
-                ` : ""}
+
+                <p>
+                    <a
+                        class="buy-link"
+                        href="${buyLink}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Buy / Check Price
+                    </a>
+                </p>
+
+                ${
+                    downloadLink
+                    ? `
+                    <p>
+                        <a
+                            class="download-link"
+                            href="${downloadLink}"
+                            target="_blank"
+                            rel="noopener"
+                        >
+                            Read / Download
+                        </a>
+                    </p>
+                    `
+                    : ""
+                }
             `;
 
             booksContainer.appendChild(card);
 
         });
+
         showPage(1);
 
     } catch (error) {
@@ -569,63 +655,139 @@ if (book.availability) {
         console.error(error);
     }
 }
+
+
 function searchCategory(category) {
-    document.getElementById("searchInput").value = category;
+
+    document.getElementById("searchInput").value =
+        category;
+
+    document.getElementById("yearInput").value =
+        "";
+
+    document.getElementById("authorInput").value =
+        "";
+
     searchBooks();
 }
-searchBooks();
-    function sortBooks() {
-    const sortType = document.getElementById("sortBooks").value;
-    const booksContainer = document.getElementById("books");
 
-    const books = Array.from(booksContainer.querySelectorAll(".book"));
+
+function sortBooks() {
+
+    const sortType =
+        document.getElementById("sortBooks").value;
+
+    const booksContainer =
+        document.getElementById("books");
+
+    const books =
+        Array.from(
+            booksContainer.querySelectorAll(".book")
+        );
 
     if (sortType === "title") {
+
         books.sort((a, b) => {
-            const titleA = a.querySelector("h2").textContent.toLowerCase();
-            const titleB = b.querySelector("h2").textContent.toLowerCase();
+
+            const titleA =
+                a.querySelector("h2")
+                .textContent
+                .toLowerCase();
+
+            const titleB =
+                b.querySelector("h2")
+                .textContent
+                .toLowerCase();
+
             return titleA.localeCompare(titleB);
         });
     }
 
     if (sortType === "year-new") {
+
         books.sort((a, b) => {
-            const yearA = parseInt(a.dataset.year) || 0;
-            const yearB = parseInt(b.dataset.year) || 0;
+
+            const yearA =
+                parseInt(a.dataset.year) || 0;
+
+            const yearB =
+                parseInt(b.dataset.year) || 0;
+
             return yearB - yearA;
         });
     }
 
     if (sortType === "year-old") {
+
         books.sort((a, b) => {
-            const yearA = parseInt(a.dataset.year) || 9999;
-            const yearB = parseInt(b.dataset.year) || 9999;
+
+            const yearA =
+                parseInt(a.dataset.year) || 9999;
+
+            const yearB =
+                parseInt(b.dataset.year) || 9999;
+
             return yearA - yearB;
         });
     }
 
-    books.forEach(book => booksContainer.appendChild(book));
+    books.forEach(book =>
+        booksContainer.appendChild(book)
+    );
+
+    showPage(1);
 }
-    let currentPage = 1;
+
+
+let currentPage = 1;
+
 const booksPerPage = 8;
 
+
 function showPage(page) {
-    const booksContainer = document.getElementById("books");
-    const books = Array.from(booksContainer.querySelectorAll(".book"));
 
-    const totalPages = Math.ceil(books.length / booksPerPage);
+    const booksContainer =
+        document.getElementById("books");
 
-  if (totalPages === 0) {
-    document.getElementById("pageNumbers").innerHTML = "";
-    return;
-}
+    const books =
+        Array.from(
+            booksContainer.querySelectorAll(".book")
+        );
 
-    if (page < 1) page = 1;
-    if (page > totalPages) page = totalPages;
+    const totalPages =
+        Math.ceil(
+            books.length / booksPerPage
+        );
+
+    if (totalPages === 0) {
+
+        document.getElementById(
+            "pageNumbers"
+        ).innerHTML = "";
+
+        document.getElementById(
+            "prevPage"
+        ).disabled = true;
+
+        document.getElementById(
+            "nextPage"
+        ).disabled = true;
+
+        return;
+    }
+
+    if (page < 1) {
+        page = 1;
+    }
+
+    if (page > totalPages) {
+        page = totalPages;
+    }
 
     currentPage = page;
 
     books.forEach((book, index) => {
+
         book.style.display =
             index >= (page - 1) * booksPerPage &&
             index < page * booksPerPage
@@ -633,32 +795,56 @@ function showPage(page) {
                 : "none";
     });
 
-  // Page numbers are displayed below
+    document.getElementById(
+        "prevPage"
+    ).disabled =
+        currentPage === 1;
 
-    document.getElementById("prevPage").disabled = currentPage === 1;
-    document.getElementById("nextPage").disabled = currentPage === totalPages;
-    const pageNumbers = document.getElementById("pageNumbers");
-pageNumbers.innerHTML = "";
+    document.getElementById(
+        "nextPage"
+    ).disabled =
+        currentPage === totalPages;
 
-for (let i = 1; i <= totalPages; i++) {
-    const button = document.createElement("button");
-    button.textContent = i;
+    const pageNumbers =
+        document.getElementById(
+            "pageNumbers"
+        );
 
-    if (i === currentPage) {
-        button.classList.add("active");
+    pageNumbers.innerHTML = "";
+
+    for (
+        let i = 1;
+        i <= totalPages;
+        i++
+    ) {
+
+        const button =
+            document.createElement("button");
+
+        button.textContent = i;
+
+        if (i === currentPage) {
+            button.classList.add("active");
+        }
+
+        button.onclick = function () {
+            showPage(i);
+        };
+
+        pageNumbers.appendChild(button);
     }
-
-    button.onclick = function () {
-        showPage(i);
-    };
-
-    pageNumbers.appendChild(button);
 }
-}
+
 
 function changePage(direction) {
-    showPage(currentPage + direction);
+
+    showPage(
+        currentPage + direction
+    );
 }
+
+
+searchBooks();
 
 </script>
 
