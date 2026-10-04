@@ -2,6 +2,29 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Student Tools | Tanzania Student Portal</title>
 <style>
 body{margin:0;font-family:Arial;background:#f6f8fc;color:#172033}.wrap{max-width:950px;margin:auto;padding:30px 5%}a{color:#1e3a8a;font-weight:700;text-decoration:none}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.card{background:#fff;padding:22px;border-radius:12px;box-shadow:0 4px 15px #0001}.card h2{color:#1e3a8a}input,select{width:100%;padding:10px;margin:6px 0 12px;border:1px solid #ccd5e1;border-radius:8px;box-sizing:border-box}button{background:#1e3a8a;color:#fff;border:0;border-radius:8px;padding:10px 15px;font-weight:bold;cursor:pointer}.result{margin-top:12px;font-weight:bold;color:#0d9488}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.row{grid-template-columns:1fr}}
+
+/* Student tools — friendly academic workspace */
+:root{--forest:#183b36;--green:#176b5b;--gold:#e8a34b;--paper:#f7f3eb;--ink:#1e302b;--muted:#68746d}
+*{box-sizing:border-box}body{margin:0!important;font-family:Inter,"Segoe UI",Arial,sans-serif!important;background:var(--paper)!important;color:var(--ink)!important;line-height:1.65}
+.wrap{max-width:1120px!important;padding:30px clamp(16px,5vw,56px) 75px!important}
+.wrap>p:first-child a{display:inline-flex;padding:9px 13px;border-radius:999px;background:#e4eee4;color:#185849}
+.wrap>h1{font-size:clamp(32px,4vw,45px);letter-spacing:-.04em;color:#fff;background:radial-gradient(circle at 90% 10%,#e8a34b44,transparent 28%),linear-gradient(125deg,#183b36,#246452);border-radius:22px;padding:clamp(25px,4vw,42px);margin:0 0 12px;box-shadow:0 16px 40px #183b3617}
+.wrap>p:nth-of-type(2){color:#68746d;margin-bottom:26px}
+.grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:20px!important}
+.card{background:#fffdf7!important;border:1px solid #e9e2d5;border-radius:20px!important;padding:clamp(18px,3vw,28px)!important;box-shadow:0 9px 28px #183b3609!important}
+.card h2{color:#183b36!important;font-size:22px;letter-spacing:-.025em;margin-top:0}
+.card p{color:#68746d;line-height:1.65}
+.card label{display:block;font-size:13px;font-weight:800;color:#36574b;margin:14px 0 4px}
+.card input,.card select{width:100%;padding:12px 13px;margin:6px 0 12px;border:1px solid #d9dfd4;border-radius:10px;background:#fff;color:#1e302b;font:inherit}
+.card input:focus,.card select:focus{outline:3px solid #176b5b1c;border-color:#176b5b}
+button{background:#176b5b!important;color:#fff!important;border:0;border-radius:10px!important;padding:11px 15px!important;font-weight:800;cursor:pointer;transition:transform .18s,background .18s}
+button:hover{background:#115647!important;transform:translateY(-1px)}
+.result{margin-top:15px;padding:13px 14px;border-radius:12px;background:#eaf1e8;color:#185849!important;font-weight:800;line-height:1.55}
+.row{grid-template-columns:1fr 1fr;gap:10px}
+#courses{display:grid;gap:7px}
+@media(max-width:700px){.grid{grid-template-columns:1fr!important}.row{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.row{grid-template-columns:1fr}.wrap{padding-top:18px!important}}
+
 </style><link rel="stylesheet" href="theme.css">
 </head><body><div class="wrap"><p><a href="index.html">← Back to Home</a></p><h1>🧰 Student Tools</h1><p>Simple tools to help students study and plan their academic work.</p>
 <div class="grid">
