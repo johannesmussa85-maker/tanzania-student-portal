@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>CV Builder | Tanzania Student Portal</title>
-<style>body{font-family:Arial;background:#f6f8fc;color:#172033;margin:0}.wrap{max-width:900px;margin:auto;padding:30px 5%}h1{color:#1e3a8a}form,.preview{background:#fff;padding:25px;border-radius:12px;box-shadow:0 4px 15px #0001;margin:18px 0}label{display:block;font-weight:bold;margin:13px 0 6px}input,textarea{width:100%;padding:11px;border:1px solid #ccd5e1;border-radius:8px;box-sizing:border-box}textarea{min-height:90px}button,a{display:inline-block;padding:11px 16px;border:0;border-radius:8px;background:#1e3a8a;color:#fff;text-decoration:none;font-weight:bold;margin:8px 5px 0 0;cursor:pointer}.preview{line-height:1.5}.preview h2{color:#1e3a8a;margin-bottom:2px}.muted{color:#64748b}@media print{form,.actions{display:none}.wrap{padding:0}.preview{box-shadow:none}}</style><link rel="stylesheet" href="theme.css">
+<style>body{font-family:Arial;background:#f6f8fc;color:#172033;margin:0}.wrap{max-width:900px;margin:auto;padding:30px 5%}h1{color:#1e3a8a}form,.preview{background:#fff;padding:25px;border-radius:12px;box-shadow:0 4px 15px #0001;margin:18px 0}label{display:block;font-weight:bold;margin:13px 0 6px}input,textarea{width:100%;padding:11px;border:1px solid #ccd5e1;border-radius:8px;box-sizing:border-box}textarea{min-height:90px}button,a{display:inline-block;padding:11px 16px;border:0;border-radius:8px;background:#1e3a8a;color:#fff;text-decoration:none;font-weight:bold;margin:8px 5px 0 0;cursor:pointer}.preview{line-height:1.5}.preview h2{color:#1e3a8a;margin-bottom:2px}.muted{color:#64748b}@media print{form,.actions{display:none}.wrap{padding:0}.preview{box-shadow:none}}
+/* Student CV Builder — calm, professional document studio */
+:root{--forest:#183b36;--green:#176b5b;--gold:#e8a34b;--paper:#f7f3eb;--ink:#1e302b;--muted:#68746d}
+*{box-sizing:border-box}body{font-family:Inter,"Segoe UI",Arial,sans-serif!important;background:var(--paper)!important;color:var(--ink)!important;line-height:1.65}
+.wrap{max-width:1040px!important;padding:30px clamp(16px,5vw,54px) 72px!important}
+.wrap>a:first-child{display:inline-flex;align-items:center;padding:9px 13px!important;border-radius:999px!important;background:#e4eee4!important;color:#185849!important;margin:0 0 18px!important}
+.wrap>h1{font-size:clamp(31px,4.5vw,46px);letter-spacing:-.04em;color:#fff;background:radial-gradient(circle at 90% 10%,#e8a34b44,transparent 28%),linear-gradient(125deg,#183b36,#246452);border-radius:22px;padding:clamp(25px,4vw,42px);margin:0 0 14px;box-shadow:0 16px 40px #183b3617}
+.wrap>p{font-size:15px;line-height:1.7}
+#cvForm,.preview{background:#fffdf7!important;border:1px solid #e9e2d5;border-radius:20px!important;padding:clamp(18px,3vw,30px)!important;box-shadow:0 9px 28px #183b3609!important;margin:18px 0!important}
+#cvForm{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px}
+#cvForm label{font-size:13px;color:#36574b;margin:12px 0 3px!important}
+#cvForm input,#cvForm textarea{width:100%;padding:12px 13px;border:1px solid #d9dfd4;border-radius:10px;background:#fff;color:#1e302b;font:inherit}
+#cvForm input:focus,#cvForm textarea:focus{outline:3px solid #176b5b1c;border-color:#176b5b}
+#cvForm textarea{min-height:96px;resize:vertical}
+#cvForm label:nth-of-type(1),#cvForm #name,#cvForm label:nth-of-type(4),#cvForm #education,#cvForm label:nth-of-type(5),#cvForm #skills,#cvForm label:nth-of-type(6),#cvForm #experience,#cvForm label:nth-of-type(7),#cvForm #profile{grid-column:1/-1}
+#cvForm button{grid-column:1/-1;justify-self:start}
+button,.wrap a:not(:first-child){display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border:0;border-radius:10px;background:#176b5b;color:#fff;text-decoration:none;font-weight:800;cursor:pointer;transition:transform .18s,background .18s}
+button:hover,.wrap a:not(:first-child):hover{background:#115647;transform:translateY(-1px)}
+.preview h2{font-size:28px;letter-spacing:-.025em;color:#183b36!important}.preview h3{font-size:12px;letter-spacing:.12em;color:#176b5b;border-bottom:1px solid #e1e8dc;padding-bottom:6px;margin-top:22px}.preview p{overflow-wrap:anywhere;color:#35463e}.muted{color:#68746d!important}
+.actions{margin:16px 0}.actions button{background:#d99a3d;color:#183b36}
+@media(max-width:620px){#cvForm{grid-template-columns:1fr}#cvForm label,#cvForm input,#cvForm textarea,#cvForm button{grid-column:1!important}.wrap{padding-top:18px!important}}
+@media print{body{background:#fff!important}.wrap{max-width:none!important;padding:0!important}.wrap>h1,.wrap>p,.wrap>a,#cvForm,.actions{display:none!important}.preview{border:0!important;box-shadow:none!important;padding:0!important}}
+
+</style><link rel="stylesheet" href="theme.css">
 </head>
 <body><div class="wrap"><a href="index.html">← Home</a><h1>📄 Student CV Builder</h1><p class="muted">Fill in your details, preview your CV, then print or save it as PDF.</p>
 <form id="cvForm"><label>Full name</label><input id="name" required><label>Email</label><input id="email" type="email"><label>Phone</label><input id="phone"><label>Education</label><textarea id="education" placeholder="Example: Diploma in Mining Engineering — Jema Institute of Technology"></textarea><label>Skills</label><textarea id="skills" placeholder="Example: Communication, teamwork, computer skills"></textarea><label>Experience</label><textarea id="experience"></textarea><label>Profile / Career objective</label><textarea id="profile"></textarea><button type="button" onclick="buildCV()">Generate CV</button></form>
