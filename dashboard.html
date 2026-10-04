@@ -113,17 +113,18 @@ body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--port
   });
   const ids=['task1','task2','task3'];
   const storageKey='tsp-dashboard-checklist-v1';
-  function readSaved(){try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){return {}}}
+  function readSaved(){try{const data=JSON.parse(localStorage.getItem(storageKey)||'{}');return data&&typeof data==='object'?data:{}}catch(e){return {}}}
   function updateProgress(){
-    const done=ids.filter(id=>document.getElementById(id).checked).length;
-    document.getElementById('progressLabel').textContent=done+' of '+ids.length+' complete';
-    document.getElementById('progressFill').style.width=(done/ids.length*100)+'%';
-    document.getElementById('progressBar').setAttribute('aria-valuenow',String(done));
-    const state={};ids.forEach(id=>state[id]=document.getElementById(id).checked);
+    const done=ids.filter(id=>{const node=document.getElementById(id);return node&&node.checked}).length;
+    const label=document.getElementById('progressLabel'),fill=document.getElementById('progressFill'),bar=document.getElementById('progressBar');
+    if(label)label.textContent=done+' of '+ids.length+' complete';
+    if(fill)fill.style.width=(done/ids.length*100)+'%';
+    if(bar)bar.setAttribute('aria-valuenow',String(done));
+    const state={};ids.forEach(id=>{const node=document.getElementById(id);if(node)state[id]=node.checked});
     try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}
   }
-  const saved=readSaved();ids.forEach(id=>{const el=document.getElementById(id);el.checked=saved[id]===true;el.addEventListener('change',updateProgress)});
-  document.getElementById('resetTasks').addEventListener('click',()=>{ids.forEach(id=>document.getElementById(id).checked=false);updateProgress()});
+  const saved=readSaved();ids.forEach(id=>{const node=document.getElementById(id);if(node){node.checked=saved[id]===true;node.addEventListener('change',updateProgress)}});
+  const reset=document.getElementById('resetTasks');if(reset)reset.addEventListener('click',()=>{ids.forEach(id=>{const node=document.getElementById(id);if(node)node.checked=false});updateProgress()});
   updateProgress();
 })();
 </script>
