@@ -32,7 +32,9 @@ footer{background:#122d28;color:#dbe8df;padding:28px 5%;text-align:center;font-s
 @media(max-width:580px){.nav{align-items:flex-start;flex-direction:column}.navlinks{gap:7px 13px}.navlinks a{font-size:12px}.hero{padding:42px 5% 58px}.stats{grid-template-columns:1fr;margin-top:-20px}.stat{padding:12px 15px}.toolbar{grid-template-columns:1fr}.toolbar input{grid-column:auto}.grid,.directory-grid{grid-template-columns:1fr}.course{min-height:0}.hero:after{font-size:45px;right:3%}.result-line{align-items:flex-start;flex-direction:column}}
 </style>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-</head>
+<style>
+.engineering-hub{margin:38px 0;padding:clamp(24px,4vw,38px);border-radius:24px;background:linear-gradient(135deg,#173d37,#225e50);color:#fff;box-shadow:0 18px 45px #183b3620;position:relative;overflow:hidden}.engineering-hub:after{content:"CAD";position:absolute;right:3%;top:8%;font-size:110px;font-weight:950;letter-spacing:-.08em;color:#ffffff0b}.hub-kicker{font-size:10px;font-weight:900;letter-spacing:.16em;color:#f3c778}.engineering-hub h2{position:relative;z-index:1;margin:7px 0 8px;font-size:clamp(25px,4vw,38px);letter-spacing:-.04em}.engineering-hub>p{position:relative;z-index:1;max-width:800px;color:#dcece4;font-size:14px}.hub-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}.hub-grid a{display:flex;flex-direction:column;gap:5px;padding:15px;background:#ffffff12;border:1px solid #ffffff22;border-radius:14px;color:#fff;transition:.2s}.hub-grid a:hover{transform:translateY(-3px);background:#ffffff1d;border-color:#f3c77866}.hub-grid strong{font-size:13px}.hub-grid span{font-size:11px;color:#cfe0d7;line-height:1.5}.hub-note{position:relative;z-index:1;margin-top:15px;padding:13px 15px;background:#f3c77815;border-left:3px solid #f3c778;border-radius:9px;color:#e9eee8;font-size:12px}.hub-note strong{color:#f3c778}@media(max-width:900px){.hub-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:580px){.hub-grid{grid-template-columns:1fr}}
+</style></head>
 <body>
 <header class="topbar"><nav class="nav"><a class="brand" href="index.html">Tanzania <span>Student Portal</span></a><div class="navlinks"><a href="index.html">Home</a><a href="secondary.html">Past Papers</a><a href="books.html">Books</a><a href="cv-builder.html">Career Hub</a><a href="dashboard.html">Dashboard</a></div></nav></header>
 <section class="hero"><div class="hero-inner"><div class="eyebrow">Your course · Your future · Your resources</div><h1>Find your field.<br>Build your future.</h1><p>Explore major study fields available through Tanzania’s university, college and technical training pathways. Each guide connects you to free-to-read books, open course materials, learning videos and documentaries where available.</p><div class="hero-actions"><a class="btn light" href="#courseCatalogue">Explore course guides ↓</a><a class="btn ghost" href="#officialDirectories">Check official directories ↗</a></div></div></section>
@@ -61,6 +63,22 @@ footer{background:#122d28;color:#dbe8df;padding:28px 5%;text-align:center;font-s
 
 <div class="empty" id="empty">No course guides match your search. Try a broader keyword or choose “All fields”.</div>
 </div>
+<section class="engineering-hub" id="engineeringHub">
+  <div class="hub-kicker">ENGINEERING HUB</div>
+  <h2>🛠️ AutoCAD & Technical Drawing</h2>
+  <p>Jifunze CAD na technical drawing kwa hatua, kutoka beginner hadi practical engineering projects. Imeandaliwa kwa wanafunzi wa Civil, Mechanical, Electrical, Mining, Computer Engineering, Architecture na Surveying.</p>
+  <div class="hub-grid">
+    <a href="course-resources.html?course=AutoCAD%20%26%20Technical%20Drawing"><strong>📐 AutoCAD Basics</strong><span>Interface, commands, layers, dimensions & plotting</span></a>
+    <a href="course-resources.html?course=Technical%20Drawing"><strong>✏️ Technical Drawing</strong><span>Drawing principles, views, sections & dimensioning</span></a>
+    <a href="course-resources.html?course=Civil%20AutoCAD"><strong>🏗️ Civil Engineering CAD</strong><span>Plans, sections, layouts & construction drawings</span></a>
+    <a href="course-resources.html?course=Mechanical%20AutoCAD"><strong>⚙️ Mechanical CAD</strong><span>Parts, assemblies, machine drawings & design</span></a>
+    <a href="course-resources.html?course=Mining%20AutoCAD"><strong>⛏️ Mining CAD</strong><span>Mine plans, sections, layouts & technical drawings</span></a>
+    <a href="course-resources.html?course=Surveying%20CAD"><strong>🧭 Surveying CAD</strong><span>Site plans, survey layouts & drafting practice</span></a>
+    <a href="course-resources.html?course=AutoCAD%20Exercises"><strong>📝 Practice Exercises</strong><span>Practical tasks to build real drafting skills</span></a>
+    <a href="ai-assistance.html"><strong>🤖 Ask AI about AutoCAD</strong><span>Get step-by-step explanations of commands and concepts</span></a>
+  </div>
+  <div class="hub-note"><strong>💡 Engineering idea:</strong> Tutaiunganisha AutoCAD na Engineering Hub pamoja na Engineering Mathematics, calculators, projects, notes, books, past papers na tutorials kadri portal inavyokua.</div>
+</section>
 <div class="note"><strong>Course resource structure:</strong> Kila kozi sasa ina sehemu yake ya <strong>Notes, Books, Past Papers, Videos, Course Policies</strong> na <strong>Documents</strong>. Ukifungua Notes utaona mada kuu za kuanzia; vitabu na resources vitaongezwa hatua kwa hatua bila kubadilisha mfumo wa portal.</div>
 <section class="directory" id="officialDirectories"><span class="section-kicker">Official Tanzania directories</span><h2>Verify courses and institutions before applying</h2><p>This portal provides learning guides across common programme families. For the current list of approved programmes and institutions, always check Tanzania’s official regulators.</p>
 <div class="directory-grid">
