@@ -67,12 +67,6 @@
     hi:{}
   };
 
-  // Merge aliases only when a language object was not populated above.
-  dictionaries.zh = Object.assign({}, dictionaries.zh);
-  dictionaries.ar = Object.assign({}, dictionaries.ar);
-  dictionaries.es = Object.assign({}, dictionaries.es);
-  dictionaries.hi = Object.assign({}, dictionaries.hi);
-
   const attrMap = {
     "Search books, exam papers, career tools…": {
       sw:"Tafuta vitabu, mitihani, zana za kazi…", fr:"Rechercher des livres, examens et outils professionnels…", zh:"搜索书籍、试卷和职业工具…", ar:"ابحث عن الكتب والامتحانات وأدوات الوظائف…", es:"Buscar libros, exámenes y herramientas profesionales…", hi:"किताबें, प्रश्नपत्र और करियर टूल खोजें…"
