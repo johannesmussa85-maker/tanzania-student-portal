@@ -7,7 +7,7 @@ A student resource portal published with GitHub Pages.
 ## Main sections
 
 - Home and study resource discovery
-- Secondary exam practice and official NECTA guidance
+- College and university study resources, course materials and official higher-education guidance
 - Digital Library search powered by the Open Library catalogue
 - Course-family guides and official TCU / NACTVET directory links
 - University and college application guidance
