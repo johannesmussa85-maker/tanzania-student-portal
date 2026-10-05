@@ -149,14 +149,14 @@
 
     const style=document.createElement("style");
     style.textContent=`
-      .language-switcher{position:fixed;right:16px;bottom:76px;z-index:9999;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #d8e2d7;border-radius:15px;background:#fffdf7;color:#183b36;box-shadow:0 10px 30px #183b3620;font:700 12px/1.2 Inter,"Segoe UI",Arial,sans-serif}
+      .language-switcher{position:fixed;right:16px;bottom:82px;z-index:9999;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #d8e2d7;border-radius:15px;background:#fffdf7;color:#183b36;box-shadow:0 10px 30px #183b3620;font:700 12px/1.2 Inter,"Segoe UI",Arial,sans-serif}
       .language-globe{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:#e4eee4;color:#176b5b;font-size:16px}
       .language-switcher select{min-width:118px;border:1px solid #d7dfd4;border-radius:9px;background:#fff;padding:8px 9px;color:#183b36;font:700 12px inherit;cursor:pointer}
       .language-switcher label{font-weight:800}
       .language-switcher select:focus{outline:2px solid #176b5b55}
       .rtl-language{direction:rtl}
       .rtl-language .language-switcher{direction:ltr}
-      @media(max-width:600px){.language-switcher{right:10px;bottom:70px;padding:7px 8px}.language-switcher label{display:none}.language-switcher select{min-width:112px}}
+      @media(max-width:600px){.language-switcher{right:10px;bottom:62px;padding:7px 8px}.language-switcher label{display:none}.language-switcher select{min-width:112px}}
     `;
     document.head.appendChild(style);
 
