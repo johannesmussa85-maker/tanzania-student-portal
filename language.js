@@ -1,144 +1,188 @@
 (() => {
-  const translations = {
+  /*
+   * Tanzania Student Portal - multilingual UI
+   * Languages: English, Kiswahili, French, Chinese, Arabic, Spanish, Hindi
+   * The English text is always kept as the source so switching never mixes languages.
+   */
+  const sw = {
     "Home":"Nyumbani","Dashboard":"Dashibodi","Study":"Masomo","Books":"Vitabu","Courses":"Kozi",
     "Career Hub":"Kituo cha Kazi","Tools":"Zana","Opportunities":"Fursa","Past Papers":"Mitihani ya Zamani",
-    "Menu":"Menyu","Your journey.":"Safari yako.","Your knowledge.":"Maarifa yako.","Your future.":"Mustakabali wako.",
-    "A welcoming home for Tanzania’s learners. Find study resources, prepare for exams, shape your career and take your next step with confidence.":"Karibu kwenye tovuti ya wanafunzi wa Tanzania. Pata nyenzo za kujifunzia, jiandae kwa mitihani, jenga taaluma yako na piga hatua inayofuata kwa kujiamini.",
-    "✦ A LITTLE PROGRESS EVERY DAY":"✦ HATUA NDOGO KILA SIKU","Find resources":"Tafuta nyenzo","Popular: Past papers · Digital library · CV builder":"Maarufu: Mitihani ya zamani · Maktaba ya kidijitali · CV Builder",
-    "Courses & Resources":"Kozi na Nyenzo","Books, videos & study guides":"Vitabu, video na miongozo ya masomo",
-    "Digital Library":"Maktaba ya Kidijitali","Find useful books":"Pata vitabu muhimu","Exam practice":"Mazoezi ya mitihani",
-    "Your student hub":"Kituo chako cha mwanafunzi","Student Tools":"Zana za Mwanafunzi","GPA & study planner":"GPA na mpangilio wa masomo",
-    "Your course · Your future · Your resources":"Kozi yako · Mustakabali wako · Nyenzo zako","Find your field.":"Tafuta fani yako.","Build your future.":"Jenga mustakabali wako.",
-    "Explore course guides ↓":"Chunguza miongozo ya kozi ↓","Check official directories ↗":"Angalia orodha rasmi ↗",
-    "📚 Free learning resources":"📚 Nyenzo za kujifunzia bure","Open textbooks and legal reading links":"Vitabu huria na viungo halali vya kusoma",
-    "🎬 Videos & documentaries":"🎬 Video na makala za kielimu","Learning media and visual explainers":"Video za masomo na maelezo ya kuona",
-    "🇹🇿 Tanzania pathways":"🇹🇿 Njia za masomo Tanzania","Official university and TVET directories":"Orodha rasmi za vyuo vikuu na TVET",
-    "All study pathways":"Njia zote za masomo","University / Degree":"Chuo kikuu / Shahada","College / Diploma":"Chuo / Diploma",
-    "Technical / Vocational":"Ufundi / Stadi","Multiple pathways":"Njia mbalimbali","All fields":"Fani zote",
+    "Menu":"Menyu","Previous":"Iliyotangulia","Next":"Inayofuata","Back":"Rudi","← Back to Home":"← Rudi Nyumbani","← Home":"← Nyumbani",
+    "Search":"Tafuta","All Books":"Vitabu Vyote","Default":"Chaguomsingi","Title A–Z":"Jina A–Z","Newest First":"Vipya Kwanza","Oldest First":"Vya Zamani Kwanza",
+    "Education":"Elimu","Skills":"Ujuzi","Experience":"Uzoefu","Full name":"Jina kamili","Email":"Barua pepe","Phone":"Simu",
+    "Generate CV":"Tengeneza CV","CV Builder":"Tengeneza CV","Universities":"Vyuo Vikuu","Engineering":"Uhandisi","Health":"Afya",
+    "Business":"Biashara","Agriculture":"Kilimo","Mining & Geology":"Madini na Jiolojia","ICT & Computing":"TEHAMA na Kompyuta",
     "Engineering & Technology":"Uhandisi na Teknolojia","Health & Life Sciences":"Afya na Sayansi ya Maisha",
-    "Business & Social Sciences":"Biashara na Sayansi za Jamii","Natural Resources":"Maliasili",
-    "Education & Creative Arts":"Elimu na Sanaa Bunifu","Built Environment & Services":"Ujenzi na Huduma",
-    "Engineering":"Uhandisi","Health":"Afya","Business":"Biashara","ICT & Computing":"TEHAMA na Kompyuta",
-    "Agriculture":"Kilimo","Mining & Geology":"Madini na Jiolojia","Search course guides":"Tafuta miongozo ya kozi",
-    "Choose a resource link on each card":"Chagua kiungo cha nyenzo kwenye kila kadi",
-    "Secondary Exam Practice":"Mazoezi ya Mitihani ya Sekondari",
-    "Browse national examination resources by Form 2, Form 4 and Form 6, filtered by subject and year.":"Vinjari nyenzo za mitihani ya kitaifa ya Kidato cha Pili, Nne na Sita kwa somo na mwaka.",
-    "Important:":"Muhimu:","All years":"Miaka yote","All subjects":"Masomo yote","Form 2 resources":"Nyenzo za Kidato cha Pili",
-    "Form 2 · FTNA":"Kidato cha Pili · FTNA","Form 4 · CSEE":"Kidato cha Nne · CSEE","Form 6 · ACSEE":"Kidato cha Sita · ACSEE",
+    "Business & Social Sciences":"Biashara na Sayansi za Jamii","Natural Resources":"Maliasili","Education & Creative Arts":"Elimu na Sanaa Bunifu",
+    "Secondary Exam Practice":"Mazoezi ya Mitihani ya Sekondari","Important:":"Muhimu:","All years":"Miaka yote","All subjects":"Masomo yote",
+    "Form 2 resources":"Nyenzo za Kidato cha Pili","Form 2 · FTNA":"Kidato cha Pili · FTNA","Form 4 · CSEE":"Kidato cha Nne · CSEE","Form 6 · ACSEE":"Kidato cha Sita · ACSEE",
     "Official examination guidance":"Mwongozo rasmi wa mitihani","Search subject or resource...":"Tafuta somo au nyenzo...",
-    "Career & Admissions Hub":"Kituo cha Kazi na Udahili","One place to prepare your CV, explore work opportunities and find official college or university admission routes in Tanzania.":"Sehemu moja ya kuandaa CV, kutafuta fursa za kazi na kupata njia rasmi za udahili wa vyuo Tanzania.",
-    "Search categories: jobs, university, diploma, CV…":"Tafuta: kazi, chuo kikuu, diploma, CV…","CV Builder":"Tengeneza CV",
-    "Work & Internships":"Kazi na Mafunzo kwa Vitendo","Universities":"Vyuo Vikuu","Colleges & Training":"Vyuo na Mafunzo",
-    "Build your professional CV":"Tengeneza CV yako ya kitaalamu","Create a clean CV, preview it and save it as PDF.":"Tengeneza CV nzuri, ikague na ihifadhi kama PDF.",
-    "Full name":"Jina kamili","Email":"Barua pepe","Phone":"Simu","Education":"Elimu","Skills":"Ujuzi","Experience":"Uzoefu",
-    "Profile / Career objective":"Wasifu / Lengo la kazi","Generate CV":"Tengeneza CV","Work, jobs & internships":"Kazi na nafasi za mafunzo",
-    "Go to trusted recruitment portals to review requirements and apply.":"Tembelea tovuti za ajira zinazoaminika kusoma masharti na kutuma maombi.",
-    "Registered Universities in Tanzania":"Vyuo Vikuu Vilivyosajiliwa Tanzania","University Application Guidance":"Mwongozo wa Maombi ya Chuo Kikuu",
-    "Colleges, diplomas & certificates":"Vyuo, Diploma na Cheti","Before you apply":"Kabla ya kutuma ombi",
-    "Open Ajira Portal ↗":"Fungua Ajira Portal ↗","View Announcements ↗":"Tazama Matangazo ↗","Create a CV ↑":"Tengeneza CV ↑",
-    "Registered Colleges & Training Institutions":"Vyuo na Taasisi za Mafunzo Zilizosajiliwa",
-    "Find your field. Build your future.":"Tafuta fani yako. Jenga mustakabali wako.",
-    "Search books, exam papers, career tools…":"Tafuta vitabu, mitihani, zana za kazi…",
-    "Search for a book...":"Tafuta kitabu...","Search by author...":"Tafuta kwa mwandishi...","Publication year...":"Mwaka wa kuchapishwa...",
-    "Search":"Tafuta","All Books":"Vitabu Vyote","Hydrometallurgy":"Hidrometallurgia","Comminution":"Usagaji wa Madini",
-    "Flotation":"Ueleaji wa Madini","Gravity Separation":"Utenganishaji kwa Mvuto","Magnetic Separation":"Utenganishaji wa Sumaku",
-    "Dewatering":"Uondoaji wa Maji","Ore Characterization":"Uchambuzi wa Sifa za Ore","Sort Books:":"Panga Vitabu:",
-    "Default":"Chaguomsingi","Title A–Z":"Jina A–Z","Newest First":"Vipya Kwanza","Oldest First":"Vya Zamani Kwanza",
-    "Previous":"Iliyotangulia","Next":"Inayofuata","← Back to Home":"← Rudi Nyumbani","← Home":"← Nyumbani",
-    "University & College Portal":"Tovuti ya Vyuo Vikuu na Vyuo","Welcome to Tanzania Student Portal.":"Karibu Tanzania Student Portal.",
-    "Past Papers, Study Materials and College Notices.":"Mitihani ya Zamani, Nyenzo za Masomo na Matangazo ya Vyuo.",
-    "Popular Courses":"Kozi Maarufu","University & College Past Papers":"Mitihani ya Vyuo Vikuu na Vyuo",
-    "Past examination papers will be organized by course and institution.":"Mitihani ya zamani itapangwa kwa kozi na taasisi.",
-    "Past papers coming soon.":"Mitihani ya zamani itaongezwa hivi karibuni.","College & University Notices":"Matangazo ya Vyuo Vikuu na Vyuo",
+    "Career & Admissions Hub":"Kituo cha Kazi na Udahili","Work & Internships":"Kazi na Mafunzo kwa Vitendo","Colleges & Training":"Vyuo na Mafunzo",
+    "Application checklist":"Orodha ya kujiandaa kuomba","Helpful student links":"Viungo muhimu kwa wanafunzi","Verify before applying":"Thibitisha kabla ya kutuma maombi",
+    "Search books, exam papers, career tools…":"Tafuta vitabu, mitihani, zana za kazi…","Search for a book...":"Tafuta kitabu...",
+    "Search by author...":"Tafuta kwa mwandishi...","Publication year...":"Mwaka wa kuchapishwa...",
+    "Hydrometallurgy":"Hidrometallurgia","Comminution":"Usagaji wa Madini","Flotation":"Ueleaji wa Madini",
+    "Gravity Separation":"Utenganishaji kwa Mvuto","Magnetic Separation":"Utenganishaji wa Sumaku","Dewatering":"Uondoaji wa Maji","Ore Characterization":"Uchambuzi wa Sifa za Ore",
+    "University & College Portal":"Tovuti ya Vyuo Vikuu na Vyuo","Popular Courses":"Kozi Maarufu",
+    "University & College Past Papers":"Mitihani ya Vyuo Vikuu na Vyuo","College & University Notices":"Matangazo ya Vyuo Vikuu na Vyuo",
     "Examination timetables":"Ratiba za mitihani","Registration announcements":"Matangazo ya usajili",
-    "Scholarships and internships":"Scholarship na mafunzo kwa vitendo","Class timetable changes":"Mabadiliko ya ratiba za darasa",
-    "Other official college announcements":"Matangazo mengine rasmi ya vyuo","Notice Board:":"Ubao wa Matangazo:",
+    "Scholarships and internships":"Scholarship na mafunzo kwa vitendo","Notice Board:":"Ubao wa Matangazo:",
     "Official notices will be added here.":"Matangazo rasmi yataongezwa hapa.",
-"University & College Portal":"University & College Portal",
-    "Universities, colleges & admission pathways":"Vyuo vikuu, vyuo na njia za udahili",
-    "Higher education guide":"Mwongozo wa elimu ya juu",
-    "Choose your pathway":"Chagua njia yako ya masomo",
-    "Application checklist":"Orodha ya kujiandaa kuomba",
-    "Helpful student links":"Viungo muhimu kwa wanafunzi",
-    "Verify before applying":"Thibitisha kabla ya kutuma maombi",
-    "Form 5 & Form 6 Study Hub":"Kituo cha masomo cha Kidato cha Tano na Sita",
-    "Study smarter for ACSEE":"Jiandae vizuri zaidi kwa ACSEE",
-    "Form 5 study focus":"Mambo ya kuzingatia Kidato cha Tano",
-    "Form 6 exam readiness":"Maandalizi ya mtihani wa Kidato cha Sita",
-    "A simple weekly revision plan":"Mpango rahisi wa marudio ya kila wiki",
-    "Word-compatible document":"Hati inayofunguka kwenye Word",
-    "Search library":"Tafuta maktaba",
-    "Check catalogue":"Angalia taarifa za katalogi"
+    "Search library":"Tafuta maktaba","Check catalogue":"Angalia taarifa za katalogi",
+    "Student Tools":"Zana za Mwanafunzi","Digital Library":"Maktaba ya Kidijitali","Courses & Resources":"Kozi na Nyenzo",
+    "Your student hub":"Kituo chako cha mwanafunzi","Your journey.":"Safari yako.","Your knowledge.":"Maarifa yako.","Your future.":"Mustakabali wako.",
+    "Find resources":"Tafuta nyenzo","Find your field.":"Tafuta fani yako.","Build your future.":"Jenga mustakabali wako."
   };
+
+  const common = {
+    en:{name:"English",dir:"ltr"},
+    sw:{name:"Kiswahili",dir:"ltr"},
+    fr:{name:"Français",dir:"ltr"},
+    zh:{name:"中文",dir:"ltr"},
+    ar:{name:"العربية",dir:"rtl"},
+    es:{name:"Español",dir:"ltr"},
+    hi:{name:"हिन्दी",dir:"ltr"}
+  };
+
+  const dictionaries = {
+    sw,
+    fr:{
+      Home:"Accueil",Dashboard:"Tableau de bord",Study:"Études",Books:"Livres",Courses:"Cours","Career Hub":"Carrières",Tools:"Outils",Opportunities:"Opportunités","Past Papers":"Anciens examens",Menu:"Menu",Previous:"Précédent",Next:"Suivant",Back:"Retour","← Back to Home":"← Retour à l’accueil","← Home":"← Accueil",Search:"Rechercher","All Books":"Tous les livres",Default:"Par défaut","Title A–Z":"Titre A–Z","Newest First":"Plus récents","Oldest First":"Plus anciens",Education:"Éducation",Skills:"Compétences",Experience:"Expérience","Full name":"Nom complet",Email:"E-mail",Phone:"Téléphone","Generate CV":"Générer le CV","CV Builder":"Créateur de CV",Universities:"Universités",Engineering:"Ingénierie",Health:"Santé",Business:"Commerce",Agriculture:"Agriculture","Mining & Geology":"Mines et géologie","ICT & Computing":"TIC et informatique","Engineering & Technology":"Ingénierie et technologie","Health & Life Sciences":"Santé et sciences de la vie","Business & Social Sciences":"Commerce et sciences sociales","Natural Resources":"Ressources naturelles","Education & Creative Arts":"Éducation et arts créatifs","Secondary Exam Practice":"Exercices d’examens secondaires","Important:":"Important :","All years":"Toutes les années","All subjects":"Toutes les matières","Official examination guidance":"Guide officiel des examens","Career & Admissions Hub":"Carrières et admissions","Work & Internships":"Emplois et stages","Colleges & Training":"Collèges et formations","Application checklist":"Liste de préparation","Helpful student links":"Liens utiles","Verify before applying":"Vérifier avant de postuler","Search for a book...":"Rechercher un livre...","Search by author...":"Rechercher par auteur...","Publication year...":"Année de publication...","Hydrometallurgy":"Hydrométallurgie",Comminution:"Broyage",Flotation:"Flottation","Gravity Separation":"Séparation gravimétrique","Magnetic Separation":"Séparation magnétique",Dewatering:"Déshydratation","Ore Characterization":"Caractérisation du minerai","University & College Portal":"Portail des universités et collèges","Popular Courses":"Cours populaires","College & University Notices":"Avis des universités et collèges","Examination timetables":"Calendriers d’examens","Registration announcements":"Annonces d’inscription","Scholarships and internships":"Bourses et stages","Notice Board:":"Tableau d’annonces :","Student Tools":"Outils étudiants","Digital Library":"Bibliothèque numérique","Courses & Resources":"Cours et ressources","Find resources":"Trouver des ressources","Find your field.":"Trouvez votre domaine.","Build your future.":"Construisez votre avenir."
+    },
+    zh:{
+      Home:"首页",Dashboard:"仪表板",Study:"学习",Books:"书籍",Courses:"课程","Career Hub":"职业中心",Tools:"工具",Opportunities:"机会","Past Papers":"历年试卷",Menu:"菜单",Previous:"上一页",Next:"下一页",Back:"返回","← Back to Home":"← 返回首页","← Home":"← 首页",Search:"搜索","All Books":"全部书籍",Default:"默认","Title A–Z":"标题 A–Z","Newest First":"最新优先","Oldest First":"最旧优先",Education:"教育",Skills:"技能",Experience:"经验","Full name":"姓名",Email:"电子邮箱",Phone:"电话","Generate CV":"生成简历","CV Builder":"简历制作",Universities:"大学",Engineering:"工程",Health:"健康",Business:"商业",Agriculture:"农业","Mining & Geology":"采矿与地质","ICT & Computing":"信息通信技术与计算机","Engineering & Technology":"工程与技术","Health & Life Sciences":"健康与生命科学","Business & Social Sciences":"商业与社会科学","Natural Resources":"自然资源","Education & Creative Arts":"教育与创意艺术","Secondary Exam Practice":"中学考试练习","Important:":"重要：","All years":"所有年份","All subjects":"所有科目","Official examination guidance":"官方考试指南","Career & Admissions Hub":"职业与招生中心","Work & Internships":"工作与实习","Colleges & Training":"学院与培训","Application checklist":"申请清单","Helpful student links":"实用学生链接","Verify before applying":"申请前核实","Search for a book...":"搜索书籍...","Search by author...":"按作者搜索...","Publication year...":"出版年份...","Hydrometallurgy":"湿法冶金",Comminution:"粉碎",Flotation:"浮选","Gravity Separation":"重力分选","Magnetic Separation":"磁选",Dewatering:"脱水","Ore Characterization":"矿石表征","University & College Portal":"大学与学院门户","Popular Courses":"热门课程","College & University Notices":"大学与学院公告","Examination timetables":"考试时间表","Registration announcements":"注册公告","Scholarships and internships":"奖学金与实习","Notice Board:":"公告栏：","Student Tools":"学生工具","Digital Library":"数字图书馆","Courses & Resources":"课程与资源","Find resources":"查找学习资源","Find your field.":"找到你的专业领域。","Build your future.":"建设你的未来。"
+    },
+    ar:{
+      Home:"الرئيسية",Dashboard:"لوحة التحكم",Study:"الدراسة",Books:"الكتب",Courses:"المقررات","Career Hub":"مركز الوظائف",Tools:"الأدوات",Opportunities:"الفرص","Past Papers":"الامتحانات السابقة",Menu:"القائمة",Previous:"السابق",Next:"التالي",Back:"رجوع","← Back to Home":"← العودة للرئيسية","← Home":"← الرئيسية",Search:"بحث","All Books":"كل الكتب",Default:"افتراضي","Title A–Z":"العنوان أ–ي","Newest First":"الأحدث أولاً","Oldest First":"الأقدم أولاً",Education:"التعليم",Skills:"المهارات",Experience:"الخبرة","Full name":"الاسم الكامل",Email:"البريد الإلكتروني",Phone:"الهاتف","Generate CV":"إنشاء السيرة الذاتية","CV Builder":"منشئ السيرة الذاتية",Universities:"الجامعات",Engineering:"الهندسة",Health:"الصحة",Business:"الأعمال",Agriculture:"الزراعة","Mining & Geology":"التعدين والجيولوجيا","ICT & Computing":"تكنولوجيا المعلومات والحوسبة","Engineering & Technology":"الهندسة والتكنولوجيا","Health & Life Sciences":"الصحة وعلوم الحياة","Business & Social Sciences":"الأعمال والعلوم الاجتماعية","Natural Resources":"الموارد الطبيعية","Education & Creative Arts":"التعليم والفنون الإبداعية","Secondary Exam Practice":"تدريبات امتحانات المرحلة الثانوية","Important:":"مهم:","All years":"كل السنوات","All subjects":"كل المواد","Official examination guidance":"إرشادات الامتحانات الرسمية","Career & Admissions Hub":"مركز الوظائف والقبول","Work & Internships":"العمل والتدريب","Colleges & Training":"الكليات والتدريب","Application checklist":"قائمة التقديم","Helpful student links":"روابط مفيدة للطلاب","Verify before applying":"تحقق قبل التقديم","Search for a book...":"ابحث عن كتاب...","Search by author...":"ابحث باسم المؤلف...","Publication year...":"سنة النشر...","Hydrometallurgy":"المعالجة الهيدروميتالورجية",Comminution:"طحن وتكسير الخامات",Flotation:"التعويم","Gravity Separation":"الفصل بالجاذبية","Magnetic Separation":"الفصل المغناطيسي",Dewatering:"نزع الماء","Ore Characterization":"توصيف الخام","University & College Portal":"بوابة الجامعات والكليات","Popular Courses":"المقررات الشائعة","College & University Notices":"إعلانات الجامعات والكليات","Examination timetables":"جداول الامتحانات","Registration announcements":"إعلانات التسجيل","Scholarships and internships":"المنح والتدريب","Notice Board:":"لوحة الإعلانات:","Student Tools":"أدوات الطلاب","Digital Library":"المكتبة الرقمية","Courses & Resources":"المقررات والموارد","Find resources":"ابحث عن الموارد","Find your field.":"اعثر على تخصصك","Build your future.":"ابنِ مستقبلك"
+    },
+    es:{
+      Home:"Inicio",Dashboard:"Panel",Study:"Estudio",Books:"Libros",Courses:"Cursos","Career Hub":"Centro profesional",Tools:"Herramientas",Opportunities:"Oportunidades","Past Papers":"Exámenes anteriores",Menu:"Menú",Previous:"Anterior",Next:"Siguiente",Back:"Volver","← Back to Home":"← Volver al inicio","← Home":"← Inicio",Search:"Buscar","All Books":"Todos los libros",Default:"Predeterminado","Title A–Z":"Título A–Z","Newest First":"Más recientes","Oldest First":"Más antiguos",Education:"Educación",Skills:"Habilidades",Experience:"Experiencia","Full name":"Nombre completo",Email:"Correo electrónico",Phone:"Teléfono","Generate CV":"Generar CV","CV Builder":"Creador de CV",Universities:"Universidades",Engineering:"Ingeniería",Health:"Salud",Business:"Negocios",Agriculture:"Agricultura","Mining & Geology":"Minería y geología","ICT & Computing":"TIC e informática","Engineering & Technology":"Ingeniería y tecnología","Health & Life Sciences":"Salud y ciencias de la vida","Business & Social Sciences":"Negocios y ciencias sociales","Natural Resources":"Recursos naturales","Education & Creative Arts":"Educación y artes creativas","Secondary Exam Practice":"Práctica de exámenes secundarios","Important:":"Importante:","All years":"Todos los años","All subjects":"Todas las materias","Official examination guidance":"Guía oficial de exámenes","Career & Admissions Hub":"Centro de empleo y admisiones","Work & Internships":"Trabajo y prácticas","Colleges & Training":"Colegios y formación","Application checklist":"Lista de solicitud","Helpful student links":"Enlaces útiles","Verify before applying":"Verificar antes de solicitar","Search for a book...":"Buscar un libro...","Search by author...":"Buscar por autor...","Publication year...":"Año de publicación...","Hydrometallurgy":"Hidrometalurgia",Comminution:"Conminución",Flotation:"Flotación","Gravity Separation":"Separación gravimétrica","Magnetic Separation":"Separación magnética",Dewatering:"Deshidratación","Ore Characterization":"Caracterización del mineral","University & College Portal":"Portal de universidades y colegios","Popular Courses":"Cursos populares","College & University Notices":"Avisos de universidades y colegios","Examination timetables":"Horarios de exámenes","Registration announcements":"Anuncios de inscripción","Scholarships and internships":"Becas y prácticas","Notice Board:":"Tablón de anuncios:","Student Tools":"Herramientas para estudiantes","Digital Library":"Biblioteca digital","Courses & Resources":"Cursos y recursos","Find resources":"Buscar recursos","Find your field.":"Encuentra tu área","Build your future.":"Construye tu futuro"
+    },
+    hi:{
+      Home:"होम",Dashboard:"डैशबोर्ड",Study:"पढ़ाई",Books:"किताबें",Courses:"पाठ्यक्रम","Career Hub":"करियर केंद्र",Tools:"उपकरण",Opportunities:"अवसर","Past Papers":"पिछले प्रश्नपत्र",Menu:"मेनू",Previous:"पिछला",Next:"अगला",Back:"वापस","← Back to Home":"← होम पर वापस","← Home":"← होम",Search:"खोजें","All Books":"सभी किताबें",Default:"डिफ़ॉल्ट","Title A–Z":"शीर्षक A–Z","Newest First":"नवीनतम पहले","Oldest First":"पुराने पहले",Education:"शिक्षा",Skills:"कौशल",Experience:"अनुभव","Full name":"पूरा नाम",Email:"ईमेल",Phone:"फ़ोन","Generate CV":"CV बनाएं","CV Builder":"CV निर्माता",Universities:"विश्वविद्यालय",Engineering:"इंजीनियरिंग",Health:"स्वास्थ्य",Business:"व्यवसाय",Agriculture:"कृषि","Mining & Geology":"खनन और भूविज्ञान","ICT & Computing":"आईसीटी और कंप्यूटिंग","Engineering & Technology":"इंजीनियरिंग और प्रौद्योगिकी","Health & Life Sciences":"स्वास्थ्य और जीवन विज्ञान","Business & Social Sciences":"व्यवसाय और सामाजिक विज्ञान","Natural Resources":"प्राकृतिक संसाधन","Education & Creative Arts":"शिक्षा और रचनात्मक कला","Secondary Exam Practice":"माध्यमिक परीक्षा अभ्यास","Important:":"महत्वपूर्ण:","All years":"सभी वर्ष","All subjects":"सभी विषय","Official examination guidance":"आधिकारिक परीक्षा मार्गदर्शन","Career & Admissions Hub":"करियर और प्रवेश केंद्र","Work & Internships":"नौकरी और इंटर्नशिप","Colleges & Training":"कॉलेज और प्रशिक्षण","Application checklist":"आवेदन सूची","Helpful student links":"उपयोगी छात्र लिंक","Verify before applying":"आवेदन से पहले सत्यापित करें","Search for a book...":"किताब खोजें...","Search by author...":"लेखक से खोजें...","Publication year...":"प्रकाशन वर्ष...","Hydrometallurgy":"हाइड्रोमेटलर्जी",Comminution:"अयस्क पीसना",Flotation:"फ्लोटेशन","Gravity Separation":"गुरुत्व पृथक्करण","Magnetic Separation":"चुंबकीय पृथक्करण",Dewatering:"जल निष्कासन","Ore Characterization":"अयस्क विशेषता","University & College Portal":"विश्वविद्यालय और कॉलेज पोर्टल","Popular Courses":"लोकप्रिय पाठ्यक्रम","College & University Notices":"विश्वविद्यालय और कॉलेज सूचनाएँ","Examination timetables":"परीक्षा समय-सारणी","Registration announcements":"पंजीकरण घोषणाएँ","Scholarships and internships":"छात्रवृत्ति और इंटर्नशिप","Notice Board:":"सूचना बोर्ड:","Student Tools":"छात्र उपकरण","Digital Library":"डिजिटल लाइब्रेरी","Courses & Resources":"पाठ्यक्रम और संसाधन","Find resources":"संसाधन खोजें","Find your field.":"अपना क्षेत्र खोजें","Build your future.":"अपना भविष्य बनाएं"
+    },
+    zh:{},
+    ar:{},
+    es:{},
+    hi:{}
+  };
+
+  // Merge aliases only when a language object was not populated above.
+  dictionaries.zh = Object.assign({}, dictionaries.zh);
+  dictionaries.ar = Object.assign({}, dictionaries.ar);
+  dictionaries.es = Object.assign({}, dictionaries.es);
+  dictionaries.hi = Object.assign({}, dictionaries.hi);
+
   const attrMap = {
-    "Search books, exam papers, career tools…":"Tafuta vitabu, mitihani, zana za kazi…",
-    "Search course or topic (e.g. mining, nursing, ICT)...":"Tafuta kozi au mada (mf. madini, uuguzi, TEHAMA)...",
-    "Search course guides":"Tafuta miongozo ya kozi",
-    "Search subject or resource...":"Tafuta somo au nyenzo...",
-    "Search all career and admissions categories":"Tafuta makundi ya kazi na udahili",
-    "Search for a book...":"Tafuta kitabu...","Search by author...":"Tafuta kwa mwandishi...",
-    "Example: Diploma in Mining Engineering — Jema Institute of Technology":"Mfano: Diploma ya Mining Engineering — Jema Institute of Technology",
-    "Example: Communication, teamwork, computer skills":"Mfano: Mawasiliano, ushirikiano, ujuzi wa kompyuta"
+    "Search books, exam papers, career tools…": {
+      sw:"Tafuta vitabu, mitihani, zana za kazi…", fr:"Rechercher des livres, examens et outils professionnels…", zh:"搜索书籍、试卷和职业工具…", ar:"ابحث عن الكتب والامتحانات وأدوات الوظائف…", es:"Buscar libros, exámenes y herramientas profesionales…", hi:"किताबें, प्रश्नपत्र और करियर टूल खोजें…"
+    },
+    "Search for a book...": {sw:"Tafuta kitabu...",fr:"Rechercher un livre...",zh:"搜索书籍...",ar:"ابحث عن كتاب...",es:"Buscar un libro...",hi:"किताब खोजें..."},
+    "Search by author...": {sw:"Tafuta kwa mwandishi...",fr:"Rechercher par auteur...",zh:"按作者搜索...",ar:"ابحث باسم المؤلف...",es:"Buscar por autor...",hi:"लेखक से खोजें..."}
   };
-  const nodes = [];
-  function collect(root) {
-    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-    let n;
-    while ((n = walker.nextNode())) {
-      if (!n.parentElement || /^(SCRIPT|STYLE|NOSCRIPT|OPTION)$/i.test(n.parentElement.tagName)) continue;
-      if (!n.nodeValue.trim()) continue;
-      nodes.push({node:n, original:n.nodeValue});
-    }
+
+  const originalNodes = new WeakMap();
+  const translatedNodes = new WeakSet();
+  let currentLang = "en";
+
+  function sourceText(node) {
+    if (!originalNodes.has(node)) originalNodes.set(node, node.nodeValue);
+    return originalNodes.get(node);
   }
+
+  function translateText(text) {
+    const key = text.trim();
+    if (!key) return text;
+    const dict = dictionaries[currentLang] || {};
+    const translated = currentLang === "en" ? key : (dict[key] || key);
+    const lead = text.match(/^\s*/)?.[0] || "";
+    const trail = text.match(/\s*$/)?.[0] || "";
+    return lead + translated + trail;
+  }
+
+  function translateNode(node) {
+    if (!node || node.nodeType !== Node.TEXT_NODE || !node.parentElement) return;
+    if (/^(SCRIPT|STYLE|NOSCRIPT|OPTION)$/i.test(node.parentElement.tagName)) return;
+    const raw = sourceText(node);
+    node.nodeValue = translateText(raw);
+    translatedNodes.add(node);
+  }
+
+  function collect(root=document.body) {
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    let n; while((n=walker.nextNode())) translateNode(n);
+  }
+
   function apply(lang) {
-    document.documentElement.lang = lang === "sw" ? "sw" : "en";
-    for (const item of nodes) {
-      const raw = item.original;
-      const lead = raw.match(/^\s*/)?.[0] || "";
-      const trail = raw.match(/\s*$/)?.[0] || "";
-      const key = raw.trim();
-      item.node.nodeValue = lead + (lang === "sw" ? (translations[key] || key) : key) + trail;
-    }
-    document.querySelectorAll("[placeholder],[aria-label],[title]").forEach(el => {
-      ["placeholder","aria-label","title"].forEach(attr => {
-        const val = el.getAttribute(attr);
-        if (!val) return;
-        if (!el.dataset["langOrig"+attr]) el.dataset["langOrig"+attr] = val;
-        const original = el.dataset["langOrig"+attr];
-        el.setAttribute(attr, lang === "sw" ? (attrMap[original] || translations[original] || original) : original);
+    currentLang = common[lang] ? lang : "en";
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = common[currentLang].dir;
+    document.body.classList.toggle("rtl-language", common[currentLang].dir === "rtl");
+    collect(document.body);
+
+    document.querySelectorAll("[placeholder],[aria-label],[title]").forEach(el=>{
+      ["placeholder","aria-label","title"].forEach(attr=>{
+        const val=el.getAttribute(attr);
+        if(!val) return;
+        const key="langOriginal_"+attr;
+        if(!el.dataset[key]) el.dataset[key]=val;
+        const original=el.dataset[key];
+        const custom=attrMap[original]?.[currentLang];
+        const dict=dictionaries[currentLang]||{};
+        el.setAttribute(attr,currentLang==="en"?original:(custom||dict[original]||original));
       });
     });
-    document.querySelectorAll("select option").forEach(el => {
-      if (!el.dataset.langOriginal) el.dataset.langOriginal = el.textContent;
-      const original = el.dataset.langOriginal;
-      el.textContent = lang === "sw" ? (translations[original] || original) : original;
+
+    document.querySelectorAll("select option").forEach(el=>{
+      if(!el.dataset.langOriginal) el.dataset.langOriginal=el.textContent;
+      const original=el.dataset.langOriginal;
+      const dict=dictionaries[currentLang]||{};
+      el.textContent=currentLang==="en"?original:(dict[original]||original);
     });
-    const label = document.getElementById("languageLabel");
-    if (label) label.textContent = lang === "sw" ? "Lugha" : "Language";
-    const select = document.getElementById("siteLanguage");
-    if (select) select.value = lang;
-    document.title = lang === "sw" ? (translations[document.title] || document.title) : (document.documentElement.dataset.originalTitle || document.title);
+
+    const label=document.getElementById("languageLabel");
+    if(label) label.textContent=common[currentLang].name;
+    const select=document.getElementById("siteLanguage");
+    if(select) select.value=currentLang;
+    document.body.classList.add("language-ready");
   }
+
   function mount() {
-    document.documentElement.dataset.originalTitle = document.title;
-    collect(document.body);
-    const wrap = document.createElement("div");
-    wrap.className = "language-switcher";
-    wrap.innerHTML = '<span class="language-globe" aria-hidden="true">文</span><label id="languageLabel" for="siteLanguage">Language</label><select id="siteLanguage" aria-label="Choose website language"><option value="en">English</option><option value="sw">Kiswahili</option></select>';
+    const wrap=document.createElement("div");
+    wrap.className="language-switcher";
+    wrap.innerHTML='<span class="language-globe" aria-hidden="true">文</span><label id="languageLabel" for="siteLanguage">Language</label><select id="siteLanguage" aria-label="Choose website language"><option value="en">English</option><option value="sw">Kiswahili</option><option value="fr">Français</option><option value="zh">中文</option><option value="ar">العربية</option><option value="es">Español</option><option value="hi">हिन्दी</option></select>';
     document.body.appendChild(wrap);
-    const style = document.createElement("style");
-    style.textContent = '.language-switcher{position:fixed;right:16px;bottom:76px;z-index:9999;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #d8e2d7;border-radius:15px;background:#fffdf7;color:#183b36;box-shadow:0 10px 30px #183b3620;font:700 12px/1.2 Inter,"Segoe UI",Arial,sans-serif}.language-globe{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#e4eee4;color:#176b5b;font-size:16px}.language-switcher select{max-width:112px;border:1px solid #d7dfd4;border-radius:8px;background:#fff;padding:7px 8px;color:#183b36;font:700 12px inherit;cursor:pointer}.language-switcher label{font-weight:800}.language-switcher select:focus{outline:2px solid #176b5b55}@media(max-width:480px){.language-switcher{right:10px;bottom:72px;padding:7px 8px}.language-switcher label{display:none}}';
+
+    const style=document.createElement("style");
+    style.textContent=`
+      .language-switcher{position:fixed;right:16px;bottom:76px;z-index:9999;display:flex;align-items:center;gap:8px;padding:9px 11px;border:1px solid #d8e2d7;border-radius:15px;background:#fffdf7;color:#183b36;box-shadow:0 10px 30px #183b3620;font:700 12px/1.2 Inter,"Segoe UI",Arial,sans-serif}
+      .language-globe{display:grid;place-items:center;width:27px;height:27px;border-radius:9px;background:#e4eee4;color:#176b5b;font-size:16px}
+      .language-switcher select{min-width:118px;border:1px solid #d7dfd4;border-radius:9px;background:#fff;padding:8px 9px;color:#183b36;font:700 12px inherit;cursor:pointer}
+      .language-switcher label{font-weight:800}
+      .language-switcher select:focus{outline:2px solid #176b5b55}
+      .rtl-language{direction:rtl}
+      .rtl-language .language-switcher{direction:ltr}
+      @media(max-width:600px){.language-switcher{right:10px;bottom:70px;padding:7px 8px}.language-switcher label{display:none}.language-switcher select{min-width:112px}}
+    `;
     document.head.appendChild(style);
-    const select = document.getElementById("siteLanguage");
-    let saved = "en";
-    try { saved = localStorage.getItem("tsp-language") || "en"; } catch(e) {}
-    select.addEventListener("change", () => {
-      const lang = select.value;
-      try { localStorage.setItem("tsp-language", lang); } catch(e) {}
-      apply(lang);
-    });
+
+    const select=document.getElementById("siteLanguage");
+    let saved="en"; try{saved=localStorage.getItem("tsp-language")||"en"}catch(e){}
+    select.addEventListener("change",()=>{try{localStorage.setItem("tsp-language",select.value)}catch(e){};apply(select.value)});
     apply(saved);
+
+    const observer=new MutationObserver(mutations=>{
+      if(!document.body.classList.contains("language-ready")) return;
+      for(const m of mutations){
+        for(const node of m.addedNodes){
+          if(node.nodeType===Node.TEXT_NODE) translateNode(node);
+          else if(node.nodeType===Node.ELEMENT_NODE && !node.closest(".language-switcher")) collect(node);
+        }
+      }
+    });
+    observer.observe(document.body,{childList:true,subtree:true});
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount);
+
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",mount);
   else mount();
 })();
