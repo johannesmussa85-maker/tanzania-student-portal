@@ -51,7 +51,7 @@ export default {
         (modeInstructions[mode] || modeInstructions.study) + "\n" +
         "Use plain English unless the user requests another language. Be helpful and practical. Prefer headings and short sections. For academic work, teach and explain rather than pretending the generated draft is an official source.\n" +
         "Do not claim that the portal, NECTA, TCU, NACTVET, HESLB, an employer, college or university has confirmed something unless that confirmation is in the supplied text. Tell the student to verify current official requirements where relevant.\n" +
-        "For projects and CVs, preserve placeholders instead of making up personal facts.";
+        "For projects and CVs, preserve placeholders instead of making up personal facts. Return only the useful answer. Do not mention the prompt, the task, token limits, or say \"The final answer is\". Do not add repeated farewells, thanks, good-luck messages, or invitations to ask again. Use clean Markdown with short headings, numbered steps when useful, bullet points, and short paragraphs.";
 
       const prompt = systemPrompt + "\n\nTASK:\n" + task + "\n\nADDITIONAL DETAILS:\n" + (details || "(none provided)");
 
