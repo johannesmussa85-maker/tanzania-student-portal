@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal Notes | Tanzania Student Portal</title>
+<style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#17202a}.wrap{max-width:1050px;margin:auto;padding:24px}.hero{background:#183b36;color:white;padding:28px;border-radius:20px}.hero h1{margin:0 0 8px}.controls{margin:18px 0;display:flex;gap:10px;flex-wrap:wrap}select,input{padding:12px;border:1px solid #ccd5df;border-radius:12px;background:white;font-size:15px}.note{background:white;border:1px solid #e1e7ee;border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #00000008}.note h2{margin-top:0;color:#183b36}.tag{display:inline-block;background:#e8f3ef;color:#183b36;border-radius:20px;padding:5px 10px;margin:3px;font-size:13px}.back{display:inline-block;margin-top:18px;color:white;text-decoration:none;font-weight:bold}
+</style>
+</head>
+<body><main class="wrap">
+<section class="hero"><h1>📖 Portal Study Notes</h1><p>Original concise study notes prepared for Tanzania Student Portal. Use official/open sources for deeper study.</p><a class="back" href="courses.html">← Back to Courses</a></section>
+<div class="controls"><select id="course"><option value="all">All Courses</option></select><input id="search" placeholder="Search notes..."></div>
+<section id="notes"></section>
+</main>
+<script>
+const data=[
+["Mineral Processing","Ore characterization; comminution and size reduction; screening and classification; gravity, magnetic and flotation concentration; dewatering; recovery and grade; metallurgical accounting."],
+["Mining Engineering","Mineral exploration; mine planning; surface and underground mining methods; drilling and blasting principles; ventilation; ground control; mine safety and environmental management."],
+["Civil Engineering","Engineering materials; surveying; structural basics; soil mechanics and foundations; fluid mechanics; hydraulics; transportation; construction methods and project management."],
+["Electrical Engineering","Voltage, current and resistance; Ohm's law; DC and AC circuits; electrical power; transformers; motors; power systems; measurement; control fundamentals and safety."],
+["Mechanical Engineering","Engineering mechanics; thermodynamics; fluid mechanics; heat transfer; machine elements; manufacturing processes; materials; maintenance; energy and machine design fundamentals."],
+["Computer Science","Algorithms and problem solving; programming concepts; data structures; databases; operating systems; computer networks; software engineering; complexity and cybersecurity basics."],
+["Computer Applications","Word processing; spreadsheets and formulas; presentations; databases; file management; cloud collaboration; digital research; data protection and productivity tools."],
+["Information & Communication Technology (ICT)","Computer networks; internet architecture; IP addressing; web technologies; information systems; databases; cybersecurity; communication technologies and digital services."],
+["Computer Engineering","Digital logic; binary systems; computer organization; processors and memory; embedded systems; microcontrollers; interfacing; hardware design; basic electronics."],
+["Business & Finance","Accounting principles; financial statements; budgeting; financial management; economics; marketing; management; entrepreneurship; business planning and decision making."],
+["Health Sciences","Cells and tissues; anatomy and physiology; homeostasis; nutrition; infection prevention; public health; health promotion; basic research and evidence-based practice."],
+["Education","Learning theories; teaching methods; curriculum; lesson planning; classroom management; assessment; inclusive education; educational technology and teacher professional practice."],
+["Agriculture","Soil science; crop production; plant nutrition; pests and diseases; irrigation; agricultural machinery; livestock basics; farm management; sustainability and conservation."],
+["Law & Social Sciences","Sources of law; legal reasoning; rights and duties; institutions; research methods; sociology; economics and society; evidence, ethics and critical analysis."],
+["Tourism & Hospitality","Tourism systems; destination management; hospitality operations; customer service; accommodation and food service; marketing; sustainable tourism; safety and service quality."]
+];
+const course=document.getElementById('course'),notes=document.getElementById('notes'),search=document.getElementById('search');
+data.forEach((x,i)=>course.add(new Option(x[0],i)));
+function render(){const q=search.value.toLowerCase(),c=course.value;notes.innerHTML=data.filter((x,i)=>(c==='all'||c==i)&&(!q||x[0].toLowerCase().includes(q)||x[1].toLowerCase().includes(q))).map(x=>'<article class="note"><h2>'+x[0]+'</h2><span class="tag">📖 Read on Portal</span><span class="tag">Original notes</span><p>'+x[1]+'</p></article>').join('')||'<div class="note">No matching notes found.</div>'}
+course.addEventListener('change',render);search.addEventListener('input',render);render();
+</script></body></html>
