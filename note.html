@@ -104,7 +104,23 @@ n.s.forEach((x,k)=>{
  const lead=sentences[0]||body;
  const rest=sentences.slice(1);
  const bullets=rest.length?rest.slice(0,5).map(s=>`<li>${esc(s)}</li>`).join(""):`<li>Review the concept using the examples and resources for this course.</li>`;
- const deeper="This topic should be understood as a connected system rather than memorized as a definition. Start with the meaning of the main terms, then identify the inputs, operations or principles involved, the expected output, and the factors that can change the result. In professional practice, decisions are supported by observations, measurements, calculations and evidence.";
+ const disciplineMap={
+"Mining Engineering":"In mining engineering, connect this topic to orebody geometry, rock conditions, production targets, equipment selection, worker safety, environmental controls and mine economics.",
+"Civil Engineering":"In civil engineering, connect this topic to loads, materials, soil and water behavior, drawings, construction quality, safety, durability and maintenance of infrastructure.",
+"Electrical Engineering":"In electrical engineering, connect this topic to voltage, current, power, circuits, measurement, protection, control, equipment ratings and safe operation.",
+"Mechanical Engineering":"In mechanical engineering, connect this topic to forces, motion, energy, materials, fluids, heat, machines, manufacturing, reliability and maintenance.",
+"Computer Science":"In computer science, connect this topic to algorithms, data, abstraction, computation, software design, testing, performance, security and real-world systems.",
+"Computer Applications":"In computer applications, connect this topic to accurate data entry, organization, analysis, communication, productivity, document quality and safe digital practice.",
+"Information & Communication Technology (ICT)":"In ICT, connect this topic to people, processes, hardware, software, networks, data, information systems, security and digital services.",
+"Computer Engineering":"In computer engineering, connect this topic to digital logic, processors, memory, embedded systems, sensors, interfaces, firmware and hardware-software integration.",
+"Business & Finance":"In business and finance, connect this topic to customers, revenue, costs, cash flow, profitability, risk, investment, operations and decision-making.",
+"Health Sciences":"In health sciences, connect this topic to normal body function, disease prevention, evidence, communication, ethics, patient safety and population health.",
+"Education":"In education, connect this topic to learning objectives, learner needs, teaching methods, assessment, feedback, inclusion and professional reflection.",
+"Agriculture":"In agriculture, connect this topic to soil, crops, livestock, water, climate, farm inputs, productivity, post-harvest handling, markets and sustainability.",
+"Law & Social Sciences":"In law and social sciences, connect this topic to evidence, institutions, rights and duties, legal authority, social structures, policy and the effects of decisions on people.",
+"Tourism & Hospitality":"In tourism and hospitality, connect this topic to guest experience, service quality, operations, safety, revenue, destination management, culture and sustainability."
+};
+const deeper=disciplineMap[n.t]||"Connect this topic to the main principles, evidence, practical decisions and professional responsibilities of the discipline. Understand how inputs, processes and outputs relate to one another rather than memorizing isolated definitions."
  const example="A useful way to study this topic is to imagine a real workplace or field situation: identify the problem, collect the required information, choose the relevant principle or method, apply it step by step, check the result, and document the conclusion.";
  const exam="Exam focus: be ready to define the main concept, explain why it is important, describe the main stages or components, interpret a simple diagram or calculation, and give a practical example.";
  html+=`<section class="unit" id="${id}">
@@ -112,7 +128,7 @@ n.s.forEach((x,k)=>{
  <h2>${esc(title)}</h2>
  <div class="objective"><strong>Learning objective:</strong> Understand the main idea, explain the important principles, and connect the topic to a practical situation.</div>
  <h3>Core explanation</h3><p>${esc(lead)}${rest.length>5?" "+esc(rest.slice(5).join(" ")):""}</p>
- <h3>Understanding it deeper</h3><p>${esc(deeper)}</p>
+ <h3>Understanding it deeper</h3><p>${esc(deeper)}</p><p><strong>How to think about it:</strong> First identify the key terms and the purpose of the concept. Next follow the process from input to output, noting what can change the result. Finally connect the theory to a realistic professional situation and ask what would be measured, controlled, improved or documented.</p>
  <h3>Key points</h3><ul>${bullets}</ul>
  <div class="example"><strong>Worked thinking approach:</strong> ${esc(example)}</div>
  <div class="application"><strong>Practical connection:</strong> Relate this topic to measurements, decisions, safety, quality, cost, efficiency, or service delivery where appropriate.</div>
