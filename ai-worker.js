@@ -55,7 +55,7 @@ export default {
 
       const prompt = systemPrompt + "\n\nTASK:\n" + task + "\n\nADDITIONAL DETAILS:\n" + (details || "(none provided)");
 
-      const result = await env.AI.run(env.AI_MODEL || "@cf/meta/llama-3.1-8b-instruct", {
+      const result = await env.AI.run(env.AI_MODEL || "@cf/meta/llama-3.1-8b-instruct-fast", {
         prompt,
         max_tokens: 1800
       });
@@ -69,7 +69,7 @@ export default {
         headers: { ...corsHeaders, "Content-Type": "application/json" }
       });
     } catch (error) {
-      return new Response(JSON.stringify({ error: "The AI service could not complete the request." }), {
+      return new Response(JSON.stringify({ error: "The AI service could not complete the request.", detail: String(error?.message || "Unknown Worker AI error") }), {
         status: 500,
         headers: { ...corsHeaders, "Content-Type": "application/json" }
       });
