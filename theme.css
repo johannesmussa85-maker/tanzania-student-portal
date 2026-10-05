@@ -20,5 +20,9 @@ body{background:var(--portal-bg)!important;color:var(--portal-text)!important}
 .portal-high{--portal-bg:#000;--portal-surface:#000;--portal-text:#fff;--portal-muted:#f1f1f1;--portal-border:#fff}
 .portal-high body,.portal-high .card,.portal-high .quick-card,.portal-high .acc,.portal-high .acc button{font-weight:600}
 .portal-high a,.portal-high .card h3,.portal-high .quick-card b,.portal-high .section-title h2{color:#ffff00!important}
-@media(max-width:600px){.portal-theme-panel{right:10px;bottom:10px;left:10px;justify-content:center}.portal-theme-label{display:none}}
+@media(max-width:600px){.portal-theme-panel{right:10px;bottom:10px;left:auto;padding:7px;gap:5px;border-radius:12px}.portal-theme-panel button{padding:7px 8px;border-radius:8px}.portal-theme-label{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Keep floating Theme and Language controls away from page content. */
+body{padding-bottom:88px}
+@media(max-width:600px){body{padding-bottom:100px}}
