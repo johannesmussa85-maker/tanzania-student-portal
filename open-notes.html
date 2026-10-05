@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Portal Notes | Tanzania Student Portal</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#17202a}.wrap{max-width:1050px;margin:auto;padding:24px}.hero{background:#183b36;color:white;padding:28px;border-radius:20px}.hero h1{margin:0 0 8px}.controls{margin:18px 0;display:flex;gap:10px;flex-wrap:wrap}select,input{padding:12px;border:1px solid #ccd5df;border-radius:12px;background:white;font-size:15px}.note{background:white;border:1px solid #e1e7ee;border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #00000008}.note h2{margin-top:0;color:#183b36}.tag{display:inline-block;background:#e8f3ef;color:#183b36;border-radius:20px;padding:5px 10px;margin:3px;font-size:13px}.back{display:inline-block;margin-top:18px;color:white;text-decoration:none;font-weight:bold}
-</style>
+body{font-family:Arial,sans-serif;margin:0;background:#f4f7fb;color:#17202a}.wrap{max-width:1050px;margin:auto;padding:24px}.hero{background:#183b36;color:white;padding:28px;border-radius:20px}.hero h1{margin:0 0 8px}.controls{margin:18px 0;display:flex;gap:10px;flex-wrap:wrap}select,input{padding:12px;border:1px solid #ccd5df;border-radius:12px;background:white;font-size:15px}.note{background:white;border:1px solid #e1e7ee;border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 4px 14px #00000008;cursor:pointer;transition:.2s}.note:hover{transform:translateY(-2px);box-shadow:0 8px 24px #00000012;border-color:#183b36}.note h2{margin-top:0;color:#183b36}.openbtn{display:inline-block;margin-top:12px;padding:10px 15px;border:0;border-radius:10px;background:#183b36;color:#fff;font-weight:700;cursor:pointer}.tag{display:inline-block;background:#e8f3ef;color:#183b36;border-radius:20px;padding:5px 10px;margin:3px;font-size:13px}.back{display:inline-block;margin-top:18px;color:white;text-decoration:none;font-weight:bold}
+.reader{display:none;position:fixed;inset:0;background:#00000088;z-index:20;padding:20px;overflow:auto}.reader-box{max-width:850px;margin:40px auto;background:#fff;border-radius:20px;padding:26px;box-shadow:0 15px 50px #0006}.reader-box h2{color:#183b36}.close{float:right;border:0;background:#e8a34b;padding:9px 13px;border-radius:10px;font-weight:700;cursor:pointer}.reader-text{font-size:17px;line-height:1.8;color:#34495e}</style>
 </head>
 <body><main class="wrap">
 <section class="hero"><h1>📖 Portal Study Notes</h1><p>Original concise study notes prepared for Tanzania Student Portal. Use official/open sources for deeper study.</p><a class="back" href="courses.html">← Back to Courses</a></section>
 <div class="controls"><select id="course"><option value="all">All Courses</option></select><input id="search" placeholder="Search notes..."></div>
-<section id="notes"></section>
+<section id="notes"></section><div id="reader" class="reader"><div class="reader-box"><button class="close" onclick="closeReader()">✕ Close</button><h2 id="readerTitle"></h2><div class="tag">📖 Read on Portal</div><div id="readerText" class="reader-text"></div></div></div>
 </main>
 <script>
 const data=[
@@ -33,6 +33,7 @@ const data=[
 ];
 const course=document.getElementById('course'),notes=document.getElementById('notes'),search=document.getElementById('search');
 data.forEach((x,i)=>course.add(new Option(x[0],i)));
-function render(){const q=search.value.toLowerCase(),c=course.value;notes.innerHTML=data.filter((x,i)=>(c==='all'||c==i)&&(!q||x[0].toLowerCase().includes(q)||x[1].toLowerCase().includes(q))).map(x=>'<article class="note"><h2>'+x[0]+'</h2><span class="tag">📖 Read on Portal</span><span class="tag">Original notes</span><p>'+x[1]+'</p></article>').join('')||'<div class="note">No matching notes found.</div>'}
+function render(){const q=search.value.toLowerCase(),c=course.value;notes.innerHTML=data.map((x,i)=>({x,i})).filter(o=>(c==='all'||c==o.i)&&(!q||o.x[0].toLowerCase().includes(q)||o.x[1].toLowerCase().includes(q))).map(o=>'<article class="note" onclick="openReader('+o.i+')"><h2>'+o.x[0]+'</h2><span class="tag">📖 Read on Portal</span><span class="tag">Original notes</span><p>'+o.x[1]+'</p><button class="openbtn" onclick="event.stopPropagation();openReader('+o.i+')">Open Note →</button></article>').join('')||'<div class="note">No matching notes found.</div>'}
+function openReader(i){document.getElementById('readerTitle').textContent=data[i][0];document.getElementById('readerText').textContent=data[i][1];document.getElementById('reader').style.display='block';document.body.style.overflow='hidden'}function closeReader(){document.getElementById('reader').style.display='none';document.body.style.overflow=''}
 course.addEventListener('change',render);search.addEventListener('input',render);render();
 </script></body></html>
