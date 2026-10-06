@@ -667,5 +667,32 @@ Object.entries(topicMap).forEach(([courseName, topicList])=>{
 });
 showStudyNote();
 render();
+
+function forceRenderStudyNotes(){
+ const box=document.getElementById("studyNoteContent");
+ const sub=document.getElementById("studyNoteSubtitle");
+ if(!box) return;
+ const list=(topicMap&&topicMap[course])||[];
+ const bankA=(typeof additionalTopicContent!=="undefined"&&additionalTopicContent[course])||{};
+ const bankB=(typeof topicSpecificContent!=="undefined"&&topicSpecificContent[course])||{};
+ const make=(topic)=>{
+   const b=bankA[topic]||bankB[topic];
+   if(!b) return "";
+   return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+topic+"</h3>"+
+   "<section class='note-section'><h4>Definition & Purpose</h4><p>"+(b[0]||"")+"</p></section>"+
+   "<section class='note-section'><h4>Core Principles</h4><p>"+(b[1]||"")+"</p></section>"+
+   "<section class='note-section'><h4>Example / Detailed Application</h4><p>"+(b[2]||"")+"</p></section>"+
+   "<section class='note-section'><h4>Applications</h4><p>"+(b[3]||"")+"</p></section>"+
+   "<section class='note-section'><h4>Exam Focus</h4><p>"+(b[4]||"")+"</p></section>"+
+   "<section class='note-section'><h4>Problem Solving</h4><p>Identify the given information, choose the relevant principle, apply it step by step, show units where needed, and explain the result.</p></section>"+
+   "<div class='note-check'><b>🎯 Self-check:</b> Define the topic, explain two principles, give an example, and answer an exam question without looking at the note.</div></article>";
+ };
+ box.innerHTML=list.map(make).filter(Boolean).join("");
+ if(sub) sub.textContent="Original revision notes for "+course+" — "+list.length+" topics.";
+ const section=document.getElementById("studyNote");
+ if(section) section.style.display="block";
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",forceRenderStudyNotes);}else{forceRenderStudyNotes();}
+
 </script>
 </body></html>
