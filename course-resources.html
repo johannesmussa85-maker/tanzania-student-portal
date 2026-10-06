@@ -471,7 +471,15 @@ topicsPanel.className="topics-panel";
 topicsPanel.innerHTML="<h3>Core Topics</h3><div class='topics'>"+topics.map(t=>"<button type='button' class='topic' data-topic='"+t.replace(/'/g,"&#39;")+"' title='Show resources related to "+t+"'>"+t+"</button>").join("")+"</div>";
 document.getElementById("courseHead").after(topicsPanel);const studyNote=document.getElementById("studyNote");
 function noteCard(topic,note){
- return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+note.title+"</h3><p>"+note.summary+"</p><ul>"+note.points.map(p=>"<li>"+p+"</li>").join("")+"</ul></article>";
+ const sections=[
+  ["Introduction",note.summary],
+  ["Core Concepts","Study the meaning of the main terms, the purpose of the topic, and how its major parts relate to one another."],
+  ["Detailed Points",note.points.map((p,i)=>"<p><b>"+(i+1)+".</b> "+p+"</p>").join("")],
+  ["Practical Application","Connect this topic to real university work, professional practice, equipment, procedures, calculations, decisions or examples relevant to the course."],
+  ["Exam Focus","Be prepared to define terms, explain principles, compare concepts, describe a process, give examples and apply the idea to a simple problem."],
+  ["Revision Checklist","After studying, explain the topic in your own words, list the key terms, give one application and answer a basic question without looking at the note."]
+ ];
+ return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+note.title+"</h3>"+sections.map(x=>"<section class='note-section'><h4>"+x[0]+"</h4><div>"+x[1]+"</div></section>").join("")+"</article>";
 }
 function showStudyNote(topic){
  const notes=studyNotes[course]||{};
