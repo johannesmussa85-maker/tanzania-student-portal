@@ -449,34 +449,39 @@ const topicKeywords={
 
 if(requestedType&&["notes","books","videos","docs","policies","pastpapers"].includes(requestedType)) document.getElementById("type").value=requestedType;
 document.getElementById("courseHead").innerHTML="<h2>"+item.icon+" "+course+"</h2><span class='badge'>"+item.resources.length+" learning links</span>";const topicMap={
-"Mineral Processing":["Comminution","Screening & Classification","Gravity Separation","Flotation","Magnetic Separation","Hydrometallurgy","Dewatering","Ore Characterization"],
-"Mining Engineering":["Mine Planning","Drilling & Blasting","Open-Pit Mining","Underground Mining","Rock Mechanics","Mine Safety","Ventilation","Mine Management"],
-"Civil Engineering":["Structural Engineering","Geotechnical Engineering","Surveying","Transportation","Water Engineering","Construction Materials","Environmental Engineering"],
-"Electrical Engineering":["Circuit Analysis","Electronics","Power Systems","Electrical Machines","Control Systems","Renewable Energy","Instrumentation","Safety"],
-"Mechanical Engineering":["Engineering Mechanics","Thermodynamics","Fluid Mechanics","Machine Design","Manufacturing","Materials","Maintenance","Heat Transfer"],
-"Computer Science":["Programming","Data Structures & Algorithms","Databases","Operating Systems","Computer Networks","Software Engineering","Artificial Intelligence","Cybersecurity"],
-"Computer Applications":["Word Processing","Spreadsheets","Databases","Presentations","Digital Productivity","Office Applications","Data Management","Computer Skills"],
-"Information & Communication Technology (ICT)":["Networking","Web Technologies","Information Systems","Database Systems","Cybersecurity","Digital Communication","Cloud Computing","ICT Management"],
-"Computer Engineering":["Digital Logic","Computer Architecture","Microprocessors","Embedded Systems","Electronics","Computer Networks","Programming","Hardware Design"],
-"Business & Finance":["Accounting","Financial Management","Economics","Business Management","Entrepreneurship","Marketing","Investment","Business Analytics"],
-"Health Sciences":["Anatomy","Physiology","Public Health","Microbiology","Nutrition","Health Promotion","Clinical Foundations","Research Methods"],
-"Education":["Educational Psychology","Curriculum Studies","Teaching Methods","Assessment","Educational Technology","Classroom Management","Inclusive Education","Research Methods"],
-"Agriculture":["Crop Production","Soil Science","Agricultural Economics","Plant Protection","Irrigation","Agricultural Engineering","Animal Production","Sustainable Agriculture"],
-"Law & Social Sciences":["Law Foundations","Constitutional Law","Sociology","Political Science","Economics","History","Research Methods","Community Development"],
-"Tourism & Hospitality":["Tourism Management","Hospitality Operations","Travel Management","Food & Beverage","Front Office","Sustainable Tourism","Event Management","Customer Service"]
+"Mineral Processing":["Comminution","Screening & Classification","Gravity Separation","Flotation"],
+"Mining Engineering":["Mine Planning","Drilling & Blasting","Open-Pit Mining","Underground Mining"],
+"Civil Engineering":["Structural Engineering","Geotechnical Engineering","Surveying","Water Engineering"],
+"Electrical Engineering":["Circuit Analysis","Electronics","Power Systems","Electrical Machines"],
+"Mechanical Engineering":["Engineering Mechanics","Thermodynamics","Fluid Mechanics","Machine Design"],
+"Computer Science":["Programming","Data Structures & Algorithms","Databases","Operating Systems"],
+"Computer Applications":["Word Processing","Spreadsheets","Databases","Presentations"],
+"Information & Communication Technology (ICT)":["Networking","Web Technologies","Information Systems","Cybersecurity"],
+"Computer Engineering":["Digital Logic","Computer Architecture","Microprocessors","Embedded Systems"],
+"Business & Finance":["Accounting","Financial Management","Economics","Business Management"],
+"Health Sciences":["Anatomy","Physiology","Public Health","Microbiology"],
+"Education":["Educational Psychology","Curriculum Studies","Teaching Methods","Assessment"],
+"Agriculture":["Crop Production","Soil Science","Irrigation","Agricultural Economics"],
+"Law & Social Sciences":["Law Foundations","Constitutional Law","Sociology","Political Science"],
+"Tourism & Hospitality":["Tourism Management","Hospitality Operations","Travel Management","Sustainable Tourism"]
 };
 const topics=topicMap[course]||[];
 const topicsPanel=document.createElement("section");
 topicsPanel.className="topics-panel";
 topicsPanel.innerHTML="<h3>Core Topics</h3><div class='topics'>"+topics.map(t=>"<button type='button' class='topic' data-topic='"+t.replace(/'/g,"&#39;")+"' title='Show resources related to "+t+"'>"+t+"</button>").join("")+"</div>";
 document.getElementById("courseHead").after(topicsPanel);const studyNote=document.getElementById("studyNote");
+function noteCard(topic,note){
+ return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+note.title+"</h3><p>"+note.summary+"</p><ul>"+note.points.map(p=>"<li>"+p+"</li>").join("")+"</ul></article>";
+}
 function showStudyNote(topic){
- const note=studyNotes[course]?.[topic];
- if(!note){studyNote.style.display="none";return}
+ const notes=studyNotes[course]||{};
+ if(topic){
+   const note=notes[topic];
+   studyNote.innerHTML=note?noteCard(topic,note):"<p class='empty'>Notes for this topic are being prepared.</p>";
+ }else{
+   studyNote.innerHTML="<div class='notes-heading'><h2>📘 "+course+" Study Notes</h2><p>Original revision notes for the four core topics in this course.</p></div>"+topics.map(t=>notes[t]?noteCard(t,notes[t]):"").join("");
+ }
  studyNote.style.display="block";
- studyNote.innerHTML="<div class='note-topic'>Study note · "+course+"</div><h3>"+note.title+"</h3><p>"+note.summary+"</p><ul>"+note.points.map(p=>"<li>"+p+"</li>").join("")+"</ul><div class='study-note-actions'><button type='button' id='readAllTopics'>Show all topics</button><button type='button' id='openNotesPage'>Open full notes</button></div>";
- document.getElementById("readAllTopics").onclick=()=>{document.querySelectorAll(".topic").forEach(b=>b.classList.remove("active"));document.getElementById("search").value="";document.getElementById("type").value="";studyNote.style.display="none";render()};
- document.getElementById("openNotesPage").onclick=()=>location.href="note.html?course="+encodeURIComponent(course);
 }
 
 function render(){
