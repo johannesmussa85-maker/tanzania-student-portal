@@ -179,39 +179,44 @@ const extraTopicNotes={
 "Tourism & Hospitality":{"Tourism Marketing":["Tourism marketing communicates the value of destinations and tourism products to selected visitor markets.","Marketing decisions consider target segments, product, price, distribution, promotion and destination image.","Market research helps understand visitor expectations and competing destinations.","Digital channels can reach visitors through websites, social media and booking systems.","Marketing should represent the tourism product honestly and responsibly.","Explain how destination image can influence visitor decisions."],"Food & Beverage Management":["Food and beverage management coordinates purchasing, preparation, service, staffing, hygiene, inventory and cost control.","Operations must balance guest satisfaction with safety and financial performance.","Standard recipes and portion control support consistency and cost management.","Purchasing and storage practices affect waste and profitability.","Service procedures influence the guest experience.","Identify the main operational areas controlled by a food-and-beverage manager."],"Event Management":["Event management plans and coordinates meetings, conferences, celebrations and other organized events.","Planning includes objectives, audience, venue, programme, suppliers, staffing, budget, communication and safety.","Contingency planning prepares the team for changes or disruptions.","Events operate on fixed schedules, so coordination is essential.","Evaluation after an event identifies lessons for future improvement.","Create a checklist of major areas to plan before an event."],"Tourism Economics":["Tourism economics examines effects of tourism on income, employment, investment, prices and resources.","Visitor spending can generate direct, indirect and induced economic effects.","Destinations can also experience costs such as infrastructure pressure and environmental impacts.","Economic leakage occurs when part of tourism revenue leaves the destination.","Economic analysis helps planners evaluate whether tourism benefits are broad and sustainable.","Explain one positive and one possible negative economic effect of tourism."]}};
 Object.entries(extraTopicNotes).forEach(([course,topics])=>{studyNotes[course]=studyNotes[course]||{};Object.entries(topics).forEach(([title,parts])=>{studyNotes[course][title]={title,summary:parts[0],points:parts.slice(1)};});});
 function noteCard(topic,note){
- const detail=note.detail||[];
+ const safeNote=note||{};
+ const points=Array.isArray(safeNote.points)?safeNote.points.filter(Boolean):[];
+ const summary=safeNote.summary||("Revision notes for "+topic+".");
+ const title=safeNote.title||topic;
  const sections=[
-  ["Introduction",note.summary],
-  ["Core Concepts","Study the meaning of the main terms, the purpose of the topic, and how its major parts relate to one another."],
-  ["Detailed Explanation",note.points.map((p,i)=>"<p><b>"+(i+1)+".</b> "+p+" This point should be understood in terms of its purpose, conditions, practical effect and relationship to the wider course.</p>").join("")],
-  ["Examples","Connect the theory to a realistic academic or professional example. Identify the situation, the process or decision involved, the expected result and factors that may change the result."],
-  ["Applications","Connect this topic to coursework, laboratory or field work, professional practice and problem solving. Consider when the concept is useful and what information is needed before applying it."],
-  ["Advantages & Limitations","Consider the strengths of the method or concept, situations where it is most useful, and limitations, assumptions or practical difficulties that may affect its performance."],
-  ["Calculation / Problem Solving","For numerical questions, identify the given data, choose the correct formula or relationship, substitute values carefully, keep units consistent and interpret the final answer. For theory topics, apply the concept to a short case or scenario."],
-  ["Key Terms",note.points.map(p=>"<li>"+p.split(".")[0]+"</li>").join("")],
-  ["Exam Practice","<ol><li>Define the main concept and explain its importance.</li><li>Explain its main principles and give an example.</li><li>Compare two related concepts or methods.</li><li>Describe an application and a limitation.</li><li>Apply the concept to a simple problem or case.</li></ol>"]
+  ["Definition & Purpose","<p>"+summary+"</p>"],
+  ["Core Principles",points[0]?"<p>"+points[0]+"</p>":"<p>Understand the main terms, components and relationships in "+topic+".</p>"],
+  ["Example / Detailed Application",points[1]?"<p>"+points[1]+"</p>":"<p>Apply the concept to a realistic academic or professional situation related to "+topic+".</p>"],
+  ["Applications",points[2]?"<p>"+points[2]+"</p>":"<p>Use the topic in coursework, practical work, problem solving and professional practice.</p>"],
+  ["Exam Focus",points[3]?"<p>"+points[3]+"</p>":"<p>Be able to define the topic, explain its principles, give an example and apply it to an exam question.</p>"],
+  ["Problem-Solving","<p>Identify the facts or data, select the relevant concept or formula, apply it step by step, state assumptions, keep units consistent where needed, and interpret the result.</p>"],
+  ["Self-Check","<p>Define the topic, explain two principles, give a new example, state one limitation or consideration, and answer an exam-style question without looking at the note.</p>"]
  ];
- return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+note.title+"</h3>"+sections.map(x=>"<section class='note-section'><h4>"+x[0]+"</h4><div>"+x[1]+"</div></section>").join("")+"<div class='note-check'><b>🎯 Self-check:</b> Explain this topic without looking at the note, give an example, identify an application and answer an exam question about it.</div></article>";
+ return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+title+"</h3>"+sections.map(x=>"<section class='note-section'><h4>"+x[0]+"</h4><div>"+x[1]+"</div></section>").join("")+"</article>";
 }
 function showStudyNote(topic){
  const notes=studyNotes[course]||{};
  const getNote=(topicName)=>{
-   if(notes[topicName]) return notes[topicName];
+   const direct=notes[topicName];
+   if(direct) return direct;
    const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[course] && additionalTopicContent[course][topicName]) ||
               (typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topicName]);
-   if(bank) return {title:topicName,summary:bank[0],points:bank.slice(1)};
-   return null;
+   if(Array.isArray(bank)&&bank.length) return {title:topicName,summary:bank[0],points:bank.slice(1)};
+   return {title:topicName,summary:"This note introduces "+topicName+" in the context of "+course+".",points:[
+     "Understand the main terms, purpose and components of "+topicName+".",
+     "Explain how the major concepts relate to one another.",
+     "Apply the topic to a realistic academic or professional example.",
+     "Identify important applications, limitations and exam points."
+   ]};
  };
  studyNoteSubtitle.textContent="Original revision notes for "+course+".";
  if(topic){
-   const note=getNote(topic);
-   studyNoteContent.innerHTML=note?noteCard(topic,note):"<p class='empty'>Notes for this topic are being prepared.</p>";
+   studyNoteContent.innerHTML=noteCard(topic,getNote(topic));
  }else{
-   studyNoteContent.innerHTML=topics.map(t=>{const note=getNote(t);return note?noteCard(t,note):"";}).join("");
+   studyNoteContent.innerHTML=topics.map(t=>noteCard(t,getNote(t))).join("");
  }
  studyNote.style.display="block";
 }
-
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim(),type=document.getElementById("type").value;
  const activeTopic=topicsPanel.querySelector(".topic.active")?.dataset.topic||"";
