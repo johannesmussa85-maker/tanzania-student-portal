@@ -468,27 +468,6 @@ function buildFullLesson(course,topic,note){
   "<p><b>Key terms to revise:</b> "+p.map(x=>x.split(/[.;,]/)[0]).join(", ")+". Learn each term together with its meaning, purpose and an example rather than memorising isolated words.</p><p><b>Exam practice:</b> 1) Define "+topic+" and explain its importance. 2) Describe its main principles or stages. 3) Give a practical example. 4) Compare two related approaches. 5) Discuss advantages and limitations. 6) Solve or analyse a short course-related problem involving the topic.</p>"
  ];
 }
-Object.entries(studyNotes).forEach(([course,topics])=>{
- if(course==="Mineral Processing") return;
- Object.entries(topics).forEach(([topic,note])=>{
-   const bank=typeof additionalTopicContent!=="undefined" && additionalTopicContent[course] && additionalTopicContent[course][topic];
-   const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topic]) || bank;
-   if(specific){
-     note.detail=[
-       "<p><b>Definition & purpose:</b> "+specific[0]+"</p>",
-       "<p><b>Core principles:</b> "+specific[1]+"</p>",
-       "<p><b>Example / detailed application:</b> "+specific[2]+"</p>",
-       "<p><b>Applications:</b> "+specific[3]+"</p>",
-       "<p><b>Exam focus:</b> "+specific[4]+"</p>",
-       "<p><b>Problem-solving:</b> Identify the facts or data, state the relevant concept, apply it step by step, explain assumptions, show units for numerical work, and interpret the result.</p>",
-       "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one important limitation or consideration, and answer an exam-style question without looking at the note.</p>"
-     ];
-   } else {
-     note.detail=buildFullLesson(course,topic,note);
-   }
- });
-});
-
 const topicSpecificContent={
 "Mining Engineering":{
 "Mine Planning":["Mine planning determines how an orebody will be accessed and mined safely and economically. It links geology, geotechnical conditions, production targets, equipment and infrastructure.","Key work includes resource interpretation, pit or stope design, production scheduling, equipment selection and cost estimation. Short-, medium- and long-term plans should be consistent.","Example: a planner may compare alternative pit phases by stripping ratio, access distance, grade distribution and equipment capacity.","Applications include life-of-mine design, annual budgets, fleet scheduling and operational control.","Exam focus: explain planning stages, distinguish strategic and operational planning, and discuss geological, economic and safety constraints."],
