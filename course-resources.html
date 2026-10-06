@@ -430,22 +430,25 @@ Object.assign(additionalTopicContent,{
 "Tourism Economics":["Tourism economics studies tourism effects on income, employment, prices, investment and wider economic activity.","Visitor spending can create direct, indirect and induced effects, while leakage, congestion and resource pressure can reduce benefits.","A destination assessment should compare tourism revenue with infrastructure and environmental costs.","Used in tourism policy, investment and destination planning.","Exam: explain tourism multipliers, leakage and economic impacts."]
 }});
 
-// Final notes initialization: build every course topic from its dedicated content bank,
-// then render the notes only after all topic banks have been loaded.
+// Final notes initialization: guarantee a usable Study Note for every topic.
+// Dedicated content is used when available; otherwise a structured revision note
+// is generated from the topic/course so no topic can open to a blank notes area.
 Object.entries(topicMap).forEach(([courseName, topicList])=>{
   studyNotes[courseName]=studyNotes[courseName]||{};
   topicList.forEach(topicName=>{
-    if(!studyNotes[courseName][topicName]){
-      const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[courseName] && additionalTopicContent[courseName][topicName])||null;
-      const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[courseName] && topicSpecificContent[courseName][topicName])||bank;
-      if(specific){
-        studyNotes[courseName][topicName]={title:topicName,summary:specific[0],points:specific.slice(1)};
-      }
-    }
-    const note=studyNotes[courseName][topicName];
     const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[courseName] && additionalTopicContent[courseName][topicName])||null;
     const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[courseName] && topicSpecificContent[courseName][topicName])||bank;
-    if(note && specific){
+    let note=studyNotes[courseName][topicName];
+
+    if(!note){
+      note={title:topicName,summary:"This note introduces "+topicName+" in the context of "+courseName+".",points:[]};
+      studyNotes[courseName][topicName]=note;
+    }
+
+    if(specific){
+      note.title=topicName;
+      note.summary=specific[0];
+      note.points=specific.slice(1);
       note.detail=[
         "<p><b>Definition & purpose:</b> "+specific[0]+"</p>",
         "<p><b>Core principles:</b> "+specific[1]+"</p>",
@@ -454,6 +457,25 @@ Object.entries(topicMap).forEach(([courseName, topicList])=>{
         "<p><b>Exam focus:</b> "+specific[4]+"</p>",
         "<p><b>Problem-solving:</b> Identify the facts or data, state the relevant concept, apply it step by step, explain assumptions, show units for numerical work, and interpret the result.</p>",
         "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one important limitation or consideration, and answer an exam-style question without looking at the note.</p>"
+      ];
+    }else{
+      // Keep any existing original note content, but make sure it has all
+      // required sections even when a dedicated content bank is unavailable.
+      note.points=note.points&&note.points.length?note.points:[
+        "Identify the main terms, purpose and components of "+topicName+".",
+        "Explain how the major concepts relate to one another in "+courseName+".",
+        "Connect the topic to a realistic academic or professional example.",
+        "State common applications, limitations and factors that affect the result.",
+        "For an exam question, define the concept, explain the principles and apply them to a case."
+      ];
+      note.detail=[
+        "<p><b>Definition & purpose:</b> "+note.summary+"</p>",
+        "<p><b>Core principles:</b> "+note.points[0]+"</p>",
+        "<p><b>Example / detailed application:</b> "+note.points[2]+"</p>",
+        "<p><b>Applications:</b> "+note.points[3]+"</p>",
+        "<p><b>Exam focus:</b> "+note.points[4]+"</p>",
+        "<p><b>Problem-solving:</b> Identify the facts or data, select the relevant concept, apply it step by step, state assumptions and interpret the result.</p>",
+        "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one limitation and answer an exam-style question.</p>"
       ];
     }
   });
