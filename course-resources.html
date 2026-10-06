@@ -390,7 +390,7 @@ function showStudyNote(topic){
    const note=notes[topic];
    studyNote.innerHTML=note?noteCard(topic,note):"<p class='empty'>Notes for this topic are being prepared.</p>";
  }else{
-   studyNote.innerHTML="<div class='notes-heading'><h2>📘 "+course+" Study Notes</h2><p>Original revision notes for the four core topics in this course.</p></div>"+topics.map(t=>notes[t]?noteCard(t,notes[t]):"").join("");
+   studyNote.innerHTML="<div class='notes-heading'><h2>📘 "+course+" Study Notes</h2><p>Original revision notes for the core topics in this course.</p></div>"+topics.map(t=>notes[t]?noteCard(t,notes[t]):"").join("");
  }
  studyNote.style.display="block";
 }
@@ -404,7 +404,6 @@ function render(){
  document.getElementById("empty").style.display=list.length?"none":"block";
 }
 document.getElementById("search").addEventListener("input",render);document.getElementById("type").addEventListener("change",render);
-showStudyNote();
 document.querySelectorAll(".topic").forEach(btn=>btn.addEventListener("click",()=>{
  const topic=btn.dataset.topic;
  showStudyNote(topic);
@@ -634,5 +633,36 @@ Object.assign(additionalTopicContent,{
 "Event Management":["Event management plans and coordinates an event from concept through execution and evaluation.","Planning includes objectives, audience, venue, programme, suppliers, budget, staffing, communication and contingencies.","An academic conference needs coordinated registration, sessions, venue logistics and participant communication.","Used for conferences, festivals and corporate events.","Exam: explain planning stages and contingency management."],
 "Tourism Economics":["Tourism economics studies tourism effects on income, employment, prices, investment and wider economic activity.","Visitor spending can create direct, indirect and induced effects, while leakage, congestion and resource pressure can reduce benefits.","A destination assessment should compare tourism revenue with infrastructure and environmental costs.","Used in tourism policy, investment and destination planning.","Exam: explain tourism multipliers, leakage and economic impacts."]
 }});
+
+// Final notes initialization: build every course topic from its dedicated content bank,
+// then render the notes only after all topic banks have been loaded.
+Object.entries(topicMap).forEach(([courseName, topicList])=>{
+  studyNotes[courseName]=studyNotes[courseName]||{};
+  topicList.forEach(topicName=>{
+    if(!studyNotes[courseName][topicName]){
+      const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[courseName] && additionalTopicContent[courseName][topicName])||null;
+      const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[courseName] && topicSpecificContent[courseName][topicName])||bank;
+      if(specific){
+        studyNotes[courseName][topicName]={title:topicName,summary:specific[0],points:specific.slice(1)};
+      }
+    }
+    const note=studyNotes[courseName][topicName];
+    const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[courseName] && additionalTopicContent[courseName][topicName])||null;
+    const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[courseName] && topicSpecificContent[courseName][topicName])||bank;
+    if(note && specific){
+      note.detail=[
+        "<p><b>Definition & purpose:</b> "+specific[0]+"</p>",
+        "<p><b>Core principles:</b> "+specific[1]+"</p>",
+        "<p><b>Example / detailed application:</b> "+specific[2]+"</p>",
+        "<p><b>Applications:</b> "+specific[3]+"</p>",
+        "<p><b>Exam focus:</b> "+specific[4]+"</p>",
+        "<p><b>Problem-solving:</b> Identify the facts or data, state the relevant concept, apply it step by step, explain assumptions, show units for numerical work, and interpret the result.</p>",
+        "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one important limitation or consideration, and answer an exam-style question without looking at the note.</p>"
+      ];
+    }
+  });
+});
+showStudyNote();
+render();
 </script>
 </body></html>
