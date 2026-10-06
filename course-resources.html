@@ -28,7 +28,7 @@ main{max-width:1200px;margin:auto;padding:30px 5% 70px}.toolbar{display:grid;gri
 <main>
 <div class="toolbar"><input id="search" type="search" placeholder="Search course or resource..." aria-label="Search course resources"><select id="type"><option value="">All resource types</option><option value="notes">Notes</option><option value="books">Books</option><option value="videos">Videos</option><option value="docs">Documents</option><option value="policies">Course Policies</option><option value="pastpapers">Past Papers</option></select></div>
 <div id="courseHead" class="course-head"><h2>Loading resources...</h2><span class="badge">Open learning</span></div>
-<section id="studyNote" class="study-note" style="display:none"></section><section id="pastPaperPanel" class="pastpaper-panel"><h3>📄 Past Papers-Style Practice</h3><p>University-style revision questions based on common Mineral Processing exam formats.</p><div id="pastPaperContent"></div></section><section id="examPanel" class="exam-panel"><h3>📝 Exam Practice</h3><p>Test your Mineral Processing knowledge with MCQs, short answers and calculations.</p><div class="exam-tabs"><button type="button" class="exam-tab active" data-exam="mcq">MCQs</button><button type="button" class="exam-tab" data-exam="short">Short Answer</button><button type="button" class="exam-tab" data-exam="calc">Calculations</button></div><div id="examContent"></div></section><div id="resources" class="resource-grid"></div><div id="empty" class="empty">No matching resource found. Try another keyword.</div>
+<section id="studyNote" class="study-note" style="display:none"></section><section id="pastPaperPanel" class="pastpaper-panel"><h3>📄 Past Papers-Style Practice</h3><p>University-style revision questions matched to the selected course.</p><div id="pastPaperContent"></div></section><section id="examPanel" class="exam-panel"><h3>📝 Exam Practice</h3><p>Test your selected course with MCQs, short answers and calculations.</p><div class="exam-tabs"><button type="button" class="exam-tab active" data-exam="mcq">MCQs</button><button type="button" class="exam-tab" data-exam="short">Short Answer</button><button type="button" class="exam-tab" data-exam="calc">Calculations</button></div><div id="examContent"></div></section><div id="resources" class="resource-grid"></div><div id="empty" class="empty">No matching resource found. Try another keyword.</div>
 <div class="notice"><b>Why these links?</b> The portal links students to legitimate open or official learning sources instead of re-uploading copyrighted books and videos. MIT OpenCourseWare publishes free course materials, while OpenStax provides free openly licensed textbooks; NPTEL provides extensive university-level engineering and mineral-processing lectures. </div>
 <div class="subgrid">
 <div class="mini"><strong>📚 Books & textbooks</strong><span>OpenStax, MIT and other reputable academic collections.</span></div>
@@ -140,16 +140,87 @@ const worldwide=[
 ];
 const item=data[course];const studyNotes={
 "Mineral Processing":{
-"Comminution":{"title":"Comminution","summary":"Comminution reduces run-of-mine ore by crushing and grinding so valuable minerals can be liberated from gangue.","points":["Crushing generally produces a coarser product, while grinding produces finer particles.","The target is adequate liberation, not simply maximum fineness.","Excessive grinding can consume energy and create slimes that make later separation less efficient."]},
-"Screening & Classification":{"title":"Screening & Classification","summary":"Screening separates particles mainly by size through an aperture, while classification separates particles according to their behavior in a fluid.","points":["Screening uses surfaces with defined apertures.","Hydrocyclones and other classifiers are common in wet processing circuits.","Classification is often used to control the particle size returned to grinding."]},
-"Gravity Separation":{"title":"Gravity Separation","summary":"Gravity concentration exploits differences in density between valuable minerals and gangue.","points":["Common equipment includes jigs, shaking tables and spirals.","Good performance depends on particle size, density contrast and fluid conditions.","It is especially useful when the valuable mineral has a significant density difference from gangue."]},
-"Flotation":{"title":"Froth Flotation","summary":"Froth flotation separates minerals using differences in surface properties and selective attachment to air bubbles.","points":["Reagents can modify mineral surfaces and improve selectivity.","Collectors promote attachment of selected mineral particles to bubbles.","Frothers help produce and stabilize a suitable froth phase."]},
-"Magnetic Separation":{"title":"Magnetic Separation","summary":"Magnetic separation exploits differences in the magnetic response of minerals.","points":["Strongly magnetic minerals respond readily to magnetic fields.","Equipment selection depends on mineral properties and particle size.","Magnetic separation may be used for concentration or removal of unwanted magnetic material."]},
-"Hydrometallurgy":{"title":"Hydrometallurgy","summary":"Hydrometallurgy uses aqueous chemistry to recover metals from ores, concentrates or other materials.","points":["Leaching transfers selected metal values into solution.","Solution purification can include precipitation, solvent extraction or ion exchange.","Metal recovery may use processes such as precipitation or electrowinning, depending on the system."]},
-"Dewatering":{"title":"Dewatering","summary":"Dewatering reduces the water content of mineral-processing products and tailings.","points":["Thickening increases the concentration of solids in a slurry.","Filtration can reduce moisture further and produce a filter cake.","Dewatering improves handling, transport and downstream processing."]},
-"Ore Characterization":{"title":"Ore Characterization","summary":"Ore characterization provides the information needed to choose and control a mineral-processing flowsheet.","points":["Important properties include mineralogy, head grade, particle-size distribution, hardness and liberation.","Sampling should be representative so testwork and plant decisions are based on reliable data.","Characterization helps determine the most appropriate separation method."]}
-}};
-const pastPaperSets=[
+"Comminution":{"title":"Comminution","summary":"Comminution reduces ore size to help liberate valuable minerals from gangue.","points":["Crushing handles coarse size reduction; grinding produces finer particles.","The target is sufficient liberation, not maximum fineness.","Excessive grinding increases energy use and can create slimes."]},
+"Screening & Classification":{"title":"Screening & Classification","summary":"Screening separates particles by size, while classification separates particles according to their behavior in a fluid.","points":["Screens use defined apertures to separate size fractions.","Hydrocyclones are common wet classifiers.","Classification can control the size returned to a grinding circuit."]},
+"Gravity Separation":{"title":"Gravity Separation","summary":"Gravity concentration separates minerals using differences in density and settling behavior.","points":["Jigs, shaking tables and spirals are common equipment.","Performance depends strongly on density contrast and particle size.","It is useful when valuable minerals differ substantially in density from gangue."]},
+"Flotation":{"title":"Froth Flotation","summary":"Flotation separates minerals through differences in surface properties and selective attachment to air bubbles.","points":["Collectors promote attachment of selected particles to bubbles.","Frothers help form and stabilize the froth.","Pulp chemistry, particle size and reagent dosage affect selectivity."]},
+"Magnetic Separation":{"title":"Magnetic Separation","summary":"Magnetic separation exploits differences in the magnetic response of minerals.","points":["Equipment selection depends on magnetic susceptibility and particle size.","Strongly magnetic minerals respond more readily to magnetic fields.","The process can concentrate valuable minerals or remove unwanted magnetic material."]},
+"Hydrometallurgy":{"title":"Hydrometallurgy","summary":"Hydrometallurgy recovers metals through aqueous chemical processes.","points":["Leaching transfers selected metals into solution.","Solution purification may use precipitation, solvent extraction or ion exchange.","Metal recovery can include precipitation or electrowinning."]},
+"Dewatering":{"title":"Dewatering","summary":"Dewatering reduces water content in mineral-processing products and tailings.","points":["Thickening raises slurry solids concentration by sedimentation.","Filtration removes additional liquid and forms a filter cake.","Good dewatering improves handling, transport and downstream processing."]},
+"Ore Characterization":{"title":"Ore Characterization","summary":"Ore characterization supplies mineralogical and physical information needed to design a processing flowsheet.","points":["Important properties include mineralogy, grade, hardness, size distribution and liberation.","Representative sampling is essential for reliable testwork.","Characterization helps determine the appropriate separation method."]}},
+"Mining Engineering":{
+"Mine Planning":{"title":"Mine Planning","summary":"Mine planning defines how an orebody will be accessed, developed and extracted safely and economically.","points":["Plans consider geology, production targets, equipment and infrastructure.","Open-pit and underground methods require different designs.","Economic and safety constraints influence the final mine plan."]},
+"Drilling & Blasting":{"title":"Drilling & Blasting","summary":"Drilling creates blast holes and explosives are used to fragment rock for excavation.","points":["Hole diameter, spacing, burden and stemming affect fragmentation.","Blast design must control energy distribution and ground effects.","Good fragmentation improves loading, hauling and downstream crushing."]},
+"Open-Pit Mining":{"title":"Open-Pit Mining","summary":"Open-pit mining extracts near-surface ore using benches, haul roads and staged excavation.","points":["Bench geometry must consider rock stability and equipment.","Haul roads support safe movement of ore and waste.","Stripping ratio is important in evaluating pit economics."]},
+"Underground Mining":{"title":"Underground Mining","summary":"Underground mining accesses deeper deposits through shafts, declines and underground workings.","points":["Method selection depends on orebody geometry and rock conditions.","Ground support and ventilation are critical.","Ore handling and worker access must be planned carefully."]}},
+"Civil Engineering":{
+"Structural Engineering":{"title":"Structural Engineering","summary":"Structural engineering studies how buildings and other structures carry loads safely.","points":["Loads may include dead, live, wind and other environmental actions.","Members must have adequate strength and stiffness.","Material properties and structural form affect performance."]},
+"Geotechnical Engineering":{"title":"Geotechnical Engineering","summary":"Geotechnical engineering applies soil and rock mechanics to foundations and earth structures.","points":["Soil classification and strength are key inputs.","Bearing capacity and settlement influence foundation design.","Groundwater can strongly affect soil behavior."]},
+"Surveying":{"title":"Surveying","summary":"Surveying measures positions, distances and elevations for engineering and construction.","points":["Total stations and GNSS are common surveying technologies.","Accurate control points support reliable setting-out.","Measurement errors should be checked and adjusted."]},
+"Water Engineering":{"title":"Water Engineering","summary":"Water engineering covers collection, treatment, distribution, drainage and hydraulic systems.","points":["Flow, pressure and pipe losses are fundamental concepts.","Water quality determines appropriate treatment processes.","Sustainable water management considers demand and environmental effects."]}},
+"Electrical Engineering":{
+"Circuit Analysis":{"title":"Circuit Analysis","summary":"Circuit analysis determines voltages, currents and power in electrical networks.","points":["Ohm's law relates voltage, current and resistance.","Kirchhoff's laws are used for complex circuits.","Power can be calculated from voltage and current."]},
+"Electronics":{"title":"Electronics","summary":"Electronics studies components and circuits that control electrical signals.","points":["Diodes, transistors and operational amplifiers have distinct functions.","Biasing determines operating conditions.","Signal behavior depends on circuit configuration and frequency."]},
+"Power Systems":{"title":"Power Systems","summary":"Power systems generate, transmit, distribute and consume electrical energy.","points":["Generation stations feed transmission networks.","Transformers change voltage levels for efficient transmission.","Protection systems help isolate faults."]},
+"Electrical Machines":{"title":"Electrical Machines","summary":"Electrical machines convert electrical and mechanical energy.","points":["Motors convert electrical energy to mechanical output.","Generators perform the reverse conversion.","Efficiency and losses are important performance measures."]}},
+"Mechanical Engineering":{
+"Engineering Mechanics":{"title":"Engineering Mechanics","summary":"Engineering mechanics studies forces, moments, equilibrium and motion.","points":["Free-body diagrams help identify forces acting on a body.","Equilibrium requires balanced forces and moments.","Kinematics describes motion without focusing on its causes."]},
+"Thermodynamics":{"title":"Thermodynamics","summary":"Thermodynamics studies energy, heat, work and properties of systems.","points":["The first law expresses energy conservation.","Processes can involve heat transfer, work or both.","Efficiency is a key measure for many energy systems."]},
+"Fluid Mechanics":{"title":"Fluid Mechanics","summary":"Fluid mechanics examines fluid pressure, flow and forces.","points":["Continuity links flow rate with area and velocity.","Bernoulli's equation relates pressure, velocity and elevation under suitable assumptions.","Viscosity influences fluid resistance."]},
+"Machine Design":{"title":"Machine Design","summary":"Machine design develops components that safely transmit forces and motion.","points":["Stress and strain are basic design quantities.","Factors of safety provide a margin against failure.","Material selection must match loading and service conditions."]}},
+"Computer Science":{
+"Programming":{"title":"Programming","summary":"Programming uses algorithms and code to solve computational problems.","points":["Variables store data used by a program.","Control structures include sequence, selection and iteration.","Good programs are readable, testable and maintainable."]},
+"Data Structures & Algorithms":{"title":"Data Structures & Algorithms","summary":"Data structures organize data while algorithms define procedures for solving problems.","points":["Arrays, linked structures, stacks and queues support different tasks.","Algorithm efficiency is often discussed using time and space complexity.","Choosing the right structure can improve performance."]},
+"Databases":{"title":"Databases","summary":"Databases organize and retrieve structured information efficiently.","points":["Relational databases store data in tables.","Keys identify and connect records.","SQL is commonly used to query relational data."]},
+"Operating Systems":{"title":"Operating Systems","summary":"An operating system manages hardware and provides services for applications.","points":["Processes and memory are major management responsibilities.","File systems organize persistent data.","Scheduling determines how processor time is shared."]}},
+"Computer Applications":{
+"Word Processing":{"title":"Word Processing","summary":"Word processors support creation, formatting and management of professional documents.","points":["Styles help maintain consistent headings and formatting.","Tables, references and page layout improve document structure.","Export and file formats should be selected for the intended use."]},
+"Spreadsheets":{"title":"Spreadsheets","summary":"Spreadsheets organize data and perform calculations using cells, formulas and functions.","points":["Relative and absolute references behave differently when copied.","Functions can automate common calculations.","Charts help communicate patterns in data."]},
+"Databases":{"title":"Databases","summary":"Database applications organize records for efficient storage, search and reporting.","points":["Tables store related records.","Queries retrieve selected information.","Forms and reports can simplify data entry and presentation."]},
+"Presentations":{"title":"Presentations","summary":"Presentation software combines text, visuals and structure to communicate ideas clearly.","points":["Slides should focus on key points rather than long paragraphs.","Consistent layouts improve readability.","Charts and diagrams can explain complex information efficiently."]}},
+"Information & Communication Technology (ICT)":{
+"Networking":{"title":"Networking","summary":"Computer networking connects devices so they can exchange data and share services.","points":["Networks use addressing and communication protocols.","LANs connect devices within a limited area.","Reliable networks require appropriate security and maintenance."]},
+"Web Technologies":{"title":"Web Technologies","summary":"Web technologies combine browsers, servers and standards to deliver interactive information.","points":["HTML structures content.","CSS controls presentation and layout.","JavaScript adds client-side behavior and interaction."]},
+"Information Systems":{"title":"Information Systems","summary":"Information systems combine people, processes and technology to support organizational work.","points":["Systems collect, process, store and distribute information.","Requirements analysis guides system development.","Data quality affects decision-making."]},
+"Cybersecurity":{"title":"Cybersecurity","summary":"Cybersecurity protects systems and information from unauthorized access and disruption.","points":["Confidentiality, integrity and availability are core security goals.","Strong authentication reduces account compromise.","Updates, backups and safe handling of data are essential."]}},
+"Computer Engineering":{
+"Digital Logic":{"title":"Digital Logic","summary":"Digital logic represents and processes information using binary states and logic gates.","points":["AND, OR and NOT are fundamental logic operations.","Truth tables describe gate behavior.","Combinational and sequential circuits have different characteristics."]},
+"Computer Architecture":{"title":"Computer Architecture","summary":"Computer architecture describes how processors, memory and input/output components work together.","points":["The CPU executes instructions using registers and processing units.","Memory hierarchy balances speed, capacity and cost.","Buses and interfaces connect major components."]},
+"Microprocessors":{"title":"Microprocessors","summary":"Microprocessors execute instructions and control digital systems.","points":["Instructions are fetched, decoded and executed.","Registers provide fast temporary storage.","Clock frequency is only one factor affecting performance."]},
+"Embedded Systems":{"title":"Embedded Systems","summary":"Embedded systems combine hardware and software for dedicated functions.","points":["They often operate under resource and timing constraints.","Microcontrollers commonly integrate processing, memory and peripherals.","Reliability and power consumption can be important design goals."]}},
+"Business & Finance":{
+"Accounting":{"title":"Accounting","summary":"Accounting records and summarizes financial transactions for decision-making.","points":["Assets, liabilities and equity form the basic accounting relationship.","Transactions affect financial statements.","Accurate records support planning and control."]},
+"Financial Management":{"title":"Financial Management","summary":"Financial management focuses on funding, investment and control of an organization.","points":["Time value of money is central to many financial decisions.","Risk and return should be considered together.","Cash-flow planning supports liquidity."]},
+"Economics":{"title":"Economics","summary":"Economics studies how scarce resources are allocated among competing needs.","points":["Demand and supply influence market prices.","Opportunity cost is the value of the next best alternative.","Macroeconomics examines economy-wide activity."]},
+"Business Management":{"title":"Business Management","summary":"Business management coordinates people and resources to achieve organizational objectives.","points":["Planning, organizing, leading and controlling are core functions.","Good decisions use relevant information.","Leadership and communication affect organizational performance."]}},
+"Health Sciences":{
+"Anatomy":{"title":"Anatomy","summary":"Anatomy studies the structure of the human body and its organization.","points":["The body is organized from cells to tissues, organs and systems.","Anatomical position provides a standard reference.","Structure is closely related to function."]},
+"Physiology":{"title":"Physiology","summary":"Physiology explains how body systems function and maintain internal balance.","points":["Homeostasis keeps internal conditions within suitable ranges.","Body systems interact rather than operate independently.","Feedback mechanisms help regulate many processes."]},
+"Public Health":{"title":"Public Health","summary":"Public health focuses on preventing disease and improving population wellbeing.","points":["Prevention can target individuals, communities or environments.","Surveillance helps identify health patterns.","Health promotion supports informed healthy choices."]},
+"Microbiology":{"title":"Microbiology","summary":"Microbiology studies microorganisms and their roles in health and the environment.","points":["Microorganisms include bacteria, fungi, protozoa and viruses.","Some are beneficial while others cause disease.","Laboratory methods help identify and study microorganisms."]}},
+"Education":{
+"Educational Psychology":{"title":"Educational Psychology","summary":"Educational psychology applies psychological principles to learning and development.","points":["Learners differ in motivation, prior knowledge and learning needs.","Feedback can support improvement.","Developmental stage can influence learning approaches."]},
+"Curriculum Studies":{"title":"Curriculum Studies","summary":"Curriculum studies examines what is taught, why it is taught and how learning is organized.","points":["Learning outcomes guide content and assessment.","Curriculum alignment connects objectives, teaching and assessment.","Curricula can respond to social and technological change."]},
+"Teaching Methods":{"title":"Teaching Methods","summary":"Teaching methods are approaches used to help learners understand and apply knowledge.","points":["Discussion, demonstration and problem-based learning serve different purposes.","Active learning encourages participation.","Method choice should match the learning objective."]},
+"Assessment":{"title":"Assessment","summary":"Assessment gathers evidence about learner knowledge, skills and progress.","points":["Formative assessment supports learning during instruction.","Summative assessment evaluates achievement at the end of a period.","Good assessment should align with learning outcomes."]}},
+"Agriculture":{
+"Crop Production":{"title":"Crop Production","summary":"Crop production applies plant science and farm management to achieve reliable yields.","points":["Crop choice should match climate, soil and market conditions.","Good seed, spacing and nutrient management affect yield.","Pests and diseases require appropriate control strategies."]},
+"Soil Science":{"title":"Soil Science","summary":"Soil science studies soil properties, fertility and interactions with plants.","points":["Texture, structure and organic matter influence soil behavior.","Soil pH affects nutrient availability.","Good soil management reduces degradation."]},
+"Irrigation":{"title":"Irrigation","summary":"Irrigation supplies crops with water when rainfall is insufficient or unreliable.","points":["Water requirements vary by crop and growth stage.","Efficient systems reduce losses.","Scheduling should consider soil, climate and crop demand."]},
+"Agricultural Economics":{"title":"Agricultural Economics","summary":"Agricultural economics examines farm production, markets, costs and resource decisions.","points":["Farmers compare costs and expected returns.","Market prices influence production decisions.","Risk management helps cope with uncertain yields and prices."]}},
+"Law & Social Sciences":{
+"Law Foundations":{"title":"Law Foundations","summary":"Law foundations introduce legal rules, institutions and principles used to regulate society.","points":["Legal systems contain rules, institutions and procedures.","Sources of law depend on the jurisdiction.","Legal reasoning requires careful interpretation of facts and rules."]},
+"Constitutional Law":{"title":"Constitutional Law","summary":"Constitutional law examines the structure and powers of government and fundamental legal principles.","points":["Constitutions establish institutions and powers.","Separation and limitation of powers are important concepts.","Rights and duties depend on the applicable constitutional framework."]},
+"Sociology":{"title":"Sociology","summary":"Sociology studies social relationships, institutions and patterns of group behavior.","points":["Culture and socialization influence behavior.","Institutions shape opportunities and expectations.","Social research uses systematic evidence to study communities."]},
+"Political Science":{"title":"Political Science","summary":"Political science examines government, political institutions, power and public policy.","points":["Political institutions shape how decisions are made.","Public policy responds to social and economic priorities.","Political participation can occur through multiple channels."]}},
+"Tourism & Hospitality":{
+"Tourism Management":{"title":"Tourism Management","summary":"Tourism management plans and coordinates travel experiences, destinations and tourism businesses.","points":["Destination appeal includes attractions, accessibility and services.","Tourism planning should consider local communities and the environment.","Seasonality affects demand and operations."]},
+"Hospitality Operations":{"title":"Hospitality Operations","summary":"Hospitality operations coordinate accommodation, food service and guest experiences.","points":["Service quality depends on people, processes and facilities.","Standard operating procedures support consistency.","Guest feedback can guide service improvement."]},
+"Travel Management":{"title":"Travel Management","summary":"Travel management organizes transport, itineraries, reservations and travel information.","points":["Itineraries should consider timing, connections and customer needs.","Accurate booking information is essential.","Travel plans should include contingency arrangements."]},
+"Sustainable Tourism":{"title":"Sustainable Tourism","summary":"Sustainable tourism aims to balance visitor benefits with environmental and community needs.","points":["Resource use should remain within responsible limits.","Local communities should share in tourism benefits.","Environmental impacts should be monitored and reduced."]}}
+};
+const pastPaperSetsByCourse={
+"Mineral Processing":[
 {topic:"Comminution & Classification",marks:15,questions:[
 ["a) Explain the difference between comminution and liberation. (5 marks)","Comminution is the physical size-reduction process, while liberation is the degree to which valuable mineral particles become sufficiently separated from gangue for effective concentration."],
 ["b) Explain why excessive grinding can be undesirable. (5 marks)","Excessive grinding increases energy use and may generate slimes. Slimes can reduce the efficiency of some downstream separation processes."],
@@ -175,32 +246,183 @@ const pastPaperSets=[
 ["b) Explain why process sampling is important. (5 marks)","Representative sampling provides reliable information about grades, particle size and process performance. Poor sampling can lead to incorrect operating decisions."],
 ["c) Name five plant variables that may be monitored routinely. (5 marks)","Examples include feed grade, throughput, particle size, product grade, recovery, water flow, density and reagent consumption."]
 ]}
-];
+]
+};
+const pastPaperSets=pastPaperSetsByCourse[course]||[];
 function renderPastPapers(){
  const box=document.getElementById("pastPaperContent");
  box.innerHTML=pastPaperSets.map((paper,pi)=>"<article class='paper-card'><h4>"+(pi+1)+". "+paper.topic+" <span class='marks'>("+paper.marks+" marks)</span></h4>"+paper.questions.map((q,qi)=>"<div class='paper-q'><p>"+q[0]+"</p><button type='button' class='show-model' data-paper='"+pi+"' data-q='"+qi+"'>Show model answer</button><div class='model-answer' id='pa-"+pi+"-"+qi+"'>"+q[1]+"</div></div>").join("")+"</article>").join("");
  box.querySelectorAll(".show-model").forEach(btn=>btn.onclick=()=>{const el=document.getElementById("pa-"+btn.dataset.paper+"-"+btn.dataset.q);el.style.display=el.style.display==="block"?"none":"block";btn.textContent=el.style.display==="block"?"Hide model answer":"Show model answer"});
 }
-renderPastPapers();
-const examSets={
+if(pastPaperSets.length){renderPastPapers();}else{document.getElementById("pastPaperPanel").style.display="none";}
+const examSetsByCourse={
+"Mineral Processing":{
 mcq:[
-{q:"Which operation primarily reduces ore particle size?",o:["Flotation","Dewatering","Comminution","Thickening"],a:2,e:"Comminution includes crushing and grinding, whose main purpose is size reduction and liberation."},
-{q:"What property is mainly exploited by gravity separation?",o:["Density difference","Electrical conductivity","Colour","Magnetic susceptibility"],a:0,e:"Gravity separation exploits differences in density between particles."},
-{q:"What is the main purpose of a collector in flotation?",o:["Increase ore hardness","Promote attachment of selected particles to bubbles","Remove all water","Increase particle size"],a:1,e:"Collectors modify selected mineral surfaces to promote attachment to air bubbles."},
-{q:"What does recovery measure?",o:["Only particle size","The fraction of valuable material recovered to the desired product","Water content only","Equipment capacity"],a:1,e:"Recovery compares valuable material reporting to the desired product with valuable material in the feed."},
-{q:"Which operation mainly reduces water content of a slurry?",o:["Dewatering","Crushing","Screening","Flotation"],a:0,e:"Thickening and filtration are common dewatering operations."}
-],
+{q:"Which operation primarily reduces ore particle size?",o:["Flotation","Dewatering","Comminution","Thickening"],a:2,e:"Comminution includes crushing and grinding."},
+{q:"What property is mainly exploited by gravity separation?",o:["Density difference","Colour","Electrical conductivity","Magnetism"],a:0,e:"Gravity concentration depends mainly on density differences."},
+{q:"What is the main role of a flotation collector?",o:["Increase particle size","Promote selected mineral attachment to bubbles","Remove all water","Increase hardness"],a:1,e:"Collectors promote selective attachment to air bubbles."}],
 short:[
-{q:"Define mineral liberation in mineral processing.",a:"Liberation is the degree to which valuable mineral particles have been separated from associated gangue, sufficiently for the intended separation process.",e:"A good answer connects liberation with separation performance."},
-{q:"Give two factors that influence flotation performance.",a:"Examples include mineralogy, liberation, particle size, reagent conditions, pulp chemistry and aeration.",e:"Any two relevant factors can earn credit when correctly explained."},
-{q:"Differentiate grade from recovery.",a:"Grade describes the concentration of the valuable component in a stream, while recovery describes the fraction of valuable material from the feed that reports to the desired product.",e:"They are related but measure different aspects of separation performance."}
-],
+{q:"Define mineral liberation.",a:"Liberation is the degree to which valuable mineral particles are separated from associated gangue for effective concentration.",e:"Mention separation from gangue and suitability for concentration."},
+{q:"State two factors affecting flotation.",a:"Examples include mineralogy, liberation, particle size, reagent dosage, pH and water chemistry.",e:"Any two correctly explained factors are acceptable."}],
 calc:[
-{q:"A plant treats 100 t of feed containing 2.0% valuable mineral. It produces 8 t of concentrate grading 20%. Calculate the recovery.",a:"Valuable mineral in feed = 100 × 0.02 = 2.0 t. Valuable mineral in concentrate = 8 × 0.20 = 1.6 t. Recovery = (1.6 ÷ 2.0) × 100 = 80%.",e:"Recovery = (C × c) / (F × f) × 100."},
-{q:"Using the same 100 t feed and 8 t concentrate, calculate mass yield.",a:"Mass yield = (concentrate mass ÷ feed mass) × 100 = (8 ÷ 100) × 100 = 8%.",e:"Mass yield describes the proportion of feed mass reporting to the product."},
-{q:"A feed contains 1.5% metal and the concentrate contains 15% metal. If 10 t of concentrate is produced from 100 t feed, calculate metal recovery.",a:"Metal in feed = 100 × 0.015 = 1.5 t. Metal in concentrate = 10 × 0.15 = 1.5 t. Recovery = (1.5 ÷ 1.5) × 100 = 100%. This simplified result indicates that the stated numbers leave no valuable metal in other streams, so the data should be checked against the tailings assay before being treated as a realistic plant result.",e:"Always check a calculated recovery against the complete material and metal balance."}
-]
+{q:"A 100 t feed contains 2% valuable mineral and produces 8 t concentrate at 20%. Calculate recovery.",a:"Feed valuable mineral = 2 t; concentrate valuable mineral = 1.6 t; recovery = 1.6/2 × 100 = 80%.",e:"Recovery compares valuable mineral in concentrate with valuable mineral in feed."}]
+},
+"Mining Engineering":{
+mcq:[
+{q:"Which factor is especially important when selecting a mining method?",o:["Orebody geometry","Office furniture","Computer screen size","Document font"],a:0,e:"Orebody geometry strongly influences method selection."},
+{q:"What is the main purpose of blasting?",o:["Improve lighting","Fragment rock","Measure rainfall","Purify water"],a:1,e:"Blasting fragments rock so it can be excavated and handled."},
+{q:"Which system is essential for underground worker safety?",o:["Ventilation","Advertising","Bookkeeping","Colour coding"],a:0,e:"Ventilation controls air quality and harmful contaminants underground."}],
+short:[
+{q:"What is mine planning?",a:"It is the process of designing how a mineral deposit will be developed and extracted safely and economically.",e:"Include development, production, safety and economics."},
+{q:"Name two factors affecting blast design.",a:"Burden, spacing, hole diameter, stemming and rock properties are examples.",e:"Two valid factors are sufficient."}],
+calc:[
+{q:"A mine produces 6,000 t ore and 4,000 t waste in one shift. Calculate the total material moved.",a:"Total material = 6,000 + 4,000 = 10,000 t.",e:"Total movement includes ore plus waste."}]
+},
+"Civil Engineering":{
+mcq:[
+{q:"Which load is normally present permanently on a structure?",o:["Dead load","Random load","Temporary colour","Software load"],a:0,e:"Dead load comes from the permanent weight of the structure."},
+{q:"What does surveying establish?",o:["Positions and elevations","Chemical composition","Hospital dosage","Market price"],a:0,e:"Surveying measures spatial positions, distances and elevations."},
+{q:"Which property is important for foundation design?",o:["Soil bearing capacity","Screen brightness","Keyboard type","File size"],a:0,e:"Bearing capacity helps determine safe foundation loading."}],
+short:[
+{q:"Define structural engineering.",a:"It is the branch of engineering concerned with designing structures to safely resist applied loads.",e:"Mention structural safety and loads."},
+{q:"Why is soil investigation important?",a:"It provides information about soil strength, settlement, groundwater and other conditions needed for foundation design.",e:"Connect investigation to safe design."}],
+calc:[
+{q:"A rectangular slab is 8 m long and 5 m wide. Calculate its plan area.",a:"Area = 8 × 5 = 40 m².",e:"For a rectangle, area equals length times width."}]
+},
+"Electrical Engineering":{
+mcq:[
+{q:"Which law relates voltage, current and resistance?",o:["Ohm's law","Newton's law","Darcy's law","Hooke's law"],a:0,e:"Ohm's law gives V = IR."},
+{q:"What does a transformer primarily change?",o:["Voltage level","Wire colour","Room temperature","Mass"],a:0,e:"Transformers change AC voltage levels."},
+{q:"Which component commonly controls current direction in one way?",o:["Diode","Resistor only","Transformer core","Fuse box"],a:0,e:"A diode conducts preferentially in one direction."}],
+short:[
+{q:"State Ohm's law.",a:"Ohm's law states that voltage equals current multiplied by resistance, V = IR.",e:"Give the relationship and symbols."},
+{q:"Why are transformers used in power systems?",a:"They raise or lower AC voltage to improve transmission efficiency and provide suitable distribution levels.",e:"Mention voltage transformation and transmission."}],
+calc:[
+{q:"A 12 V supply is connected to a 4 Ω resistor. Calculate current.",a:"I = V/R = 12/4 = 3 A.",e:"Use Ohm's law."}]
+},
+"Mechanical Engineering":{
+mcq:[
+{q:"What does thermodynamics mainly study?",o:["Energy and heat","Legal contracts","Soil classification","Tourism"],a:0,e:"Thermodynamics studies energy, heat, work and system properties."},
+{q:"Which quantity measures resistance to fluid flow?",o:["Viscosity","Brightness","Voltage","Density only"],a:0,e:"Viscosity represents a fluid's resistance to deformation and flow."},
+{q:"What is a free-body diagram used for?",o:["Showing forces on a body","Designing websites","Storing files","Measuring rainfall"],a:0,e:"It isolates a body and shows the forces and moments acting on it."}],
+short:[
+{q:"State the first law of thermodynamics.",a:"Energy is conserved; it can be transferred or transformed but not created or destroyed.",e:"Relate the law to energy conservation."},
+{q:"What is machine design?",a:"The process of developing machine components that safely perform required functions under specified loads and conditions.",e:"Mention function, loading and safety."}],
+calc:[
+{q:"A machine receives 10 kW and delivers 8 kW useful output. Calculate efficiency.",a:"Efficiency = 8/10 × 100 = 80%.",e:"Efficiency is useful output divided by input."}]
+},
+"Computer Science":{
+mcq:[
+{q:"Which structure follows LIFO order?",o:["Stack","Queue","Table","Graph"],a:0,e:"A stack uses last-in, first-out ordering."},
+{q:"Which language is widely used for database queries?",o:["SQL","HTML","CSS","PNG"],a:0,e:"SQL is used to query relational databases."},
+{q:"What is an operating system responsible for?",o:["Managing hardware and software resources","Painting walls","Mining ore","Cooking food"],a:0,e:"Operating systems manage resources and provide services to applications."}],
+short:[
+{q:"What is an algorithm?",a:"A finite, ordered set of steps for solving a problem or performing a computation.",e:"Mention ordered steps and a problem or task."},
+{q:"Why are data structures important?",a:"They organize data so programs can store, access and process information efficiently.",e:"Connect structure choice with efficiency."}],
+calc:[
+{q:"A program processes 500 records in 5 seconds. What is its average processing rate?",a:"500 ÷ 5 = 100 records per second.",e:"Rate equals quantity divided by time."}]
+},
+"Computer Applications":{
+mcq:[
+{q:"Which spreadsheet feature performs repeated calculations?",o:["Formula","Slide transition","Paragraph style","Printer"],a:0,e:"Formulas and functions automate calculations."},
+{q:"What is a word-processing style used for?",o:["Consistent formatting","Internet routing","Electrical protection","Soil testing"],a:0,e:"Styles apply consistent formatting to document elements."},
+{q:"What does a database query do?",o:["Retrieves selected data","Charges a battery","Cools a CPU","Prints money"],a:0,e:"Queries retrieve or manipulate selected records."}],
+short:[
+{q:"Give two uses of spreadsheets.",a:"Spreadsheets can perform calculations, analyze data, create tables and produce charts.",e:"Any two valid uses are acceptable."},
+{q:"Why use styles in a document?",a:"Styles keep headings and other elements consistently formatted and make documents easier to maintain.",e:"Mention consistency and efficient editing."}],
+calc:[
+{q:"A spreadsheet column contains 12, 15, 18 and 25. Calculate the average.",a:"Average = (12+15+18+25)/4 = 17.5.",e:"Add the values and divide by the number of values."}]
+},
+"Information & Communication Technology (ICT)":{
+mcq:[
+{q:"Which protocol is commonly used to transfer web pages securely?",o:["HTTPS","FTP only","SMTP only","USB"],a:0,e:"HTTPS secures HTTP communication using encryption."},
+{q:"What does ICT combine?",o:["Information and communication technologies","Only farming tools","Only legal documents","Only vehicles"],a:0,e:"ICT covers technologies used to create, process, communicate and manage information."},
+{q:"Which is a cybersecurity goal?",o:["Confidentiality","Screen brightness","Paper size","Room colour"],a:0,e:"Confidentiality protects information from unauthorized disclosure."}],
+short:[
+{q:"Define a computer network.",a:"A computer network is a group of connected devices that communicate and share resources.",e:"Mention connected devices and communication/resource sharing."},
+{q:"Why is cybersecurity important?",a:"It helps protect systems, accounts and information from unauthorized access, disruption and loss.",e:"Mention protection of information or systems."}],
+calc:[
+{q:"A 100 MB file is downloaded in 20 seconds. Calculate the average rate in MB/s.",a:"100 ÷ 20 = 5 MB/s.",e:"Average rate equals file size divided by time."}]
+},
+"Computer Engineering":{
+mcq:[
+{q:"Which number system is fundamental to digital logic?",o:["Binary","Roman","Morse only","Decimal only"],a:0,e:"Digital systems represent states using binary values."},
+{q:"What does a microprocessor execute?",o:["Instructions","Rainfall","Building plans","Food recipes only"],a:0,e:"A processor executes machine instructions."},
+{q:"What is an embedded system?",o:["A dedicated computing system","A paper document","A mine tunnel","A hotel room"],a:0,e:"Embedded systems are designed for dedicated functions."}],
+short:[
+{q:"What is computer architecture?",a:"It describes the organization and interaction of a computer's processor, memory, input/output and related components.",e:"Mention major hardware components and their interaction."},
+{q:"Give two applications of embedded systems.",a:"Examples include vehicle controllers, medical devices, industrial controllers and household appliances.",e:"Any two valid applications are acceptable."}],
+calc:[
+{q:"A digital circuit has 8 binary input combinations. How many bits are represented by each input combination?",a:"For 8 combinations, n = log2(8) = 3 bits.",e:"Two to the power of n gives the number of combinations."}]
+},
+"Business & Finance":{
+mcq:[
+{q:"Which statement represents the basic accounting equation?",o:["Assets = Liabilities + Equity","Profit = Assets only","Sales = Cash only","Debt = Revenue"],a:0,e:"The basic accounting equation is Assets = Liabilities + Equity."},
+{q:"What does interest represent?",o:["Cost or return associated with money over time","A building material","A soil property","A network cable"],a:0,e:"Interest reflects the cost or return associated with use of money over time."},
+{q:"What does demand describe?",o:["Quantity consumers are willing and able to buy","Number of employees only","Total buildings","Amount of rainfall"],a:0,e:"Demand concerns willingness and ability to purchase at given conditions."}],
+short:[
+{q:"What is financial management?",a:"It is the planning and control of financial resources, including funding, investment and cash-flow decisions.",e:"Mention resource planning and financial decisions."},
+{q:"Define opportunity cost.",a:"Opportunity cost is the value of the next best alternative forgone when a choice is made.",e:"Emphasize the next best alternative."}],
+calc:[
+{q:"A business earns TSh 2,500,000 revenue and has TSh 1,800,000 expenses. Calculate profit.",a:"Profit = 2,500,000 − 1,800,000 = TSh 700,000.",e:"Profit equals revenue minus expenses."}]
+},
+"Health Sciences":{
+mcq:[
+{q:"What is homeostasis?",o:["Maintenance of stable internal conditions","Bone growth only","A financial statement","A computer protocol"],a:0,e:"Homeostasis maintains internal conditions within suitable ranges."},
+{q:"Which field studies body structure?",o:["Anatomy","Economics","Surveying","Accounting"],a:0,e:"Anatomy studies structure."},
+{q:"What is a major public-health goal?",o:["Disease prevention","Increasing traffic","Designing machines","Mining ore"],a:0,e:"Prevention is a central public-health approach."}],
+short:[
+{q:"Differentiate anatomy and physiology.",a:"Anatomy studies body structure, while physiology studies how body parts and systems function.",e:"Clearly distinguish structure from function."},
+{q:"Why is public-health surveillance useful?",a:"It helps detect patterns, monitor disease and guide prevention and health interventions.",e:"Mention monitoring and decision-making."}],
+calc:[
+{q:"A health survey finds 40 positive cases among 200 people. Calculate the proportion as a percentage.",a:"40 ÷ 200 × 100 = 20%.",e:"Divide cases by total and multiply by 100."}]
+},
+"Education":{
+mcq:[
+{q:"What is formative assessment mainly used for?",o:["Supporting learning during instruction","Only awarding final certificates","Building roads","Measuring rainfall"],a:0,e:"Formative assessment provides evidence that can improve learning during instruction."},
+{q:"What does curriculum alignment connect?",o:["Objectives, teaching and assessment","Weather and roads","Mining and tourism","Food and transport"],a:0,e:"Alignment links intended learning, instruction and assessment."},
+{q:"Which approach emphasizes learner participation?",o:["Active learning","Silent copying only","No feedback","No interaction"],a:0,e:"Active learning engages learners in meaningful tasks."}],
+short:[
+{q:"What is educational psychology?",a:"It applies psychological principles to understand learning, development, motivation and learner behavior.",e:"Mention learning and learner development."},
+{q:"Why should assessment match learning outcomes?",a:"Alignment ensures the assessment measures the knowledge or skills students were expected to learn.",e:"Connect assessment with intended outcomes."}],
+calc:[
+{q:"A class has 24 students and 18 pass an assessment. Calculate the pass rate.",a:"18 ÷ 24 × 100 = 75%.",e:"Pass rate equals passes divided by total students times 100."}]
+},
+"Agriculture":{
+mcq:[
+{q:"Which factor strongly affects nutrient availability in soil?",o:["Soil pH","Keyboard type","Road width","Screen size"],a:0,e:"Soil pH influences the availability of many nutrients."},
+{q:"Why is irrigation used?",o:["To supply water to crops","To increase internet speed","To measure voltage","To write laws"],a:0,e:"Irrigation supplies water when natural rainfall is insufficient or unreliable."},
+{q:"What is crop rotation?",o:["Planned sequencing of crops on land","Changing a computer screen","Moving a building","Rotating a vehicle"],a:0,e:"Crop rotation changes crop types across seasons to support soil and crop management."}],
+short:[
+{q:"Why is soil testing important?",a:"It provides information about soil properties and nutrient status so management decisions can be better targeted.",e:"Mention properties, nutrients and management."},
+{q:"State two factors affecting crop yield.",a:"Examples include water, nutrients, seed quality, pests, diseases, climate and management.",e:"Any two valid factors are acceptable."}],
+calc:[
+{q:"A farmer plants 2 hectares with a seed rate of 25 kg/ha. Calculate the total seed required.",a:"2 × 25 = 50 kg.",e:"Total requirement equals area multiplied by seed rate."}]
+},
+"Law & Social Sciences":{
+mcq:[
+{q:"What does constitutional law mainly examine?",o:["Government structure and powers","Crop spacing","Circuit resistance","Hotel menus"],a:0,e:"Constitutional law addresses governmental structures, powers and constitutional principles."},
+{q:"What does sociology study?",o:["Society and social relationships","Only machines","Only minerals","Only accounting"],a:0,e:"Sociology studies social relationships, institutions and patterns."},
+{q:"What is a source of law?",o:["A recognized legal authority","A computer password","A weather chart","A crop seed"],a:0,e:"Sources of law are recognized authorities from which legal rules derive."}],
+short:[
+{q:"What is sociology?",a:"Sociology is the systematic study of society, social relationships, institutions and patterns of behavior.",e:"Mention systematic study of society."},
+{q:"Why are constitutions important?",a:"They establish fundamental rules for government, institutions, powers and rights within a constitutional system.",e:"Mention government structure and fundamental rules."}],
+calc:[
+{q:"A survey records 120 respondents, of whom 72 support a proposal. Calculate the support percentage.",a:"72 ÷ 120 × 100 = 60%.",e:"Support percentage equals supporters divided by respondents times 100."}]
+},
+"Tourism & Hospitality":{
+mcq:[
+{q:"What is a key goal of sustainable tourism?",o:["Balancing visitor benefits with environmental and community needs","Maximizing waste","Ignoring local communities","Removing all attractions"],a:0,e:"Sustainable tourism balances economic, social and environmental considerations."},
+{q:"Which area is part of hospitality operations?",o:["Guest service","Ore crushing","Circuit design","Soil testing"],a:0,e:"Guest service is central to hospitality operations."},
+{q:"What does seasonality describe in tourism?",o:["Changes in demand over time","Electrical voltage","Soil texture","Database indexing"],a:0,e:"Seasonality refers to recurring changes in tourism demand by time of year."}],
+short:[
+{q:"What is tourism management?",a:"It is the planning and coordination of tourism destinations, services, businesses and visitor experiences.",e:"Mention planning and coordination."},
+{q:"Why is customer service important in hospitality?",a:"Good service improves guest satisfaction, reputation and the likelihood of repeat business.",e:"Connect service quality to guest and business outcomes."}],
+calc:[
+{q:"A hotel has 40 rooms and 30 are occupied. Calculate occupancy rate.",a:"30 ÷ 40 × 100 = 75%.",e:"Occupancy rate equals occupied rooms divided by available rooms times 100."}]
+}
 };
+const examSets=examSetsByCourse[course]||examSetsByCourse["Mineral Processing"];
 function renderExam(kind){
  const items=examSets[kind]||[];
  document.getElementById("examContent").innerHTML=items.map((x,i)=>{
