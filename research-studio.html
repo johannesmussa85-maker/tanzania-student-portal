@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Research Studio — a structured workspace for research planning, literature review, methodology, data analysis and academic project development.">
+<title>Research Studio | Digital Professional & Academic Studio</title>
+<style>
+:root{--forest:#143a34;--green:#176b5b;--deep:#102e2a;--cream:#f7f3eb;--ink:#1d302b;--muted:#68756f;--line:#dfe6df;--white:#fff;--lime:#c7df9b;--gold:#e8a34b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.6}a{text-decoration:none;color:inherit}button,input,textarea,select{font:inherit}
+.nav{position:sticky;top:0;z-index:20;background:#143a34f4;backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid #ffffff16}.navin{max-width:1200px;margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-weight:950;letter-spacing:-.03em}.brand span{color:var(--lime)}.links{display:flex;gap:6px;flex-wrap:wrap}.links a{font-size:11px;font-weight:800;padding:8px 10px;border-radius:9px;color:#dfece7}.links a:hover,.links a.active{background:#ffffff12;color:#fff}
+.wrap{max-width:1200px;margin:auto;padding:28px 22px 70px}.hero{position:relative;overflow:hidden;border-radius:28px;padding:42px clamp(24px,5vw,60px);color:#fff;background:linear-gradient(120deg,#102e2a,#176b5b 63%,#2c624f);box-shadow:0 22px 50px #143a341f}.hero:after{content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff22;border-radius:50%;right:-115px;top:-145px;box-shadow:0 0 0 46px #ffffff08,0 0 0 92px #ffffff05}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:900;color:#d6e9b7;text-transform:uppercase}.hero h1{font-size:clamp(35px,6vw,61px);line-height:1.02;letter-spacing:-.055em;max-width:800px;margin:11px 0}.hero p{max-width:740px;color:#e0ece7;font-size:14px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;border:0;border-radius:11px;padding:11px 15px;font-size:12px;font-weight:900;cursor:pointer}.primary{background:#d9edb9;color:#19372f}.light{background:#ffffff12;border:1px solid #ffffff38;color:#fff}
+.section{margin-top:34px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:15px}.head h2{margin:0;font-size:25px;letter-spacing:-.04em}.head p{margin:4px 0 0;color:var(--muted);font-size:12px}.search{width:min(330px,100%);border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;outline:none}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:20px;transition:.18s}.card:hover{transform:translateY(-3px);box-shadow:0 13px 28px #173b3510}.card.hidden{display:none}.icon{width:47px;height:47px;display:grid;place-items:center;border-radius:14px;background:#e9f3df;font-size:22px;margin-bottom:14px}.card h3{margin:0 0 7px;font-size:17px}.card p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.7}.card button,.card a.link{display:inline-flex;border:1px solid #d6e3d8;background:#f3f8f1;color:#225548;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:900;cursor:pointer}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 315px;gap:15px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}.panel h3{margin:0 0 5px;font-size:19px}.muted{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:17px 0}.tab{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:850;cursor:pointer;color:#66736d}.tab.active{background:var(--green);border-color:var(--green);color:#fff}.box{display:none}.box.active{display:block}.form{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field.full{grid-column:1/-1}.field label{display:block;font-size:11px;font-weight:850;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink)}.field textarea{min-height:100px;resize:vertical}.output{margin-top:14px;padding:15px;border:1px dashed #cbd9ce;border-radius:14px;background:#f8fbf6;font-size:12px}.output strong{font-size:13px}.output ol{margin:8px 0 0;padding-left:20px}.workflow{padding:12px 0;border-top:1px solid var(--line);font-size:12px}.workflow:first-child{border-top:0}.workflow b{display:block;margin-bottom:3px}.workflow span{color:var(--muted);font-size:11px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:15px 0}.stat{padding:12px;border-radius:13px;background:#f5f8f4}.stat b{display:block;font-size:20px;color:var(--forest)}.stat span{font-size:10px;color:var(--muted);font-weight:800}.notice{padding:12px;border-radius:12px;background:#fff7e5;border:1px solid #f1dfb8;color:#765b2a;font-size:11px;line-height:1.7;margin-top:14px}.footer{text-align:center;margin-top:40px;color:#7a857f;font-size:11px}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.workspace{grid-template-columns:1fr}.links a:nth-child(n+5){display:none}}@media(max-width:600px){.wrap{padding:18px 14px 55px}.navin{padding:11px 14px}.grid,.form{grid-template-columns:1fr}.hero{padding:30px 22px;border-radius:22px}.hero h1{font-size:39px}.head{display:block}.search{margin-top:12px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="navin"><a class="brand" href="index.html">Digital <span>Studio</span></a><div class="links"><a href="index.html">Home</a><a href="academic-studio.html">Academic</a><a class="active" href="research-studio.html">Research</a><a href="ai-studio.html">AI Studio</a><a href="opportunities.html">Opportunities</a><a href="dashboard.html">Workspace</a></div></div></nav>
+
+<main class="wrap">
+<section class="hero">
+<div class="eyebrow">Research Studio</div>
+<h1>Move from an interesting idea to a defensible research project.</h1>
+<p>Structure your research question, literature review, methodology, data plan and academic outputs in one guided workspace.</p>
+<div class="actions"><a class="btn primary" href="#workspace">Start research planning</a><a class="btn light" href="ai-studio.html">Ask AI Studio</a></div>
+</section>
+
+<section class="section">
+<div class="head"><div><h2>Research workflows</h2><p>Use the stage that matches your current research problem.</p></div><input id="search" class="search" placeholder="Search research workflows..." aria-label="Search research workflows"></div>
+<div class="grid" id="grid">
+<article class="card" data-key="topic research question problem statement"><div class="icon">🔎</div><h3>Topic & Problem Framing</h3><p>Turn a broad interest into a focused problem, research question, objectives and scope.</p><button onclick="openBox('topic')">Start framing</button></article>
+<article class="card" data-key="literature review sources synthesis gap"><div class="icon">📚</div><h3>Literature Review</h3><p>Map themes, compare sources, identify evidence gaps and build a logical review structure.</p><button onclick="openBox('literature')">Build review plan</button></article>
+<article class="card" data-key="methodology methods sampling variables instruments"><div class="icon">🧪</div><h3>Methodology Builder</h3><p>Plan study design, population, sampling, variables, instruments and procedures.</p><button onclick="openBox('method')">Build methodology</button></article>
+<article class="card" data-key="data collection analysis statistics coding results"><div class="icon">📊</div><h3>Data & Analysis</h3><p>Define what data you need, how it will be collected, cleaned, analysed and presented.</p><button onclick="openBox('data')">Plan analysis</button></article>
+<article class="card" data-key="citation references academic writing sources"><div class="icon">🔗</div><h3>Sources & Citations</h3><p>Keep source quality, citation consistency and reference tracking in your research workflow.</p><button onclick="openBox('sources')">Review source plan</button></article>
+<article class="card" data-key="proposal thesis dissertation presentation defense viva"><div class="icon">🎓</div><h3>Research Outputs</h3><p>Move from proposal to report, thesis, presentation and defense preparation.</p><button onclick="openBox('outputs')">Plan outputs</button></article>
+</div>
+</section>
+
+<section class="section" id="workspace">
+<div class="head"><div><h2>Research workspace</h2><p>Start with the stage you need most; the workflow can grow with your project.</p></div></div>
+<div class="workspace">
+<div class="panel">
+<h3>Research project planner</h3><div class="muted">Build a structured starting point before asking AI to help with the details.</div>
+<div class="tabs"><button class="tab active" data-box="topic" onclick="openBox('topic')">Topic</button><button class="tab" data-box="literature" onclick="openBox('literature')">Literature</button><button class="tab" data-box="method" onclick="openBox('method')">Methodology</button><button class="tab" data-box="data" onclick="openBox('data')">Data</button><button class="tab" data-box="sources" onclick="openBox('sources')">Sources</button><button class="tab" data-box="outputs" onclick="openBox('outputs')">Outputs</button></div>
+
+<div class="box active" id="topic">
+<div class="form"><div class="field full"><label>Research interest / working topic</label><input id="rtopic" placeholder="e.g. Water treatment challenges in gold processing"></div><div class="field"><label>Study context</label><input id="context" placeholder="Site, industry, community or field"></div><div class="field"><label>Main concern</label><input id="problem" placeholder="What problem needs investigation?"></div></div>
+<button class="btn primary" style="margin-top:14px" onclick="frameTopic()">Create research frame</button><div class="output" id="topicOut">Your research frame will appear here.</div>
+</div>
+
+<div class="box" id="literature">
+<div class="form"><div class="field"><label>Research question</label><input id="lq" placeholder="What do you want to know?"></div><div class="field"><label>Field / discipline</label><input id="lf" placeholder="e.g. Mineral Processing"></div><div class="field full"><label>What you already know</label><textarea id="lk" placeholder="Summarise your current understanding or key sources."></textarea></div></div>
+<button class="btn primary" style="margin-top:14px" onclick="literaturePlan()">Build literature-review map</button><div class="output" id="litOut">Your literature structure will appear here.</div>
+</div>
+
+<div class="box" id="method">
+<div class="form"><div class="field"><label>Research approach</label><select id="approach"><option>Quantitative</option><option>Qualitative</option><option>Mixed methods</option><option>Experimental</option><option>Case study</option></select></div><div class="field"><label>Primary objective</label><input id="objective" placeholder="What will the study determine?"></div><div class="field full"><label>Available data / participants / materials</label><textarea id="resources" placeholder="Describe what you can realistically access."></textarea></div></div>
+<button class="btn primary" style="margin-top:14px" onclick="methodPlan()">Build methodology checklist</button><div class="output" id="methodOut">Your methodology checklist will appear here.</div>
+</div>
+
+<div class="box" id="data">
+<div class="form"><div class="field"><label>Data type</label><select id="dtype"><option>Numerical</option><option>Qualitative text</option><option>Experimental measurements</option><option>Survey responses</option><option>Mixed</option></select></div><div class="field"><label>Analysis goal</label><input id="analysis" placeholder="Compare, classify, estimate, explain..."></div><div class="field full"><label>Variables / observations</label><textarea id="variables" placeholder="List the main variables, measurements or observations."></textarea></div></div>
+<button class="btn primary" style="margin-top:14px" onclick="dataPlan()">Build data-analysis plan</button><div class="output" id="dataOut">Your analysis plan will appear here.</div>
+</div>
+
+<div class="box" id="sources">
+<div class="output"><strong>Source quality checklist</strong><ol><li>Prefer peer-reviewed papers, academic books, official datasets and credible institutional sources.</li><li>Record author, year, title, publication and link/identifier while researching.</li><li>Compare evidence instead of collecting sources without synthesis.</li><li>Match every important claim to an appropriate source.</li><li>Use one citation style consistently.</li></ol></div>
+<a class="btn primary" href="ai-studio.html">Ask AI to help organise your sources</a>
+</div>
+
+<div class="box" id="outputs">
+<div class="output"><strong>Research output pathway</strong><ol><li>Concept note / research problem</li><li>Proposal and literature review</li><li>Methodology and data collection</li><li>Analysis, findings and discussion</li><li>Final report / thesis</li><li>Presentation and defense preparation</li></ol></div>
+<a class="btn primary" href="ai-studio.html">Build an output with AI Studio</a>
+</div>
+</div>
+
+<aside class="panel"><h3>Research principles</h3><p class="muted">Good research is structured, evidence-based and transparent.</p>
+<div class="stats"><div class="stat"><b>01</b><span>question</span></div><div class="stat"><b>02</b><span>evidence</span></div><div class="stat"><b>03</b><span>method</span></div><div class="stat"><b>04</b><span>analysis</span></div></div>
+<div class="workflow"><b>Define before searching</b><span>A clear question makes literature searching more useful.</span></div>
+<div class="workflow"><b>Synthesise, don't collect</b><span>Show how sources agree, differ and leave gaps.</span></div>
+<div class="workflow"><b>Match method to question</b><span>Your method should produce evidence that can answer the question.</span></div>
+<div class="workflow"><b>Keep an audit trail</b><span>Record sources, assumptions, data decisions and limitations.</span></div>
+<div class="notice">AI can support research planning and understanding, but important academic claims, sources, calculations and institutional requirements should be checked by the researcher.</div>
+</aside>
+</div>
+</section>
+<footer class="footer">Research Studio · Digital Professional & Academic Studio · Learn • Research • Build • Work • Grow</footer>
+</main>
+<script>
+function openBox(name){document.querySelectorAll('.box').forEach(x=>x.classList.remove('active'));document.getElementById(name).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.box===name));document.getElementById('workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+function frameTopic(){const t=document.getElementById('rtopic').value.trim()||'your research topic',c=document.getElementById('context').value.trim()||'the selected study context',p=document.getElementById('problem').value.trim()||'the problem you want to investigate';document.getElementById('topicOut').innerHTML='<strong>Research frame</strong><ol><li>Working topic: '+t+'</li><li>Context: '+c+'</li><li>Problem focus: '+p+'</li><li>Next: convert the problem into one main research question and 3–4 measurable objectives.</li></ol><small>Tip: keep the scope narrow enough to study with the time, data and resources you actually have.</small>'}
+function literaturePlan(){const q=document.getElementById('lq').value.trim()||'your research question',f=document.getElementById('lf').value.trim()||'your field';document.getElementById('litOut').innerHTML='<strong>Literature map — '+f+'</strong><ol><li>Define search concepts and synonyms from: '+q+'</li><li>Group sources into 3–5 themes rather than listing them one by one.</li><li>Compare methods, findings, limitations and disagreements.</li><li>Identify what remains unclear or under-studied.</li><li>Use the gap to justify your study.</li></ol>'}
+function methodPlan(){const a=document.getElementById('approach').value,o=document.getElementById('objective').value.trim()||'the primary objective';document.getElementById('methodOut').innerHTML='<strong>'+a+' methodology checklist</strong><ol><li>Define the study design for: '+o+'</li><li>Specify population/sample/materials and selection criteria.</li><li>Define variables or themes and measurement/collection instruments.</li><li>Document procedures, quality controls and ethical considerations.</li><li>Predefine the analysis approach and study limitations.</li></ol>'}
+function dataPlan(){const d=document.getElementById('dtype').value,a=document.getElementById('analysis').value.trim()||'the analysis objective';document.getElementById('dataOut').innerHTML='<strong>'+d+' data plan</strong><ol><li>Define the dataset or observations needed for '+a+'.</li><li>Set collection and quality-check rules before analysis.</li><li>Document missing data, exclusions and assumptions.</li><li>Choose analysis methods that match the research question and data type.</li><li>Present results clearly with appropriate tables, figures or themes.</li></ol>'}
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('#grid .card').forEach(c=>c.classList.toggle('hidden',q&&!c.dataset.key.includes(q)))});
+</script>
+</body>
+</html>
