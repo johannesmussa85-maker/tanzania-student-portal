@@ -386,12 +386,19 @@ function noteCard(topic,note){
 }
 function showStudyNote(topic){
  const notes=studyNotes[course]||{};
+ const getNote=(topicName)=>{
+   if(notes[topicName]) return notes[topicName];
+   const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[course] && additionalTopicContent[course][topicName]) ||
+              (typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topicName]);
+   if(bank) return {title:topicName,summary:bank[0],points:bank.slice(1)};
+   return null;
+ };
  studyNoteSubtitle.textContent="Original revision notes for "+course+".";
  if(topic){
-   const note=notes[topic];
+   const note=getNote(topic);
    studyNoteContent.innerHTML=note?noteCard(topic,note):"<p class='empty'>Notes for this topic are being prepared.</p>";
  }else{
-   studyNoteContent.innerHTML=topics.map(t=>notes[t]?noteCard(t,notes[t]):"").join("");
+   studyNoteContent.innerHTML=topics.map(t=>{const note=getNote(t);return note?noteCard(t,note):"";}).join("");
  }
  studyNote.style.display="block";
 }
