@@ -26,7 +26,7 @@ main{max-width:1200px;margin:auto;padding:30px 5% 70px}.toolbar{display:grid;gri
 <header class="topbar"><nav class="nav"><a class="brand" href="index.html">Tanzania <span>Student Portal</span></a><div class="navlinks"><a class="navbtn" href="courses.html">← Courses</a><a class="navbtn" href="engineering-hub.html">Engineering Hub</a><a class="navbtn" href="books.html">Books</a></div></nav></header>
 <section class="hero"><div class="hero-inner"><a class="backbtn" href="courses.html">← Back to Courses</a><div style="font-size:11px;font-weight:900;letter-spacing:.15em;color:#f3c778;text-transform:uppercase">Worldwide learning library</div><h1 id="heroTitle">Course Resources</h1><p>Open notes, legal textbooks, university course materials, video lectures and documentary-style learning links gathered from respected education platforms around the world.</p></div></section>
 <main>
-<div class="toolbar"><input id="search" type="search" placeholder="Search course or resource..." aria-label="Search course resources"><select id="type"><option value="">All resource types</option><option value="notes">Notes</option><option value="books">Books</option><option value="videos">Videos</option><option value="docs">Documents</option></select></div>
+<div class="toolbar"><input id="search" type="search" placeholder="Search course or resource..." aria-label="Search course resources"><select id="type"><option value="">All resource types</option><option value="notes">Notes</option><option value="books">Books</option><option value="videos">Videos</option><option value="docs">Documents</option><option value="policies">Course Policies</option><option value="pastpapers">Past Papers</option></select></div>
 <div id="courseHead" class="course-head"><h2>Loading resources...</h2><span class="badge">Open learning</span></div>
 <div id="resources" class="resource-grid"></div><div id="empty" class="empty">No matching resource found. Try another keyword.</div>
 <div class="notice"><b>Why these links?</b> The portal links students to legitimate open or official learning sources instead of re-uploading copyrighted books and videos. MIT OpenCourseWare publishes free course materials, while OpenStax provides free openly licensed textbooks; NPTEL provides extensive university-level engineering and mineral-processing lectures. </div>
@@ -121,6 +121,7 @@ const data={
 };
 const order=Object.keys(data);
 const params=new URLSearchParams(location.search);
+const requestedType=params.get("type")||"";
 let course=params.get("course")||"Mineral Processing";
 if(!data[course]){const key=order.find(k=>k.toLowerCase()===course.toLowerCase());course=key||"Mineral Processing"}
 document.getElementById("heroTitle").textContent=course+" Resources";
@@ -132,9 +133,13 @@ const worldwide=[
 ["🏛️","notes","MIT OpenCourseWare","Free university course materials including notes, assignments, readings and exams.","https://ocw.mit.edu/"],
 ["🎓","notes","NPTEL","Free university-level engineering, science and technology courses and lectures.","https://nptel.ac.in/"],
 ["🎬","videos","Educational Documentaries","Course-related documentary searches for visual learning and real-world context.","https://www.youtube.com/results?search_query=educational+documentary"],
-["▶️","videos","University Lecture Videos","Searchable university lecture videos for the selected course.","https://www.youtube.com/results?search_query=university+lecture"]
+["▶️","videos","University Lecture Videos","Searchable university lecture videos for the selected course.","https://www.youtube.com/results?search_query=university+lecture"],
+["🇹🇿","policies","TCU — Official University Programme Directory","Check approved university institutions and academic programmes in Tanzania. Always confirm programme requirements with your institution.","https://www.tcu.go.tz/services/accreditation/academic-programmes-offered-universities-tanzania"],
+["🏛️","policies","NACTVET — Official TVET Resources","Official technical and vocational education resources, guidebooks, standards and institutional information.","https://www.nactvet.go.tz/page/downloads"],
+["📝","pastpapers","Past Papers — Official Institution Route","Past papers should be obtained from your university or college library, department or official student portal. This page helps you reach the official university directory.","https://www.tcu.go.tz/services/accreditation/academic-programmes-offered-universities-tanzania"]
 ];
 const item=data[course];
+if(requestedType&&["notes","books","videos","docs","policies","pastpapers"].includes(requestedType)) document.getElementById("type").value=requestedType;
 document.getElementById("courseHead").innerHTML="<h2>"+item.icon+" "+course+"</h2><span class='badge'>"+item.resources.length+" learning links</span>";
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim(),type=document.getElementById("type").value;
