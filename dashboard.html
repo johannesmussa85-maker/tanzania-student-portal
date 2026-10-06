@@ -1,138 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<link rel="canonical" href="https://johannesmussa85-maker.github.io/tanzania-student-portal/dashboard.html">
-<meta name="robots" content="index, follow">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Organise your learning with quick access to study resources, books, career tools and student opportunities.">
-<title>Student Dashboard | Tanzania Student Portal</title>
-<link rel="stylesheet" href="theme.css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="My Workspace — manage academic, research, project, engineering and career work in one place.">
+<title>My Workspace | Digital Professional & Academic Studio</title><link rel="icon" href="favicon.svg">
 <style>
-:root{--dash-blue:#1e3a8a;--dash-accent:#2563eb;--dash-teal:#0f9b8e}
-*{box-sizing:border-box}
-body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--portal-bg);color:var(--portal-text)}
-.top{background:#142b68;color:#fff;padding:15px clamp(16px,5vw,64px);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.brand{font-weight:800;letter-spacing:.1px}.top nav{display:flex;gap:16px;flex-wrap:wrap}.top a{color:#fff;text-decoration:none;font-weight:700;font-size:14px}.top a:hover{text-decoration:underline}
-.wrap{max-width:1160px;margin:auto;padding:28px clamp(16px,4vw,44px) 90px}
-.hero{position:relative;overflow:hidden;background:linear-gradient(125deg,#1e3a8a,#2563eb 70%,#0f9b8e);color:#fff;border-radius:24px;padding:clamp(24px,4vw,42px);box-shadow:0 16px 40px #1e3a8a24}
-.hero:after{content:"";position:absolute;width:220px;height:220px;border:35px solid #ffffff18;border-radius:50%;right:-45px;top:-80px;pointer-events:none}
-.eyebrow{text-transform:uppercase;font-size:12px;font-weight:800;letter-spacing:1.5px;opacity:.86}
-.hero h1{font-size:clamp(28px,4vw,42px);margin:10px 0}.hero p{max-width:620px;line-height:1.65;margin:0;color:#eef4ff}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:1}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--dash-blue);color:#fff!important;padding:11px 15px;border-radius:10px;text-decoration:none;font-weight:800;border:1px solid transparent;transition:transform .18s,box-shadow .18s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px #0002}.btn-light{background:#fff;color:#173579!important}.btn-outline{border-color:#ffffff70;background:#ffffff12;color:#fff!important}
-.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:30px 0 14px;flex-wrap:wrap}.section-head h2{margin:0;font-size:22px}.section-head p{margin:5px 0 0;color:var(--portal-muted);font-size:14px;line-height:1.5}
-.search-wrap{position:relative;min-width:min(100%,290px)}.search-wrap input{width:100%;padding:12px 14px 12px 40px;border:1px solid var(--portal-border);border-radius:12px;background:var(--portal-surface);color:var(--portal-text);font:inherit;outline:none}.search-wrap input:focus{border-color:#4f7ee8;box-shadow:0 0 0 3px #2563eb22}.search-icon{position:absolute;left:14px;top:11px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-.card{background:var(--portal-surface);border:1px solid var(--portal-border);border-radius:17px;padding:20px;box-shadow:0 5px 18px #0f172a08;min-width:0}
-.resource-card{display:flex;flex-direction:column;min-height:225px;transition:transform .18s,border-color .18s,box-shadow .18s}.resource-card:hover{transform:translateY(-3px);border-color:#93b4f7;box-shadow:0 12px 28px #1e3a8a12}
-.iconbox{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:#eaf0ff;font-size:24px;margin-bottom:15px}.resource-card h3{margin:0 0 8px;font-size:17px;color:var(--portal-primary)}.resource-card p{margin:0 0 18px;color:var(--portal-muted);font-size:14px;line-height:1.55;flex:1}.card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px}.tag{font-size:11px;font-weight:800;padding:5px 8px;border-radius:20px;background:#e9f8f5;color:#087f72}.card .btn{font-size:13px;padding:9px 11px}
-.dashboard-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}.stat-card{background:var(--portal-surface);border:1px solid var(--portal-border);border-radius:15px;padding:16px;text-decoration:none;color:var(--portal-text);transition:transform .18s,border-color .18s}.stat-card:hover{transform:translateY(-2px);border-color:#93b4f7}.stat-card .stat-icon{font-size:22px}.stat-card strong{display:block;margin-top:8px;font-size:14px}.stat-card small{display:block;margin-top:4px;color:var(--portal-muted);line-height:1.4}@media(max-width:700px){.dashboard-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}.lower-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px;margin-top:18px}
-.task-list{display:grid;gap:12px;margin-top:14px}.task{display:flex;align-items:flex-start;gap:11px;padding:12px;border:1px solid var(--portal-border);border-radius:12px;background:var(--portal-bg)}.task input{width:18px;height:18px;margin-top:2px;accent-color:var(--dash-teal);flex:0 0 auto}.task label{line-height:1.45;font-size:14px;cursor:pointer}.task small{display:block;color:var(--portal-muted);margin-top:3px}.progress-row{display:flex;justify-content:space-between;gap:12px;margin-top:16px;font-size:13px;color:var(--portal-muted);font-weight:700}.progress{height:8px;border-radius:10px;background:var(--portal-border);overflow:hidden;margin-top:8px}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#0f9b8e,#55c5a7);border-radius:10px;transition:width .2s}
-.link-list{display:grid;gap:10px;margin-top:14px}.link-row{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--portal-border);border-radius:12px;text-decoration:none;color:var(--portal-text);background:var(--portal-surface)}.link-row:hover{border-color:#93b4f7}.link-row .mini-icon{font-size:21px}.link-row b{display:block;font-size:14px}.link-row small{display:block;color:var(--portal-muted);font-size:12px;margin-top:3px}.arrow{margin-left:auto;color:var(--portal-muted)}
-.tip{margin-top:18px;border-radius:15px;padding:16px;background:#eef8ff;border:1px solid #d7eafe;color:#21406d;font-size:14px;line-height:1.55}
-.empty{display:none;padding:20px;color:var(--portal-muted);text-align:center}.footer{text-align:center;padding:26px 12px;color:var(--portal-muted);font-size:12px}
-.portal-dark .top{background:#0b0f15!important}.portal-dark .iconbox{background:#202c43}.portal-dark .tag{background:#123c37;color:#9ce8d9}.portal-dark .tip{background:#15263a;border-color:#2b4968;color:#d6e7ff}.portal-dark .btn-light{background:#e7edf6;color:#173579!important}.portal-high .top{background:#000!important;border-bottom:2px solid #fff}.portal-high .iconbox{background:#222}.portal-high .tag{background:#000;color:#fff;border:1px solid #fff}.portal-high .tip{background:#000;color:#fff;border:1px solid #fff}
-@media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lower-grid{grid-template-columns:1fr}}
-@media(max-width:520px){.top{align-items:flex-start}.top nav{gap:11px}.grid{grid-template-columns:1fr}.resource-card{min-height:0}.hero{border-radius:18px}.section-head{align-items:stretch}.search-wrap{width:100%}.wrap{padding-top:18px}}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-</style>
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-</head>
-<body>
-<header class="top">
-  <div class="brand">🇹🇿 Tanzania Student Portal</div>
-  <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="books.html">Library</a><a href="university.html">Universities & Colleges</a></nav>
-</header>
-<main class="wrap">
-  <section class="hero" aria-labelledby="welcome-title">
-    <div class="eyebrow">Your learning space</div>
-    <h1 id="welcome-title">Welcome to your dashboard 👋</h1>
-    <p>Keep your learning organised. Jump into study resources, practise exam questions, prepare career documents and find your next opportunity.</p>
-    <div class="hero-actions"><a class="btn btn-light" href="course-resources.html">📚 Course Resources</a><a class="btn btn-outline" href="books.html">📚 Explore the library</a></div>
-  </section>
+:root{--f:#0b3d2e;--g:#176b4f;--l:#d7f36b;--c:#f7f4eb;--p:#fffdf8;--i:#17352b;--m:#65756d;--line:#dfe7df;--soft:#edf4ee}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--c);color:var(--i);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.5}a{text-decoration:none;color:inherit}
+nav{position:sticky;top:0;z-index:10;background:#0b3d2ef5;color:#fff;backdrop-filter:blur(12px)}.navin{max-width:1320px;margin:auto;padding:13px 4%;display:flex;align-items:center;gap:18px}.brand{font-weight:900;line-height:1.05}.brand small{display:block;color:#cfe3d8;font-size:9px;margin-top:4px}.links{margin-left:auto;display:flex;gap:4px}.links a{font-size:11px;font-weight:800;padding:9px;border-radius:8px}.links a:hover{background:#ffffff12}.login{border:1px solid #ffffff40;padding:8px 12px;border-radius:8px;font-size:11px;font-weight:800}
+.hero{color:#fff;min-height:370px;background:linear-gradient(90deg,#062c20ed,#062c2055),url("https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1800") center/cover;display:flex;align-items:center}.heroin{max-width:1320px;width:100%;margin:auto;padding:60px 5%;display:grid;grid-template-columns:1.2fr .7fr;gap:35px;align-items:center}.ey{color:var(--l);font-size:10px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-size:clamp(42px,6vw,68px);line-height:.97;letter-spacing:-.05em;margin:10px 0}.hero p{color:#dceae4;max-width:700px}.heroCard{background:var(--p);color:var(--i);padding:21px;border-radius:17px}.heroCard h3{margin:0 0 5px}.heroCard p{font-size:11px;color:var(--m)}.btn{display:inline-block;border:0;background:var(--f);color:#fff;padding:11px 14px;border-radius:8px;font-weight:900;font-size:11px;cursor:pointer}.btn.light{background:var(--l);color:#153e2c}
+main{max-width:1320px;margin:-30px auto 0;padding:0 4% 70px;position:relative}.layout{display:grid;grid-template-columns:220px 1fr;gap:14px}.card{background:var(--p);border:1px solid var(--line);border-radius:17px;padding:20px}.side{height:max-content}.side h3{font-size:14px;margin:0 0 10px}.side a{display:block;padding:10px;border-radius:8px;font-size:11px;font-weight:800;color:#496258}.side a:hover{background:#e5f0e7;color:var(--g)}.side p{border-top:1px solid var(--line);padding-top:12px;color:var(--m);font-size:9px}
+.head{display:flex;justify-content:space-between;gap:12px;align-items:end}.head h2{margin:0;font-size:25px}.head p{margin:4px 0;color:var(--m);font-size:11px}.tag{font-size:9px;font-weight:900;color:var(--g);background:#e5f1e7;padding:5px 8px;border-radius:99px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}.studio{background:#fff;border:1px solid var(--line);border-radius:12px;padding:17px;display:flex;flex-direction:column;min-height:180px;transition:.18s}.studio:hover{transform:translateY(-3px);border-color:#9abfa9;box-shadow:0 10px 25px #0b3d2e12}.icon{font-size:23px}.studio h3{font-size:14px;margin:8px 0 4px}.studio p{font-size:10px;color:var(--m);margin:0 0 12px;flex:1}.studio .open{color:var(--g);font-size:10px;font-weight:900}.section{margin-bottom:14px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.progressBox{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}.metric{background:var(--soft);border:1px solid #dce8de;border-radius:11px;padding:14px}.metric b{font-size:12px}.metric span{display:block;font-size:10px;color:var(--m);margin-top:3px}.bar{height:7px;background:#dfe8e0;border-radius:99px;overflow:hidden;margin-top:10px}.bar i{display:block;width:0;height:100%;background:var(--g);border-radius:99px}.task{display:flex;gap:9px;padding:10px 0;border-bottom:1px solid var(--line);font-size:11px}.task:last-child{border-bottom:0}.task input{accent-color:var(--g)}.shortcut{display:grid;gap:8px;margin-top:13px}.shortcut a{padding:11px;border:1px solid var(--line);border-radius:9px;font-size:10px;font-weight:800}.shortcut a:hover{border-color:#9abfa9;background:#f5faf5}.mentor{background:linear-gradient(120deg,#0b3d2e,#176b4f);color:#fff}.mentor p{color:#dceae4;font-size:11px}.mentor .btn{background:var(--l);color:#153e2c}footer{background:#082f23;color:#aac4b8;text-align:center;padding:35px;font-size:11px}footer b{color:#fff}
+@media(max-width:850px){.links{display:none}.heroin{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.side{order:2}}@media(max-width:560px){.grid,.progressBox{grid-template-columns:1fr}.hero h1{font-size:44px}}
+</style></head><body>
+<nav><div class="navin"><a class="brand" href="index.html">✦ Digital Professional & Academic Studio<small>Learn · Research · Build · Work · Grow</small></a><div class="links"><a href="index.html">Home</a><a href="academic-studio.html">Academic</a><a href="research-studio.html">Research</a><a href="project-field-studio.html">Project & Field</a><a href="engineering-studio.html">Engineering</a><a href="ai-studio.html">AI Studio</a></div><a class="login" href="auth.html">Login</a></div></nav>
+<section class="hero"><div class="heroin"><div><div class="ey">My Workspace</div><h1>Your work, in one place.</h1><p>Manage your academic learning, research, projects, engineering work, career preparation and AI-assisted workflows from one professional workspace.</p></div><div class="heroCard"><h3>Start where you are</h3><p>Choose the workspace that matches today's goal.</p><div class="actions"><a class="btn" href="ai-studio.html">Open AI Studio →</a><a class="btn light" href="project-field-studio.html">Open Project →</a></div></div></div></section>
+<main><div class="layout"><aside class="card side"><h3>Workspace navigation</h3><a href="#studios">🧭 My Studios</a><a href="#progress">📈 Progress</a><a href="#tasks">✅ My Tasks</a><a href="#career">💼 Career</a><a href="#mentor">🤖 AI Mentor</a><p>This dashboard is now the new global workspace. Legacy student-resource navigation has been removed from the main experience.</p></aside>
+<div>
+<section id="studios" class="card section"><div class="head"><div><div class="ey">Your Studios</div><h2>Choose a workspace</h2><p>Each studio has a focused workflow while staying connected to the rest of the platform.</p></div><span class="tag">6 WORKSPACES</span></div>
+<div class="grid">
+<a class="studio" href="academic-studio.html"><div class="icon">🎓</div><h3>Academic Studio</h3><p>Courses, study planning, exam practice, academic skills and learning pathways.</p><span class="open">Open Academic →</span></a>
+<a class="studio" href="research-studio.html"><div class="icon">🔬</div><h3>Research Studio</h3><p>Problem framing, literature review, methodology, data analysis and research outputs.</p><span class="open">Open Research →</span></a>
+<a class="studio" href="project-field-studio.html"><div class="icon">🏗️</div><h3>Project & Field</h3><p>Proposal, field diary, data collection, reports, presentations and defense preparation.</p><span class="open">Open Project →</span></a>
+<a class="studio" href="engineering-studio.html"><div class="icon">⚙️</div><h3>Engineering Studio</h3><p>Technical calculations, mining and processing, design thinking, safety and field engineering.</p><span class="open">Open Engineering →</span></a>
+<a class="studio" href="ai-studio.html"><div class="icon">🤖</div><h3>AI Studio</h3><p>General assistant, academic, research, project, career and document workflows.</p><span class="open">Open AI Studio →</span></a>
+<a class="studio" href="cv-builder.html"><div class="icon">💼</div><h3>Career Intelligence</h3><p>Build a CV, prepare applications and connect your skills to professional opportunities.</p><span class="open">Open Career →</span></a>
+</div></section>
 
-  <div class="section-head">
-    <div><h2>Quick access</h2><p>Find the student tool or resource you need.</p></div>
-    <label class="search-wrap"><span class="search-icon" aria-hidden="true">⌕</span><input id="quickSearch" type="search" placeholder="Search dashboard tools…" aria-label="Search dashboard tools"></label>
-  </div>
-  <section class="grid" id="resourceGrid" aria-label="Student resources">
-    <article class="card resource-card" data-search="digital library books textbooks mineral processing engineering reading">
-      <div class="iconbox" aria-hidden="true">📚</div><h3>Digital Library</h3><p>Explore academic books, textbooks and learning resources, including engineering topics.</p><div class="card-foot"><span class="tag">READ & LEARN</span><a class="btn" href="books.html">Open library ↗</a></div>
-    </article>
-    <article class="card resource-card" data-search="college university assessments course resources practice"><div class="iconbox" aria-hidden="true">🎓</div><h3>Higher-Education Resources</h3><p>Find university and college course materials, assessments and learning resources.</p><div class="card-foot"><span class="tag">COLLEGE & UNIVERSITY</span><a class="btn" href="course-resources.html">Explore resources ↗</a></div></article>
-    <article class="card resource-card" data-search="career documents cv resume job application professional">
-      <div class="iconbox" aria-hidden="true">📄</div><h3>CV Builder</h3><p>Prepare a clear, professional CV for internships, scholarships and job applications.</p><div class="card-foot"><span class="tag">CAREER</span><a class="btn" href="cv-builder.html">Build CV ↗</a></div>
-    </article>
-    <article class="card resource-card" data-search="study tools gpa calculator study plan productivity">
-      <div class="iconbox" aria-hidden="true">🧰</div><h3>Study Tools</h3><p>Use student tools to organise study time and work through academic calculations.</p><div class="card-foot"><span class="tag">STAY ORGANISED</span><a class="btn" href="student-tools.html">Open tools ↗</a></div>
-    </article>
-    <article class="card resource-card" data-search="opportunities scholarships internships jobs courses education">
-      <div class="iconbox" aria-hidden="true">🎯</div><h3>Opportunities</h3><p>Explore opportunities that may support your education and career journey.</p><div class="card-foot"><span class="tag">NEXT STEP</span><a class="btn" href="opportunities.html">Explore ↗</a></div>
-    </article>
-  </section>
-  <div class="empty" id="emptyState" role="status">No dashboard tools match that search. Try another keyword.</div>
+<section id="progress" class="card section"><div class="head"><div><div class="ey">Progress Hub</div><h2>Keep your momentum</h2><p>Track simple workspace actions on this device. Your project content stays in its relevant studio.</p></div><span class="tag">MY PROGRESS</span></div><div class="progressBox"><div class="metric"><b>Current project</b><span id="projectName">No project started yet</span><div class="bar"><i id="projectBar"></i></div></div><div class="metric"><b>Workspace focus</b><span id="focusText">Choose a studio to begin.</span><div class="actions"><a class="btn" href="project-field-studio.html">Set project →</a></div></div></div></section>
 
-  <section class="dashboard-strip" aria-label="Student quick actions">
-<a class="stat-card" href="courses.html"><span class="stat-icon">🎓</span><strong>Explore Courses</strong><small>Browse the 15 higher-education study areas.</small></a>
-<a class="stat-card" href="note.html?course=Mineral%20Processing"><span class="stat-icon">📖</span><strong>Study Notes</strong><small>Open detailed notes and topic-based revision.</small></a>
-<a class="stat-card" href="course-resources.html?course=Mineral%20Processing"><span class="stat-icon">📝</span><strong>Exam Practice</strong><small>Practise MCQs, calculations and exam questions.</small></a>
-<a class="stat-card" href="ai-assistance.html"><span class="stat-icon">🤖</span><strong>AI Assistance</strong><small>Get help understanding academic topics and tasks.</small></a>
-</section>
+<section id="tasks" class="card section"><div class="head"><div><div class="ey">My Tasks</div><h2>Today's workspace checklist</h2><p>A lightweight checklist for your next actions.</p></div><span class="tag">LOCAL</span></div><div id="taskList"><label class="task"><input type="checkbox" data-task="define"> Define today's project or study goal</label><label class="task"><input type="checkbox" data-task="work"> Complete one focused work session</label><label class="task"><input type="checkbox" data-task="evidence"> Save one useful source, result or piece of evidence</label><label class="task"><input type="checkbox" data-task="review"> Review what is finished and choose the next action</label></div><div class="actions"><button class="btn" id="reset">Reset checklist</button></div></section>
 
-<section class="lower-grid" aria-label="Study organisation">
-    <div class="card">
-      <h2 style="margin:0;font-size:20px">My study checklist</h2>
-      <p style="color:var(--portal-muted);font-size:14px;line-height:1.5;margin:7px 0 0">Tick tasks as you complete them. Your checklist is saved in this browser on this device.</p>
-      <div class="task-list" id="taskList">
-        <div class="task"><input type="checkbox" id="task1"><label for="task1">Review one topic today<small>Start with a topic you find challenging.</small></label></div>
-        <div class="task"><input type="checkbox" id="task2"><label for="task2">Practise your course questions<small>Use guided practice before checking notes.</small></label></div>
-        <div class="task"><input type="checkbox" id="task3"><label for="task3">Read or save a useful resource<small>Use the library to support your learning.</small></label></div>
-      </div>
-      <div class="progress-row"><span>Today's checklist</span><span id="progressLabel">0 of 3 complete</span></div><div class="progress" role="progressbar" aria-label="Study checklist progress" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="progressBar"><span id="progressFill"></span></div>
-      <button type="button" id="resetTasks" class="btn" style="margin-top:15px;border:0;cursor:pointer">Reset checklist</button>
-    </div>
-    <aside class="card">
-      <h2 style="margin:0;font-size:20px">Useful shortcuts</h2><p style="color:var(--portal-muted);font-size:14px;line-height:1.5;margin:7px 0 0">A few simple ways to keep moving forward.</p>
-      <div class="link-list">
-        <a class="link-row" href="books.html"><span class="mini-icon">🔎</span><span><b>Find a learning resource</b><small>Books and academic materials</small></span><span class="arrow">›</span></a>
-        <a class="link-row" href="student-tools.html"><span class="mini-icon">📅</span><span><b>Plan your study time</b><small>Open your study tools</small></span><span class="arrow">›</span></a>
-        <a class="link-row" href="opportunities.html"><span class="mini-icon">🌱</span><span><b>Explore opportunities</b><small>Education and career pathways</small></span><span class="arrow">›</span></a>
-      </div>
-      <div class="tip"><strong>Study tip:</strong> Choose one clear goal, study in a focused block, then test yourself without looking at your notes.</div>
-    </aside>
-  </section>
-</main>
-<footer class="footer">Tanzania Student Portal · Learning resources to help you move forward</footer>
-<script src="theme.js"></script>
+<section id="career" class="card section"><div class="head"><div><div class="ey">Career Intelligence</div><h2>Build your professional path</h2><p>Keep your career preparation connected to the skills and projects you are building.</p></div><span class="tag">CAREER</span></div><div class="shortcut"><a href="cv-builder.html">📄 CV Builder — create or improve your professional CV</a><a href="opportunities.html">🎯 Opportunities — explore education and career pathways</a></div></section>
+
+<section id="mentor" class="card mentor section"><div class="ey">AI Project Mentor</div><h2>What should you do next?</h2><p>Use the mentor to turn a project goal into milestones, risks, deliverables and practical next actions. AI should work from information you provide and should not invent your field data or qualifications.</p><a class="btn" href="ai-studio.html?mode=project">Open AI Project Mentor →</a></section>
+</div></div></main>
+<footer><b>Digital Professional & Academic Studio</b><br>My Workspace · Learn • Research • Build • Work • Grow · © 2026</footer>
 <script>
 (function(){
-  const search=document.getElementById('quickSearch');
-  const cards=Array.from(document.querySelectorAll('.resource-card'));
-  const empty=document.getElementById('emptyState');
-  search.addEventListener('input',function(){
-    const q=this.value.trim().toLowerCase();let shown=0;
-    cards.forEach(card=>{const match=(card.dataset.search+' '+card.innerText).toLowerCase().includes(q);card.style.display=match?'flex':'none';if(match)shown++;});
-    empty.style.display=shown?'none':'block';
-  });
-  const ids=['task1','task2','task3'];
-  const storageKey='tsp-dashboard-checklist-v1';
-  function readSaved(){try{const data=JSON.parse(localStorage.getItem(storageKey)||'{}');return data&&typeof data==='object'?data:{}}catch(e){return {}}}
-  function updateProgress(){
-    const done=ids.filter(id=>{const node=document.getElementById(id);return node&&node.checked}).length;
-    const label=document.getElementById('progressLabel'),fill=document.getElementById('progressFill'),bar=document.getElementById('progressBar');
-    if(label)label.textContent=done+' of '+ids.length+' complete';
-    if(fill)fill.style.width=(done/ids.length*100)+'%';
-    if(bar)bar.setAttribute('aria-valuenow',String(done));
-    const state={};ids.forEach(id=>{const node=document.getElementById(id);if(node)state[id]=node.checked});
-    try{localStorage.setItem(storageKey,JSON.stringify(state))}catch(e){}
-  }
-  const saved=readSaved();ids.forEach(id=>{const node=document.getElementById(id);if(node){node.checked=saved[id]===true;node.addEventListener('change',updateProgress)}});
-  const reset=document.getElementById('resetTasks');if(reset)reset.addEventListener('click',()=>{ids.forEach(id=>{const node=document.getElementById(id);if(node)node.checked=false});updateProgress()});
-  updateProgress();
+const key="dpa_workspace_tasks-v1",nodes=[...document.querySelectorAll("[data-task]")];
+let saved={};try{saved=JSON.parse(localStorage.getItem(key)||"{}")}catch(e){}
+nodes.forEach(n=>{n.checked=saved[n.dataset.task]===true;n.addEventListener("change",save)});
+function save(){const s={};nodes.forEach(n=>s[n.dataset.task]=n.checked);try{localStorage.setItem(key,JSON.stringify(s))}catch(e){}}
+document.getElementById("reset").onclick=()=>{nodes.forEach(n=>n.checked=false);save()};
+const name=localStorage.getItem("dpa_project_name");if(name){document.getElementById("projectName").textContent=name;document.getElementById("focusText").textContent=localStorage.getItem("dpa_project_type")||"Active project";document.getElementById("projectBar").style.width="25%"}
 })();
-</script>
-<script src="language.js"></script>
-</body>
-</html>
+</script></body></html>
