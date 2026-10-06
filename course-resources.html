@@ -384,21 +384,37 @@ function noteCard(topic,note){
  ];
  return "<article class='course-note-card'><div class='note-topic'>📘 "+topic+"</div><h3>"+note.title+"</h3>"+sections.map(x=>"<section class='note-section'><h4>"+x[0]+"</h4><div>"+x[1]+"</div></section>").join("")+"<div class='note-check'><b>🎯 Self-check:</b> Explain this topic without looking at the note, give an example, identify an application and answer an exam question about it.</div></article>";
 }
-function showStudyNote(topic){
- const notes=studyNotes[course]||{};
- const getNote=(topicName)=>{
-   if(notes[topicName]) return notes[topicName];
-   const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[course] && additionalTopicContent[course][topicName]) ||
-              (typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topicName]);
-   if(bank) return {title:topicName,summary:bank[0],points:bank.slice(1)};
-   return null;
+function getTopicBankNote(courseName,topicName){
+ const bank=(typeof additionalTopicContent!=="undefined" && additionalTopicContent[courseName] && additionalTopicContent[courseName][topicName]) ||
+            (typeof topicSpecificContent!=="undefined" && topicSpecificContent[courseName] && topicSpecificContent[courseName][topicName]) || null;
+ if(!bank) return null;
+ return {
+   title:topicName,
+   summary:bank[0]||"",
+   points:bank.slice(1),
+   detail:[
+     "<p><b>Definition & purpose:</b> "+(bank[0]||"")+"</p>",
+     "<p><b>Core principles:</b> "+(bank[1]||"")+"</p>",
+     "<p><b>Example / detailed application:</b> "+(bank[2]||"")+"</p>",
+     "<p><b>Applications:</b> "+(bank[3]||"")+"</p>",
+     "<p><b>Exam focus:</b> "+(bank[4]||"")+"</p>",
+     "<p><b>Problem-solving:</b> Identify the facts or data, state the relevant concept, apply it step by step, explain assumptions, show units for numerical work, and interpret the result.</p>",
+     "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one important limitation or consideration, and answer an exam-style question without looking at the note.</p>"
+   ]
  };
- studyNoteSubtitle.textContent="Original revision notes for "+course+".";
+}
+function showStudyNote(topic){
+ const topicList=topicMap[course]||[];
+ studyNoteSubtitle.textContent="Original revision notes for "+course+" — "+topicList.length+" topics.";
+ const renderOne=(topicName)=>{
+   const note=getTopicBankNote(course,topicName);
+   return note?noteCard(topicName,note):"";
+ };
  if(topic){
-   const note=getNote(topic);
-   studyNoteContent.innerHTML=note?noteCard(topic,note):"<p class='empty'>Notes for this topic are being prepared.</p>";
+   studyNoteContent.innerHTML=renderOne(topic)||"<p>Notes for this topic are being prepared.</p>";
  }else{
-   studyNoteContent.innerHTML=topics.map(t=>{const note=getNote(t);return note?noteCard(t,note):"";}).join("");
+   const cards=topicList.map(renderOne).filter(Boolean);
+   studyNoteContent.innerHTML=cards.join("")||"<p>Study notes are being prepared for this course.</p>";
  }
  studyNote.style.display="block";
 }
