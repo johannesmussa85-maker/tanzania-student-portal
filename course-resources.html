@@ -474,16 +474,17 @@ function buildFullLesson(course,topic,note){
 Object.entries(studyNotes).forEach(([course,topics])=>{
  if(course==="Mineral Processing") return;
  Object.entries(topics).forEach(([topic,note])=>{
-   const specific=typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topic];
+   const bank=typeof additionalTopicContent!=="undefined" && additionalTopicContent[course] && additionalTopicContent[course][topic];
+   const specific=(typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topic]) || bank;
    if(specific){
      note.detail=[
        "<p><b>Definition & purpose:</b> "+specific[0]+"</p>",
        "<p><b>Core principles:</b> "+specific[1]+"</p>",
-       "<p><b>Detailed explanation:</b> "+specific[2]+"</p>",
+       "<p><b>Example / detailed application:</b> "+specific[2]+"</p>",
        "<p><b>Applications:</b> "+specific[3]+"</p>",
        "<p><b>Exam focus:</b> "+specific[4]+"</p>",
-       buildFullLesson(course,topic,note)[5],
-       buildFullLesson(course,topic,note)[6]
+       "<p><b>Problem-solving:</b> Identify the facts or data, state the relevant concept, apply it step by step, explain assumptions, show units for numerical work, and interpret the result.</p>",
+       "<p><b>Self-check:</b> Define the topic, explain two principles, give a new example, state one important limitation or consideration, and answer an exam-style question without looking at the note.</p>"
      ];
    } else {
      note.detail=buildFullLesson(course,topic,note);
