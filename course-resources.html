@@ -138,7 +138,17 @@ const worldwide=[
 ["🏛️","policies","NACTVET — Official TVET Resources","Official technical and vocational education resources, guidebooks, standards and institutional information.","https://www.nactvet.go.tz/page/downloads"],
 ["📝","pastpapers","Past Papers — Official Institution Route","Past papers should be obtained from your university or college library, department or official student portal. This page helps you reach the official university directory.","https://www.tcu.go.tz/services/accreditation/academic-programmes-offered-universities-tanzania"]
 ];
-const item=data[course];
+const item=data[course];const topicKeywords={
+"Comminution":["comminution","crushing","grinding","size reduction"],
+"Screening & Classification":["screening","classification","sizing","hydrocyclone"],
+"Gravity Separation":["gravity","dense medium","jig","shaking table","spiral"],
+"Flotation":["flotation","froth","collector","frother"],
+"Magnetic Separation":["magnetic","magnetism","magnetic separation"],
+"Hydrometallurgy":["hydrometallurgy","leaching","cyanide","solvent extraction","hydrometallurgical"],
+"Dewatering":["dewatering","thickening","filtration","filter"],
+"Ore Characterization":["ore characterization","mineralogy","particle characterization","sampling"]
+};
+
 if(requestedType&&["notes","books","videos","docs","policies","pastpapers"].includes(requestedType)) document.getElementById("type").value=requestedType;
 document.getElementById("courseHead").innerHTML="<h2>"+item.icon+" "+course+"</h2><span class='badge'>"+item.resources.length+" learning links</span>";const topicMap={
 "Mineral Processing":["Comminution","Screening & Classification","Gravity Separation","Flotation","Magnetic Separation","Hydrometallurgy","Dewatering","Ore Characterization"],
@@ -164,7 +174,9 @@ topicsPanel.innerHTML="<h3>Core Topics</h3><div class='topics'>"+topics.map(t=>"
 document.getElementById("courseHead").after(topicsPanel);
 function render(){
  const q=document.getElementById("search").value.toLowerCase().trim(),type=document.getElementById("type").value;
- const all=[...item.resources,...worldwide]; const list=all.filter(r=>(!type||r[1]===type)&&(!q||r.join(" ").toLowerCase().includes(q)));
+ const activeTopic=topicsPanel.querySelector(".topic.active")?.dataset.topic||"";
+ const topicTerms=(topicKeywords[activeTopic]||[activeTopic]).map(x=>x.toLowerCase());
+ const all=[...item.resources,...worldwide]; const list=all.filter(r=>(!type||r[1]===type)&&(!q||r.join(" ").toLowerCase().includes(q))&&(!activeTopic||topicTerms.some(term=>r.join(" ").toLowerCase().includes(term))));
  document.getElementById("resources").innerHTML=list.map(r=>"<article class='resource'><div class='resource-icon'>"+r[0]+"</div><h3>"+r[2]+"</h3><p>"+r[3]+"</p><a href='"+r[4]+"' target='_blank' rel='noopener noreferrer'>Open Resource ↗</a></article>").join("");
  document.getElementById("empty").style.display=list.length?"none":"block";
 }
