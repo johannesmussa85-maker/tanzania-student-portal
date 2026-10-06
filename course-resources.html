@@ -474,7 +474,20 @@ function buildFullLesson(course,topic,note){
 Object.entries(studyNotes).forEach(([course,topics])=>{
  if(course==="Mineral Processing") return;
  Object.entries(topics).forEach(([topic,note])=>{
-   note.detail=buildFullLesson(course,topic,note);
+   const specific=typeof topicSpecificContent!=="undefined" && topicSpecificContent[course] && topicSpecificContent[course][topic];
+   if(specific){
+     note.detail=[
+       "<p><b>Definition & purpose:</b> "+specific[0]+"</p>",
+       "<p><b>Core principles:</b> "+specific[1]+"</p>",
+       "<p><b>Detailed explanation:</b> "+specific[2]+"</p>",
+       "<p><b>Applications:</b> "+specific[3]+"</p>",
+       "<p><b>Exam focus:</b> "+specific[4]+"</p>",
+       buildFullLesson(course,topic,note)[5],
+       buildFullLesson(course,topic,note)[6]
+     ];
+   } else {
+     note.detail=buildFullLesson(course,topic,note);
+   }
  });
 });
 
