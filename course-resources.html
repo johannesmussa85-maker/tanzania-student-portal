@@ -5,7 +5,7 @@
 <meta name="description" content="Worldwide course resources: open notes, textbooks, video lectures, documentaries and learning hubs.">
 <title>Course Resources | Tanzania Student Portal</title>
 <link rel="stylesheet" href="theme.css">
-<style>
+<style>.exam-panel{margin:0 0 18px;padding:20px;background:#fffdf7;border:1px solid var(--line);border-radius:18px}.exam-panel h3{margin:0 0 6px;color:var(--forest)}.exam-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.exam-tabs button{border:1px solid #d5e3d7;background:#eaf2eb;color:#245649;border-radius:10px;padding:8px 11px;font-weight:850;cursor:pointer}.exam-tabs button.active{background:var(--green);color:#fff}.exam-q{padding:14px 0;border-top:1px solid #e5ebe5}.exam-q:first-child{border-top:0}.exam-q p{margin:0 0 8px;font-weight:750}.exam-q label{display:block;margin:6px 0;font-size:13px}.exam-answer{display:none;margin-top:9px;padding:10px;border-radius:10px;background:#eef4ef;color:#245649;font-size:12px}.exam-check{margin-top:14px;border:0;border-radius:10px;padding:10px 14px;background:var(--green);color:#fff;font-weight:900;cursor:pointer}.exam-score{margin-top:12px;font-weight:900;color:var(--forest)}
 :root{--forest:#183b36;--green:#176b5b;--gold:#e8a34b;--paper:#f7f3eb;--ink:#20342e;--muted:#68746d;--line:#e1e5db}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:85px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.6}
 a{text-decoration:none;color:inherit}.topbar{position:sticky;top:0;z-index:20;background:#faf8f1ee;backdrop-filter:blur(14px);border-bottom:1px solid #e4dfd2}
@@ -28,7 +28,7 @@ main{max-width:1200px;margin:auto;padding:30px 5% 70px}.toolbar{display:grid;gri
 <main>
 <div class="toolbar"><input id="search" type="search" placeholder="Search course or resource..." aria-label="Search course resources"><select id="type"><option value="">All resource types</option><option value="notes">Notes</option><option value="books">Books</option><option value="videos">Videos</option><option value="docs">Documents</option><option value="policies">Course Policies</option><option value="pastpapers">Past Papers</option></select></div>
 <div id="courseHead" class="course-head"><h2>Loading resources...</h2><span class="badge">Open learning</span></div>
-<section id="studyNote" class="study-note" style="display:none"></section><div id="resources" class="resource-grid"></div><div id="empty" class="empty">No matching resource found. Try another keyword.</div>
+<section id="studyNote" class="study-note" style="display:none"></section><section id="examPanel" class="exam-panel"><h3>📝 Exam Practice</h3><p>Test your Mineral Processing knowledge with MCQs, short answers and calculations.</p><div class="exam-tabs"><button type="button" class="exam-tab active" data-exam="mcq">MCQs</button><button type="button" class="exam-tab" data-exam="short">Short Answer</button><button type="button" class="exam-tab" data-exam="calc">Calculations</button></div><div id="examContent"></div></section><div id="resources" class="resource-grid"></div><div id="empty" class="empty">No matching resource found. Try another keyword.</div>
 <div class="notice"><b>Why these links?</b> The portal links students to legitimate open or official learning sources instead of re-uploading copyrighted books and videos. MIT OpenCourseWare publishes free course materials, while OpenStax provides free openly licensed textbooks; NPTEL provides extensive university-level engineering and mineral-processing lectures. </div>
 <div class="subgrid">
 <div class="mini"><strong>📚 Books & textbooks</strong><span>OpenStax, MIT and other reputable academic collections.</span></div>
@@ -149,6 +149,38 @@ const item=data[course];const studyNotes={
 "Dewatering":{"title":"Dewatering","summary":"Dewatering reduces the water content of mineral-processing products and tailings.","points":["Thickening increases the concentration of solids in a slurry.","Filtration can reduce moisture further and produce a filter cake.","Dewatering improves handling, transport and downstream processing."]},
 "Ore Characterization":{"title":"Ore Characterization","summary":"Ore characterization provides the information needed to choose and control a mineral-processing flowsheet.","points":["Important properties include mineralogy, head grade, particle-size distribution, hardness and liberation.","Sampling should be representative so testwork and plant decisions are based on reliable data.","Characterization helps determine the most appropriate separation method."]}
 }};
+const examSets={
+mcq:[
+{q:"Which operation primarily reduces ore particle size?",o:["Flotation","Dewatering","Comminution","Thickening"],a:2,e:"Comminution includes crushing and grinding, whose main purpose is size reduction and liberation."},
+{q:"What property is mainly exploited by gravity separation?",o:["Density difference","Electrical conductivity","Colour","Magnetic susceptibility"],a:0,e:"Gravity separation exploits differences in density between particles."},
+{q:"What is the main purpose of a collector in flotation?",o:["Increase ore hardness","Promote attachment of selected particles to bubbles","Remove all water","Increase particle size"],a:1,e:"Collectors modify selected mineral surfaces to promote attachment to air bubbles."},
+{q:"What does recovery measure?",o:["Only particle size","The fraction of valuable material recovered to the desired product","Water content only","Equipment capacity"],a:1,e:"Recovery compares valuable material reporting to the desired product with valuable material in the feed."},
+{q:"Which operation mainly reduces water content of a slurry?",o:["Dewatering","Crushing","Screening","Flotation"],a:0,e:"Thickening and filtration are common dewatering operations."}
+],
+short:[
+{q:"Define mineral liberation in mineral processing.",a:"Liberation is the degree to which valuable mineral particles have been separated from associated gangue, sufficiently for the intended separation process.",e:"A good answer connects liberation with separation performance."},
+{q:"Give two factors that influence flotation performance.",a:"Examples include mineralogy, liberation, particle size, reagent conditions, pulp chemistry and aeration.",e:"Any two relevant factors can earn credit when correctly explained."},
+{q:"Differentiate grade from recovery.",a:"Grade describes the concentration of the valuable component in a stream, while recovery describes the fraction of valuable material from the feed that reports to the desired product.",e:"They are related but measure different aspects of separation performance."}
+],
+calc:[
+{q:"A plant treats 100 t of feed containing 2.0% valuable mineral. It produces 8 t of concentrate grading 20%. Calculate the recovery.",a:"Valuable mineral in feed = 100 × 0.02 = 2.0 t. Valuable mineral in concentrate = 8 × 0.20 = 1.6 t. Recovery = (1.6 ÷ 2.0) × 100 = 80%.",e:"Recovery = (C × c) / (F × f) × 100."},
+{q:"Using the same 100 t feed and 8 t concentrate, calculate mass yield.",a:"Mass yield = (concentrate mass ÷ feed mass) × 100 = (8 ÷ 100) × 100 = 8%.",e:"Mass yield describes the proportion of feed mass reporting to the product."},
+{q:"A feed contains 1.5% metal and the concentrate contains 15% metal. If 10 t of concentrate is produced from 100 t feed, calculate metal recovery.",a:"Metal in feed = 100 × 0.015 = 1.5 t. Metal in concentrate = 10 × 0.15 = 1.5 t. Recovery = (1.5 ÷ 1.5) × 100 = 100%. This simplified result indicates that the stated numbers leave no valuable metal in other streams, so the data should be checked against the tailings assay before being treated as a realistic plant result.",e:"Always check a calculated recovery against the complete material and metal balance."}
+]
+};
+function renderExam(kind){
+ const items=examSets[kind]||[];
+ document.getElementById("examContent").innerHTML=items.map((x,i)=>{
+  if(kind==="mcq") return "<div class='exam-q'><p>"+(i+1)+". "+x.q+"</p>"+x.o.map((o,j)=>"<label><input type='radio' name='eq"+i+"' value='"+j+"'> "+o+"</label>").join("")+"<div class='exam-answer' id='ea"+i+"'><strong>Answer:</strong> "+x.o[x.a]+" — "+x.e+"</div></div>";
+  return "<div class='exam-q'><p>"+(i+1)+". "+x.q+"</p><button type='button' class='exam-check' data-show='"+i+"'>Show model answer</button><div class='exam-answer' id='ea"+i+"'><strong>Model answer:</strong> "+x.a+"<br><strong>Why:</strong> "+x.e+"</div></div>";
+ }).join("")+(kind==="mcq"?"<button type='button' class='exam-check' id='checkExam'>Check MCQs</button><div class='exam-score' id='examScore'></div>":"");
+ if(kind==="mcq") document.getElementById("checkExam").onclick=()=>{
+  let score=0;items.forEach((x,i)=>{const v=document.querySelector("input[name='eq"+i+"']:checked");if(v&&Number(v.value)===x.a)score++;document.getElementById("ea"+i).style.display="block"});document.getElementById("examScore").textContent="Score: "+score+" / "+items.length;
+ };
+ document.querySelectorAll("[data-show]").forEach(b=>b.onclick=()=>document.getElementById("ea"+b.dataset.show).style.display="block");
+}
+renderExam("mcq");
+document.querySelectorAll(".exam-tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".exam-tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderExam(b.dataset.exam)});
 const topicKeywords={
 "Comminution":["comminution","crushing","grinding","size reduction"],
 "Screening & Classification":["screening","classification","sizing","hydrocyclone"],
