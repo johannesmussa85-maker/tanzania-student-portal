@@ -419,4 +419,62 @@ document.getElementById("prev").href="course-resources.html?course="+encodeURICo
 document.getElementById("next").href="course-resources.html?course="+encodeURIComponent(next);
 render();
 </script>
-</body></html>
+</body></html
+// Full lesson expansion for every non-Mineral-Processing course.
+// The original topic notes remain the source material; this layer adds structured teaching depth.
+function buildFullLesson(course,topic,note){
+ const p=note.points||[];
+ const joined=p.join(" ");
+ const discipline={
+  "Mining Engineering":"mining operations, orebody conditions, equipment, productivity, safety and environmental control",
+  "Civil Engineering":"engineering design, materials, loads, construction conditions, measurements and public safety",
+  "Electrical Engineering":"electrical systems, circuit behaviour, equipment, measurements, protection and safe operation",
+  "Mechanical Engineering":"mechanical systems, forces, energy, materials, machines, manufacturing and maintenance",
+  "Computer Science":"algorithms, data, software, computational thinking, system design and performance",
+  "Computer Applications":"digital productivity, information organization, office software, data handling and effective communication",
+  "Information & Communication Technology (ICT)":"information systems, networks, digital services, data, security and organizational needs",
+  "Computer Engineering":"hardware, digital systems, processors, embedded devices, communication and system integration",
+  "Business & Finance":"organizations, markets, finance, customers, resources, risk and decision-making",
+  "Health Sciences":"human health, biological processes, prevention, assessment and evidence-based practice",
+  "Education":"learners, teaching, curriculum, assessment, classroom practice and educational improvement",
+  "Agriculture":"crop and animal production, soil, water, farm resources, markets and sustainable productivity",
+  "Law & Social Sciences":"legal rules, institutions, society, evidence, rights, governance and social behaviour",
+  "Tourism & Hospitality":"visitors, destinations, hospitality operations, service quality, markets and sustainable tourism"
+ }[course]||"the main concepts, processes and professional practices of this field";
+ const application={
+  "Mining Engineering":"mine planning and production decisions",
+  "Civil Engineering":"construction and infrastructure projects",
+  "Electrical Engineering":"power, control and electrical installations",
+  "Mechanical Engineering":"machines, equipment and industrial systems",
+  "Computer Science":"software and computational problem solving",
+  "Computer Applications":"academic and workplace digital tasks",
+  "Information & Communication Technology (ICT)":"organizational information and communication systems",
+  "Computer Engineering":"computer hardware and integrated systems",
+  "Business & Finance":"business planning and financial decision-making",
+  "Health Sciences":"health education, assessment and service delivery",
+  "Education":"lesson planning, teaching and learner assessment",
+  "Agriculture":"farm production and resource management",
+  "Law & Social Sciences":"legal analysis, policy and social research",
+  "Tourism & Hospitality":"destination and hospitality operations"
+ }[course]||"professional practice";
+ const calculationTopics=/balance|accounting|finance|statistics|measurement|survey|circuit|power|energy|thermodynamic|mechanic|econom|cost|rate|data|assessment|production|irrigation|soil|yield|tourism economics/i.test(topic);
+ return [
+  "The topic focuses on "+topic+" within "+course+". It should be understood as part of "+discipline+". Start by identifying the problem the topic is designed to solve, the main terms used in the subject, and how the topic connects to the topics studied before and after it.",
+  p.map((x,i)=>"<p><b>Key idea "+(i+1)+":</b> "+x+" In practice, this means the student should identify the relevant conditions, explain why the principle matters, and describe what would change if an important variable or assumption changed.</p>").join(""),
+  "<p><b>Step-by-step study approach:</b> First define the problem or objective. Second identify the inputs, conditions and constraints. Third select the appropriate principle, method or procedure. Fourth evaluate the result using evidence or accepted criteria. Finally explain what the result means for "+application+".</p><p>A strong answer should not only state a definition. It should show the relationship between cause and effect, distinguish similar concepts, and justify why a particular method is appropriate.</p>",
+  "<p><b>Worked example:</b> Imagine a realistic "+course+" situation involving "+topic+". A student should identify the available information, state the relevant principle, work through the decision or process in a logical order, and then check whether the outcome is reasonable. Where measurements or numerical data are available, units and assumptions must be stated.</p><p>This approach can also be used in laboratory, field or case-study questions: describe the situation, identify the variable or issue, apply the concept, interpret the observation and state the conclusion.</p>",
+  "<p><b>Applications:</b> Knowledge of "+topic+" is useful in "+application+". It can support planning, troubleshooting, design, analysis, reporting or decision-making depending on the programme. Students should connect classroom theory with a real professional situation and explain what information would be needed before applying the concept.</p><p><b>Professional judgement:</b> Real systems rarely behave under perfectly ideal conditions. Costs, available equipment, human factors, safety, environmental conditions, regulations, data quality and uncertainty may affect the final decision.</p>",
+  "<p><b>Advantages:</b> A systematic understanding of "+topic+" helps students organize information, choose appropriate methods and explain decisions clearly. It also provides a basis for comparing alternatives and improving performance.</p><p><b>Limitations:</b> Results can be affected by assumptions, incomplete information, measurement errors, unsuitable methods, resource constraints or changing operating conditions. A good student should state important assumptions instead of presenting every result as universally valid.</p>",
+  calculationTopics
+   ? "<p><b>Calculation/problem-solving method:</b> Write the given data first. Identify the unknown quantity. Select the relevant equation or relationship. Convert units if necessary. Substitute the values step by step, show the units, calculate the result and interpret what the number means. Finally perform a reasonableness check.</p><p>Even when a question is mainly theoretical, a short numerical or data-based example can demonstrate whether the student understands how the concept is applied.</p>"
+   : "<p><b>Problem-solving method:</b> Identify the issue, list the relevant facts, define the terms, select the appropriate principle or framework, apply it step by step and justify the conclusion. If two approaches are possible, compare their assumptions, strengths and limitations before choosing one.</p>",
+  "<p><b>Key terms to revise:</b> "+p.map(x=>x.split(/[.;,]/)[0]).join(", ")+". Learn each term together with its meaning, purpose and an example rather than memorising isolated words.</p><p><b>Exam practice:</b> 1) Define "+topic+" and explain its importance. 2) Describe its main principles or stages. 3) Give a practical example. 4) Compare two related approaches. 5) Discuss advantages and limitations. 6) Solve or analyse a short course-related problem involving the topic.</p>"
+ ];
+}
+Object.entries(studyNotes).forEach(([course,topics])=>{
+ if(course==="Mineral Processing") return;
+ Object.entries(topics).forEach(([topic,note])=>{
+   note.detail=buildFullLesson(course,topic,note);
+ });
+});
+>
