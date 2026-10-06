@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Academic Studio — a focused workspace for learning, revision, planning and academic progress.">
+<title>Academic Studio | Digital Professional & Academic Studio</title>
+<style>
+:root{--forest:#153b35;--green:#176b5b;--lime:#b9d88a;--cream:#f7f3eb;--ink:#1d302b;--muted:#68756f;--line:#dfe6df;--white:#fff;--gold:#e8a34b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.6}a{text-decoration:none;color:inherit}button,input,select{font:inherit}
+.nav{position:sticky;top:0;z-index:20;background:#153b35f2;backdrop-filter:blur(12px);color:#fff;border-bottom:1px solid #ffffff18}.navin{max-width:1200px;margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{font-weight:950;letter-spacing:-.03em}.brand span{color:var(--lime)}.links{display:flex;gap:7px;flex-wrap:wrap}.links a{font-size:11px;font-weight:800;padding:8px 10px;border-radius:9px;color:#dfece7}.links a:hover,.links a.active{background:#ffffff12;color:#fff}
+.wrap{max-width:1200px;margin:auto;padding:28px 22px 70px}.hero{position:relative;overflow:hidden;border-radius:28px;padding:42px clamp(24px,5vw,60px);color:#fff;background:linear-gradient(120deg,#12342f,#176b5b 65%,#285f4d);box-shadow:0 22px 50px #163b351f}.hero:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff22;border-radius:50%;right:-100px;top:-130px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff05}.eyebrow{font-size:11px;letter-spacing:.16em;font-weight:900;color:#cfe7b0;text-transform:uppercase}.hero h1{font-size:clamp(35px,6vw,62px);line-height:1.02;letter-spacing:-.055em;max-width:760px;margin:11px 0}.hero p{max-width:720px;color:#e0ece7;font-size:14px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.btn{display:inline-flex;border:0;border-radius:11px;padding:11px 15px;font-size:12px;font-weight:900;cursor:pointer}.primary{background:#d7edb4;color:#19372f}.light{background:#ffffff12;border:1px solid #ffffff38;color:#fff}
+.section{margin-top:34px}.head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:15px}.head h2{margin:0;font-size:25px;letter-spacing:-.04em}.head p{margin:4px 0 0;color:var(--muted);font-size:12px}.search{width:min(330px,100%);border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 13px;outline:none}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:20px;transition:.18s}.card:hover{transform:translateY(-3px);box-shadow:0 13px 28px #173b3510}.icon{width:47px;height:47px;display:grid;place-items:center;border-radius:14px;background:#e9f3df;font-size:22px;margin-bottom:14px}.card h3{margin:0 0 7px;font-size:17px}.card p{margin:0 0 14px;color:var(--muted);font-size:12px;line-height:1.7}.card button,.card a.link{display:inline-flex;border:1px solid #d6e3d8;background:#f3f8f1;color:#225548;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:900;cursor:pointer}.card.hidden{display:none}
+.workspace{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:15px}.panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}.panel h3{margin:0 0 5px;font-size:19px}.muted{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:17px 0}.tab{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:850;cursor:pointer;color:#66736d}.tab.active{background:var(--green);border-color:var(--green);color:#fff}.studybox{display:none}.studybox.active{display:block}.form{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field.full{grid-column:1/-1}.field label{display:block;font-size:11px;font-weight:850;margin-bottom:5px}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;color:var(--ink)}.plan{margin-top:15px;border:1px dashed #cbd9ce;border-radius:14px;padding:15px;background:#f8fbf6}.plan strong{font-size:12px}.plan ol{margin:8px 0 0;padding-left:19px;font-size:12px;color:#52635c}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:15px}.stat{padding:12px;border-radius:13px;background:#f5f8f4}.stat b{display:block;font-size:20px;color:var(--forest)}.stat span{font-size:10px;color:var(--muted);font-weight:800}.sideitem{padding:12px 0;border-top:1px solid var(--line);font-size:12px}.sideitem:first-child{border-top:0}.sideitem b{display:block;margin-bottom:3px}.sideitem span{color:var(--muted);font-size:11px}.footer{text-align:center;margin-top:40px;color:#7a857f;font-size:11px}
+@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}.workspace{grid-template-columns:1fr}.links a:nth-child(n+5){display:none}}@media(max-width:600px){.wrap{padding:18px 14px 55px}.navin{padding:11px 14px}.grid,.form{grid-template-columns:1fr}.hero{padding:30px 22px;border-radius:22px}.hero h1{font-size:39px}.head{display:block}.search{margin-top:12px}.stats{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="navin"><a class="brand" href="index.html">Digital <span>Studio</span></a><div class="links"><a href="index.html">Home</a><a class="active" href="academic-studio.html">Academic</a><a href="ai-studio.html">AI Studio</a><a href="courses.html">Courses</a><a href="opportunities.html">Opportunities</a><a href="dashboard.html">Workspace</a></div></div></nav>
+
+<main class="wrap">
+<section class="hero">
+<div class="eyebrow">Academic Studio</div>
+<h1>Build a better study system, not just a bigger pile of notes.</h1>
+<p>Plan your learning, explore academic pathways, practise concepts, track progress and use AI when you need deeper guidance.</p>
+<div class="actions"><a class="btn primary" href="#workspace">Start a study plan</a><a class="btn light" href="ai-studio.html">Ask AI Studio</a></div>
+</section>
+
+<section class="section">
+<div class="head"><div><h2>Academic tools</h2><p>Choose the workflow that matches what you need right now.</p></div><input class="search" id="toolSearch" placeholder="Search academic tools..." aria-label="Search academic tools"></div>
+<div class="grid" id="toolGrid">
+<article class="card" data-key="course explorer subjects programs academic"><div class="icon">🎓</div><h3>Course Explorer</h3><p>Explore study areas and jump into the existing course library without changing its legacy structure.</p><a class="link" href="courses.html">Explore courses</a></article>
+<article class="card" data-key="study planner plan timetable learning"><div class="icon">🗓️</div><h3>Study Planner</h3><p>Turn a goal into weekly study blocks with clear priorities and realistic milestones.</p><button onclick="showTab('planner')">Create plan</button></article>
+<article class="card" data-key="exam practice questions revision quiz"><div class="icon">🧠</div><h3>Exam Practice</h3><p>Practise concepts, calculations and short-answer thinking instead of relying on passive reading.</p><button onclick="showTab('practice')">Start practice</button></article>
+<article class="card" data-key="academic skills research writing citation"><div class="icon">✍️</div><h3>Academic Skills</h3><p>Improve academic writing, research thinking, referencing, presentation and study techniques.</p><a class="link" href="ai-studio.html">Get guidance</a></article>
+<article class="card" data-key="degree pathway university admissions"><div class="icon">🧭</div><h3>Academic Pathways</h3><p>Connect your interests to programmes, institutions and future academic opportunities.</p><a class="link" href="university.html">Explore pathways</a></article>
+<article class="card" data-key="progress goals workspace dashboard"><div class="icon">📈</div><h3>Progress Hub</h3><p>Keep your academic goals visible and connect them with your wider Digital Studio workspace.</p><a class="link" href="dashboard.html">Open workspace</a></article>
+</div>
+</section>
+
+<section class="section" id="workspace">
+<div class="head"><div><h2>My academic workspace</h2><p>A simple starting point for turning intentions into actions.</p></div></div>
+<div class="workspace">
+<div class="panel">
+<h3>What are you working on?</h3><div class="muted">Choose a mode and generate a practical starting plan.</div>
+<div class="tabs"><button class="tab active" data-tab="planner" onclick="showTab('planner')">Study Planner</button><button class="tab" data-tab="practice" onclick="showTab('practice')">Exam Practice</button><button class="tab" data-tab="skills" onclick="showTab('skills')">Academic Skills</button></div>
+<div class="studybox active" id="planner">
+<div class="form"><div class="field"><label>Subject / course</label><input id="subject" placeholder="e.g. Mineral Processing"></div><div class="field"><label>Target</label><input id="target" placeholder="e.g. Prepare for final exam"></div><div class="field"><label>Time available</label><select id="time"><option>7 days</option><option>14 days</option><option>30 days</option></select></div><div class="field"><label>Daily study time</label><select id="hours"><option>1 hour</option><option>2 hours</option><option>3 hours</option><option>4+ hours</option></select></div></div>
+<button class="btn primary" style="margin-top:14px" onclick="generatePlan()">Generate study plan</button><div class="plan" id="plan">Your study plan will appear here.</div>
+</div>
+<div class="studybox" id="practice"><div class="plan"><strong>Exam Practice Workflow</strong><ol><li>Choose one topic you can explain poorly or confidently.</li><li>Ask AI Studio for concept questions or calculations.</li><li>Attempt the questions before checking explanations.</li><li>Record weak areas and revisit them in your study plan.</li></ol></div><a class="btn primary" href="ai-studio.html">Open AI practice in AI Studio</a></div>
+<div class="studybox" id="skills"><div class="plan"><strong>Academic Skills Path</strong><ol><li>Define the assignment or research objective.</li><li>Build a clear structure before writing.</li><li>Use credible sources and track references.</li><li>Review clarity, evidence and originality before submission.</li></ol></div><a class="btn primary" href="ai-studio.html">Get academic guidance</a></div>
+</div>
+<aside class="panel"><h3>Academic focus</h3><p class="muted">Keep the system simple and measurable.</p><div class="stats"><div class="stat"><b>1</b><span>main goal</span></div><div class="stat"><b>3</b><span>next actions</span></div><div class="stat"><b>7</b><span>day cycle</span></div></div><div class="sideitem"><b>Learn actively</b><span>Explain, practise, retrieve and apply.</span></div><div class="sideitem"><b>Use AI as a mentor</b><span>Ask for explanations and feedback, not blind answers.</span></div><div class="sideitem"><b>Keep evidence</b><span>Connect projects, skills and achievements to your workspace.</span></div></aside>
+</div>
+</section>
+<footer class="footer">Academic Studio · Digital Professional & Academic Studio · Learn • Research • Build • Work • Grow</footer>
+</main>
+<script>
+function showTab(name){document.querySelectorAll('.studybox').forEach(x=>x.classList.remove('active'));document.getElementById(name).classList.add('active');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));document.getElementById('workspace').scrollIntoView({behavior:'smooth',block:'start'})}
+function generatePlan(){const s=document.getElementById('subject').value.trim()||'your subject';const t=document.getElementById('target').value.trim()||'improve your understanding';const days=document.getElementById('time').value;const hours=document.getElementById('hours').value;document.getElementById('plan').innerHTML='<strong>'+s+' — '+t+'</strong><ol><li>Day 1: Map the syllabus and identify your 3 weakest areas.</li><li>Days 2–4: Study one priority topic per session and explain it in your own words.</li><li>Days 5–6: Practise questions, calculations or application tasks.</li><li>Day 7: Do a timed review, analyse mistakes and update your next cycle.</li></ol><small>Plan length: '+days+' · Daily target: '+hours+'</small>'}
+document.getElementById('toolSearch').addEventListener('input',e=>{const q=e.target.value.toLowerCase();document.querySelectorAll('#toolGrid .card').forEach(c=>c.classList.toggle('hidden',q&&!c.dataset.key.includes(q)))});
+</script>
+</body>
+</html>
