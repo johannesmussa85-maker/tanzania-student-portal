@@ -493,7 +493,7 @@ function render(){
  document.getElementById("empty").style.display=list.length?"none":"block";
 }
 document.getElementById("search").addEventListener("input",render);document.getElementById("type").addEventListener("change",render);
-if(topics.length) showStudyNote(topics[0]);
+showStudyNote();
 document.querySelectorAll(".topic").forEach(btn=>btn.addEventListener("click",()=>{
  const topic=btn.dataset.topic;
  showStudyNote(topic);
