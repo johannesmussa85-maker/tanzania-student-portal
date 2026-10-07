@@ -1,11 +1,11 @@
 {
-  "name": "Tanzania Student Portal",
-  "short_name": "Student Portal",
-  "description": "Study resources, past papers, digital library and career tools for students in Tanzania.",
+  "name": "DIGITSL PROFFESIONAL & ACADEMIC STUDIO",
+  "short_name": "DIGITSL STUDIO",
+  "description": "A global digital workspace for learning, research, projects, careers and professional growth.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f7f3eb",
-  "theme_color": "#0f172a",
+  "background_color": "#f7f4eb",
+  "theme_color": "#0b3d2e",
   "lang": "en"
 }
