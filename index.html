@@ -5,6 +5,7 @@
 <meta name="description" content="Digital Professional & Academic Studio — a global workspace for learning, research, projects, careers and professional growth.">
 <meta name="theme-color" content="#0b3d2e"><title>Digital Professional & Academic Studio</title>
 <link rel="icon" href="favicon.svg">
+<link rel="manifest" href="manifest.webmanifest">
 <style>
 :root{--forest:#0b3d2e;--green:#176b4f;--lime:#d7f36b;--cream:#f7f4eb;--paper:#fffdf8;--ink:#17352b;--muted:#65756d;--line:#e1e8e0}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.55}a{text-decoration:none;color:inherit}
@@ -37,4 +38,5 @@ footer{background:#082f23;color:#aac4b8;padding:40px 5%;font-size:12px;text-alig
 <section id="global"><div class="global"><div class="globalin"><div class="kicker">Built for a global community</div><h2>Learn, create and grow from anywhere.</h2><p>Designed to support different fields, careers, countries and professional journeys.</p><div class="stats"><div class="stat"><b>Global</b><span>Designed beyond borders</span></div><div class="stat"><b>Multi-field</b><span>Academic + professional</span></div><div class="stat"><b>AI-first</b><span>Guidance when you need it</span></div></div></div></div></section>
 </main><footer><b>Digital Professional & Academic Studio</b><br>Learn • Research • Build • Work • Grow · © 2026</footer>
 <script>function startGoal(){const q=document.getElementById("goal").value.toLowerCase();if(q.includes("cv")||q.includes("resume")||q.includes("job")||q.includes("career"))location.href="career-intelligence.html";else if(q.includes("course")||q.includes("study")||q.includes("academic"))location.href="academic-studio.html";else location.href="ai-studio.html"}</script>
+<script>if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(() => {})); }</script>
 </body></html>
