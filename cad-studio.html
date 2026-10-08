@@ -1,0 +1,2929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b3d2e">
+<meta name="description" content="DIGITSL CAD Studio — modern browser-based engineering drawing and CAD workspace.">
+
+<title>CAD Studio | DIGITSL PROFFESIONAL & ACADEMIC STUDIO</title>
+
+<style>
+:root{
+  --forest:#0b3d2e;
+  --green:#176b4f;
+  --green2:#21815f;
+  --gold:#f4c95d;
+  --gold2:#dcae36;
+  --ink:#14362d;
+  --muted:#718078;
+  --bg:#eef2ec;
+  --panel:#fffdf8;
+  --line:#d8e1da;
+  --canvas:#fafcf9;
+  --danger:#b83a3a;
+  --shadow:0 12px 35px rgba(11,61,46,.10);
+  --radius:16px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+}
+
+button,
+select,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:64px 1fr 30px;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+  background:linear-gradient(135deg,var(--forest),#082c22);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 5px 20px rgba(0,0,0,.15);
+  z-index:20;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:230px;
+}
+
+.brand-logo{
+  width:38px;
+  height:38px;
+  border-radius:11px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--gold),#fff0a7);
+  color:var(--forest);
+  font-weight:900;
+  box-shadow:0 5px 15px rgba(244,201,93,.2);
+}
+
+.brand-text strong{
+  display:block;
+  font-size:14px;
+  letter-spacing:.3px;
+}
+
+.brand-text span{
+  display:block;
+  font-size:11px;
+  color:#b9cec5;
+  margin-top:2px;
+}
+
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.top-btn{
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  color:white;
+  border-radius:9px;
+  padding:8px 11px;
+  font-size:12px;
+  transition:.2s;
+}
+
+.top-btn:hover{
+  background:rgba(255,255,255,.14);
+  transform:translateY(-1px);
+}
+
+.top-btn.gold{
+  background:var(--gold);
+  color:var(--forest);
+  border-color:var(--gold);
+  font-weight:800;
+}
+
+/* ================= MAIN ================= */
+
+.workspace{
+  min-height:0;
+  display:grid;
+  grid-template-columns:62px 245px minmax(400px,1fr) 250px;
+  gap:0;
+  overflow:hidden;
+}
+
+/* ================= TOOL RAIL ================= */
+
+.tool-rail{
+  background:#092f24;
+  border-right:1px solid rgba(255,255,255,.06);
+  padding:9px 7px;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.tool{
+  width:48px;
+  min-height:45px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#c3d6cf;
+  border-radius:10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+  font-size:10px;
+  transition:.2s;
+}
+
+.tool span:first-child{
+  font-size:18px;
+}
+
+.tool:hover{
+  background:rgba(255,255,255,.08);
+  color:white;
+}
+
+.tool.active{
+  background:var(--gold);
+  color:var(--forest);
+  font-weight:800;
+  box-shadow:0 5px 12px rgba(244,201,93,.16);
+}
+
+.tool-separator{
+  height:1px;
+  background:rgba(255,255,255,.08);
+  margin:3px 4px;
+}
+
+/* ================= LEFT PANEL ================= */
+
+.left-panel,
+.right-panel{
+  background:var(--panel);
+  border-right:1px solid var(--line);
+  min-width:0;
+  overflow:auto;
+}
+
+.right-panel{
+  border-right:0;
+  border-left:1px solid var(--line);
+}
+
+.panel-section{
+  padding:15px;
+  border-bottom:1px solid var(--line);
+}
+
+.panel-title{
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.7px;
+  margin-bottom:11px;
+  color:var(--forest);
+}
+
+.field{
+  margin-bottom:10px;
+}
+
+.field label{
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.field input,
+.field select{
+  width:100%;
+  border:1px solid var(--line);
+  background:white;
+  color:var(--ink);
+  border-radius:8px;
+  padding:8px 9px;
+  outline:none;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(23,107,79,.08);
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.check{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  font-size:11px;
+  margin:8px 0;
+  color:var(--ink);
+}
+
+.check input{
+  accent-color:var(--green);
+}
+
+/* ================= LAYERS ================= */
+
+.layer{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:8px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  margin-bottom:7px;
+  background:white;
+  font-size:11px;
+}
+
+.layer-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--green);
+}
+
+.layer.active{
+  border-color:var(--gold2);
+  background:#fffaf0;
+}
+
+.layer-name{
+  flex:1;
+  font-weight:700;
+}
+
+.layer-actions{
+  display:flex;
+  gap:3px;
+}
+
+.layer-actions button{
+  border:0;
+  background:transparent;
+  padding:3px;
+  font-size:12px;
+}
+
+/* ================= BUTTONS ================= */
+
+.action-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.action{
+  border:1px solid var(--line);
+  background:white;
+  border-radius:9px;
+  padding:9px 7px;
+  color:var(--ink);
+  font-size:11px;
+  font-weight:700;
+  transition:.2s;
+}
+
+.action:hover{
+  border-color:var(--green);
+  background:#f5faf7;
+}
+
+.action.primary{
+  background:var(--forest);
+  color:white;
+  border-color:var(--forest);
+}
+
+.action.gold{
+  background:#fff6d7;
+  border-color:#e7c96d;
+}
+
+/* ================= CANVAS AREA ================= */
+
+.canvas-area{
+  min-width:0;
+  min-height:0;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  background:#dfe6e0;
+}
+
+.canvas-toolbar{
+  min-height:46px;
+  background:white;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 9px;
+  overflow:auto;
+}
+
+.canvas-tool{
+  white-space:nowrap;
+  border:1px solid var(--line);
+  background:white;
+  border-radius:8px;
+  padding:7px 10px;
+  font-size:11px;
+  color:var(--ink);
+}
+
+.canvas-tool:hover{
+  border-color:var(--green);
+}
+
+.canvas-info{
+  margin-left:auto;
+  display:flex;
+  gap:12px;
+  font-size:10px;
+  color:var(--muted);
+  white-space:nowrap;
+}
+
+.canvas-wrap{
+  position:relative;
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+  background:#dfe6e0;
+}
+
+#cadCanvas{
+  width:100%;
+  height:100%;
+  display:block;
+  background:var(--canvas);
+  user-select:none;
+  touch-action:none;
+}
+
+.crosshair{
+  pointer-events:none;
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-left:1px solid var(--green);
+  border-top:1px solid var(--green);
+  display:none;
+}
+
+/* ================= RIGHT PROPERTIES ================= */
+
+.property-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.property{
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:8px;
+  background:white;
+}
+
+.property small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  margin-bottom:3px;
+}
+
+.property strong{
+  font-size:12px;
+}
+
+.empty{
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.5;
+  background:#f6f8f5;
+  border:1px dashed var(--line);
+  padding:11px;
+  border-radius:9px;
+}
+
+/* ================= STATUS ================= */
+
+.statusbar{
+  background:#082c22;
+  color:#b8cbc3;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 12px;
+  font-size:10px;
+}
+
+.status-left,
+.status-right{
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+  background:#58c58d;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:5px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(4,24,18,.58);
+  backdrop-filter:blur(5px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:100;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(620px,100%);
+  background:var(--panel);
+  border-radius:18px;
+  box-shadow:0 30px 80px rgba(0,0,0,.28);
+  overflow:hidden;
+}
+
+.modal-head{
+  background:var(--forest);
+  color:white;
+  padding:15px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal-head strong{
+  font-size:14px;
+}
+
+.close{
+  background:transparent;
+  border:0;
+  color:white;
+  font-size:20px;
+}
+
+.modal-body{
+  padding:18px;
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  padding:14px 18px;
+  border-top:1px solid var(--line);
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:1100px){
+  .workspace{
+    grid-template-columns:58px 220px minmax(350px,1fr);
+  }
+
+  .right-panel{
+    display:none;
+  }
+}
+
+@media(max-width:760px){
+  .app{
+    grid-template-rows:auto 1fr 28px;
+  }
+
+  .topbar{
+    min-height:64px;
+    height:auto;
+    padding:8px 10px;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    min-width:auto;
+  }
+
+  .brand-text span{
+    display:none;
+  }
+
+  .top-actions{
+    width:100%;
+    justify-content:flex-start;
+    overflow:auto;
+  }
+
+  .workspace{
+    grid-template-columns:52px 1fr;
+  }
+
+  .left-panel{
+    display:none;
+  }
+
+  .tool{
+    width:40px;
+    min-height:43px;
+  }
+
+  .canvas-toolbar{
+    overflow-x:auto;
+  }
+
+  .canvas-info{
+    display:none;
+  }
+
+  .status-right{
+    display:none;
+  }
+}
+
+@media(max-width:480px){
+  .brand-text strong{
+    font-size:12px;
+  }
+
+  .top-btn{
+    padding:7px 8px;
+    font-size:10px;
+  }
+
+  .workspace{
+    grid-template-columns:48px 1fr;
+  }
+
+  .tool{
+    width:36px;
+  }
+}
+
+/* ================= PRINT ================= */
+
+@media print{
+  .topbar,
+  .tool-rail,
+  .left-panel,
+  .right-panel,
+  .canvas-toolbar,
+  .statusbar{
+    display:none!important;
+  }
+
+  .app,
+  .workspace,
+  .canvas-area,
+  .canvas-wrap{
+    display:block;
+    height:100%;
+    width:100%;
+  }
+
+  #cadCanvas{
+    width:100%;
+    height:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+
+  <div class="brand">
+    <div class="brand-logo">CAD</div>
+    <div class="brand-text">
+      <strong>DIGITSL CAD STUDIO</strong>
+      <span>Engineering Design & Technical Drawing Workspace</span>
+    </div>
+  </div>
+
+  <div class="top-actions">
+    <button class="top-btn" onclick="newDrawing()">＋ New</button>
+    <button class="top-btn" onclick="saveProject()">Save</button>
+    <button class="top-btn" onclick="openProject()">Open</button>
+    <button class="top-btn" onclick="exportSVG()">SVG</button>
+    <button class="top-btn" onclick="exportDXF()">DXF</button>
+    <button class="top-btn gold" onclick="printDrawing()">Print / PDF</button>
+  </div>
+
+</header>
+
+<main class="workspace">
+
+<!-- TOOL RAIL -->
+
+<aside class="tool-rail">
+
+  <button class="tool active" data-tool="select" onclick="setTool('select')">
+    <span>↖</span>
+    <span>Select</span>
+  </button>
+
+  <button class="tool" data-tool="line" onclick="setTool('line')">
+    <span>╱</span>
+    <span>Line</span>
+  </button>
+
+  <button class="tool" data-tool="rectangle" onclick="setTool('rectangle')">
+    <span>□</span>
+    <span>Rect</span>
+  </button>
+
+  <button class="tool" data-tool="circle" onclick="setTool('circle')">
+    <span>○</span>
+    <span>Circle</span>
+  </button>
+
+  <button class="tool" data-tool="dimension" onclick="setTool('dimension')">
+    <span>↔</span>
+    <span>Dim</span>
+  </button>
+
+  <div class="tool-separator"></div>
+
+  <button class="tool" data-tool="pan" onclick="setTool('pan')">
+    <span>✋</span>
+    <span>Pan</span>
+  </button>
+
+  <button class="tool" onclick="undo()">
+    <span>↶</span>
+    <span>Undo</span>
+  </button>
+
+  <button class="tool" onclick="redo()">
+    <span>↷</span>
+    <span>Redo</span>
+  </button>
+
+  <button class="tool" onclick="fitView()">
+    <span>⌗</span>
+    <span>Fit</span>
+  </button>
+
+</aside>
+
+<!-- LEFT SIDEBAR -->
+
+<aside class="left-panel">
+
+  <section class="panel-section">
+
+    <div class="panel-title">Drawing Setup</div>
+
+    <div class="field">
+      <label>Units</label>
+      <select id="units" onchange="updateUnits()">
+        <option value="mm">Millimetres (mm)</option>
+        <option value="cm">Centimetres (cm)</option>
+        <option value="m">Metres (m)</option>
+        <option value="in">Inches (in)</option>
+        <option value="ft">Feet (ft)</option>
+      </select>
+    </div>
+
+    <div class="row">
+
+      <div class="field">
+        <label>Grid</label>
+        <input id="gridSize" type="number" value="10" min="1" onchange="updateGrid()">
+      </div>
+
+      <div class="field">
+        <label>Scale</label>
+        <select id="scale">
+          <option>1:1</option>
+          <option>1:2</option>
+          <option>1:5</option>
+          <option>1:10</option>
+          <option>1:20</option>
+          <option>1:50</option>
+          <option>1:100</option>
+        </select>
+      </div>
+
+    </div>
+
+    <label class="check">
+      <input type="checkbox" id="snap" checked>
+      Snap to Grid
+    </label>
+
+    <label class="check">
+      <input type="checkbox" id="ortho">
+      Ortho Mode
+    </label>
+
+    <label class="check">
+      <input type="checkbox" id="showGrid" checked onchange="render()">
+      Show Grid
+    </label>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">Layers</div>
+
+    <div class="layer active">
+      <span class="layer-dot"></span>
+      <span class="layer-name">0 — Main</span>
+      <div class="layer-actions">
+        <button title="Visible">◉</button>
+        <button title="Lock">🔓</button>
+      </div>
+    </div>
+
+    <button class="action" style="width:100%" onclick="addLayer()">
+      ＋ Add Layer
+    </button>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">Precision</div>
+
+    <div class="row">
+
+      <div class="field">
+        <label>Angle</label>
+        <input id="angleInput" value="0°">
+      </div>
+
+      <div class="field">
+        <label>Decimals</label>
+        <select id="decimals">
+          <option>0</option>
+          <option selected>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="action-grid">
+
+      <button class="action" onclick="setZoom(.8)">Zoom −</button>
+      <button class="action" onclick="setZoom(1.25)">Zoom +</button>
+
+    </div>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">Engineering Actions</div>
+
+    <div class="action-grid">
+
+      <button class="action" onclick="setTool('line')">Draw Line</button>
+      <button class="action" onclick="setTool('rectangle')">Draw Rect</button>
+      <button class="action" onclick="setTool('circle')">Draw Circle</button>
+      <button class="action" onclick="setTool('dimension')">Dimension</button>
+
+    </div>
+
+  </section>
+
+</aside>
+
+<!-- CANVAS -->
+
+<section class="canvas-area">
+
+  <div class="canvas-toolbar">
+
+    <button class="canvas-tool" onclick="setTool('select')">↖ Select</button>
+    <button class="canvas-tool" onclick="setTool('line')">╱ Line</button>
+    <button class="canvas-tool" onclick="setTool('rectangle')">□ Rectangle</button>
+    <button class="canvas-tool" onclick="setTool('circle')">○ Circle</button>
+    <button class="canvas-tool" onclick="setTool('dimension')">↔ Dimension</button>
+    <button class="canvas-tool" onclick="deleteSelected()">Delete</button>
+
+    <div class="canvas-info">
+      <span id="toolInfo">Tool: Select</span>
+      <span id="zoomInfo">Zoom: 100%</span>
+      <span id="coordInfo">X: 0 | Y: 0</span>
+    </div>
+
+  </div>
+
+  <div class="canvas-wrap">
+
+    <svg id="cadCanvas"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 1200 700">
+
+      <defs>
+
+        <pattern id="minorGrid"
+                 width="10"
+                 height="10"
+                 patternUnits="userSpaceOnUse">
+
+          <path d="M 10 0 L 0 0 0 10"
+                fill="none"
+                stroke="#e9eeea"
+                stroke-width="1"/>
+
+        </pattern>
+
+        <pattern id="majorGrid"
+                 width="100"
+                 height="100"
+                 patternUnits="userSpaceOnUse">
+
+          <rect width="100"
+                height="100"
+                fill="url(#minorGrid)"/>
+
+          <path d="M 100 0 L 0 0 0 100"
+                fill="none"
+                stroke="#cbd8d0"
+                stroke-width="1"/>
+
+        </pattern>
+
+      </defs>
+
+      <rect id="grid"
+            x="-5000"
+            y="-5000"
+            width="10000"
+            height="10000"
+            fill="url(#majorGrid)"/>
+
+      <g id="objects"></g>
+
+      <g id="preview"></g>
+
+    </svg>
+
+    <div class="crosshair" id="crosshair"></div>
+
+  </div>
+
+</section>
+
+<!-- RIGHT PANEL -->
+
+<aside class="right-panel">
+
+  <section class="panel-section">
+
+    <div class="panel-title">Properties</div>
+
+    <div id="properties">
+
+      <div class="empty">
+        Select an object to view its properties.
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">Drawing Information</div>
+
+    <div class="property-grid">
+
+      <div class="property">
+        <small>Objects</small>
+        <strong id="objectCount">0</strong>
+      </div>
+
+      <div class="property">
+        <small>Units</small>
+        <strong id="unitDisplay">mm</strong>
+      </div>
+
+      <div class="property">
+        <small>Grid</small>
+        <strong id="gridDisplay">10</strong>
+      </div>
+
+      <div class="property">
+        <small>Scale</small>
+        <strong id="scaleDisplay">1:1</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">Quick Tools</div>
+
+    <div class="action-grid">
+
+      <button class="action primary" onclick="fitView()">
+        Fit Drawing
+      </button>
+
+      <button class="action gold" onclick="clearSelection()">
+        Clear Selection
+      </button>
+
+      <button class="action" onclick="exportSVG()">
+        Export SVG
+      </button>
+
+      <button class="action" onclick="exportDXF()">
+        Export DXF
+      </button>
+
+    </div>
+
+  </section>
+
+  <section class="panel-section">
+
+    <div class="panel-title">CAD Tips</div>
+
+    <div class="empty">
+      <strong>Mouse</strong><br>
+      Left click to draw or select.<br><br>
+
+      <strong>Wheel</strong><br>
+      Zoom in or out.<br><br>
+
+      <strong>Middle mouse</strong><br>
+      Pan around the drawing.<br><br>
+
+      <strong>Keyboard</strong><br>
+      Delete = remove selected object.<br>
+      Esc = cancel current tool.
+    </div>
+
+  </section>
+
+</aside>
+
+</main>
+
+<footer class="statusbar">
+
+  <div class="status-left">
+
+    <span>
+      <span class="status-dot"></span>
+      CAD Engine Ready
+    </span>
+
+    <span id="statusMessage">
+      Select a tool to begin.
+    </span>
+
+  </div>
+
+  <div class="status-right">
+
+    <span>Units: <b id="statusUnits">mm</b></span>
+    <span>Scale: <b id="statusScale">1:1</b></span>
+    <span>Objects: <b id="statusObjects">0</b></span>
+
+  </div>
+
+</footer>
+
+</div>
+
+<input
+  type="file"
+  id="fileInput"
+  accept=".json,application/json"
+  style="display:none"
+>
+
+<script>
+
+const svg = document.getElementById("cadCanvas");
+const objectsLayer = document.getElementById("objects");
+const previewLayer = document.getElementById("preview");
+
+let tool = "select";
+
+let objects = [];
+
+let history = [];
+
+let redoStack = [];
+
+let startPoint = null;
+
+let temporary = null;
+
+let selected = null;
+
+let isPanning = false;
+
+let panStart = null;
+
+let view = {
+  x:0,
+  y:0,
+  w:1200,
+  h:700
+};
+
+let gridSize = 10;
+
+
+/* ================= HELPERS ================= */
+
+function uid(){
+
+  return "obj_" +
+    Date.now().toString(36) +
+    Math.random().toString(36).slice(2,7);
+
+}
+
+
+function fmt(n){
+
+  const decimals =
+    Number(document.getElementById("decimals").value || 1);
+
+  return Number(n).toFixed(decimals);
+
+}
+
+
+function unit(){
+
+  return document.getElementById("units").value;
+
+}
+
+
+function setStatus(message){
+
+  document.getElementById("statusMessage").textContent =
+    message;
+
+}
+
+
+function updateUI(){
+
+  document.getElementById("objectCount").textContent =
+    objects.length;
+
+  document.getElementById("statusObjects").textContent =
+    objects.length;
+
+  document.getElementById("unitDisplay").textContent =
+    unit();
+
+  document.getElementById("statusUnits").textContent =
+    unit();
+
+  document.getElementById("gridDisplay").textContent =
+    gridSize;
+
+  document.getElementById("scaleDisplay").textContent =
+    document.getElementById("scale").value;
+
+  document.getElementById("statusScale").textContent =
+    document.getElementById("scale").value;
+
+}
+
+
+/* ================= TOOLS ================= */
+
+function setTool(name){
+
+  tool = name;
+
+  document.querySelectorAll(".tool[data-tool]").forEach(btn=>{
+
+    btn.classList.toggle(
+      "active",
+      btn.dataset.tool === name
+    );
+
+  });
+
+  document.getElementById("toolInfo").textContent =
+    "Tool: " + name.charAt(0).toUpperCase() + name.slice(1);
+
+  setStatus("Active tool: " + name);
+
+  cancelCurrent();
+
+}
+
+
+function cancelCurrent(){
+
+  startPoint = null;
+
+  temporary = null;
+
+  previewLayer.innerHTML = "";
+
+}
+
+
+function clearSelection(){
+
+  selected = null;
+
+  render();
+
+  updateProperties();
+
+  setStatus("Selection cleared.");
+
+}
+
+
+/* ================= COORDINATES ================= */
+
+function getPoint(evt){
+
+  const rect = svg.getBoundingClientRect();
+
+  const px =
+    (evt.clientX - rect.left) / rect.width;
+
+  const py =
+    (evt.clientY - rect.top) / rect.height;
+
+  let x =
+    view.x + px * view.w;
+
+  let y =
+    view.y + py * view.h;
+
+  if(document.getElementById("snap").checked){
+
+    x = Math.round(x / gridSize) * gridSize;
+
+    y = Math.round(y / gridSize) * gridSize;
+
+  }
+
+  return {
+    x,
+    y
+  };
+
+}
+
+
+function applyOrtho(p){
+
+  if(
+    !document.getElementById("ortho").checked ||
+    !startPoint
+  ){
+
+    return p;
+
+  }
+
+  const dx =
+    Math.abs(p.x - startPoint.x);
+
+  const dy =
+    Math.abs(p.y - startPoint.y);
+
+  if(dx >= dy){
+
+    return {
+      x:p.x,
+      y:startPoint.y
+    };
+
+  }
+
+  return {
+    x:startPoint.x,
+    y:p.y
+  };
+
+}
+
+
+/* ================= HISTORY ================= */
+
+function snapshot(){
+
+  history.push(
+    JSON.stringify(objects)
+  );
+
+  if(history.length > 50){
+
+    history.shift();
+
+  }
+
+  redoStack = [];
+
+}
+
+
+function undo(){
+
+  if(!history.length){
+
+    setStatus("Nothing to undo.");
+
+    return;
+
+  }
+
+  redoStack.push(
+    JSON.stringify(objects)
+  );
+
+  objects =
+    JSON.parse(history.pop());
+
+  selected = null;
+
+  render();
+
+  updateProperties();
+
+  setStatus("Undo complete.");
+
+}
+
+
+function redo(){
+
+  if(!redoStack.length){
+
+    setStatus("Nothing to redo.");
+
+    return;
+
+  }
+
+  history.push(
+    JSON.stringify(objects)
+  );
+
+  objects =
+    JSON.parse(redoStack.pop());
+
+  selected = null;
+
+  render();
+
+  updateProperties();
+
+  setStatus("Redo complete.");
+
+}
+
+
+/* ================= DRAWING ================= */
+
+svg.addEventListener("pointerdown", function(evt){
+
+  if(evt.button === 1 || tool === "pan"){
+
+    isPanning = true;
+
+    panStart = {
+      clientX:evt.clientX,
+      clientY:evt.clientY,
+      x:view.x,
+      y:view.y
+    };
+
+    svg.setPointerCapture(evt.pointerId);
+
+    return;
+
+  }
+
+  if(evt.button !== 0){
+
+    return;
+
+  }
+
+  const p =
+    applyOrtho(getPoint(evt));
+
+  if(tool === "select"){
+
+    selected = null;
+
+    render();
+
+    updateProperties();
+
+    return;
+
+  }
+
+  if(
+    tool === "line" ||
+    tool === "rectangle" ||
+    tool === "circle" ||
+    tool === "dimension"
+  ){
+
+    startPoint = p;
+
+    temporary = {
+      x1:p.x,
+      y1:p.y,
+      x2:p.x,
+      y2:p.y
+    };
+
+    setStatus(
+      "Click again to finish " + tool + "."
+    );
+
+  }
+
+});
+
+
+svg.addEventListener("pointermove", function(evt){
+
+  const p =
+    applyOrtho(getPoint(evt));
+
+  document.getElementById("coordInfo").textContent =
+    "X: " + fmt(p.x) +
+    " | Y: " + fmt(p.y);
+
+  if(isPanning && panStart){
+
+    const rect =
+      svg.getBoundingClientRect();
+
+    const dx =
+      (evt.clientX - panStart.clientX)
+      * view.w / rect.width;
+
+    const dy =
+      (evt.clientY - panStart.clientY)
+      * view.h / rect.height;
+
+    view.x =
+      panStart.x - dx;
+
+    view.y =
+      panStart.y - dy;
+
+    updateViewBox();
+
+    return;
+
+  }
+
+  if(!startPoint){
+
+    return;
+
+  }
+
+  temporary = {
+
+    x1:startPoint.x,
+    y1:startPoint.y,
+    x2:p.x,
+    y2:p.y
+
+  };
+
+  renderPreview();
+
+});
+
+
+svg.addEventListener("pointerup", function(evt){
+
+  if(isPanning){
+
+    isPanning = false;
+
+    panStart = null;
+
+    svg.releasePointerCapture(evt.pointerId);
+
+    return;
+
+  }
+
+  if(!startPoint){
+
+    return;
+
+  }
+
+  const p =
+    applyOrtho(getPoint(evt));
+
+  const obj = createObject(
+    tool,
+    startPoint,
+    p
+  );
+
+  if(obj){
+
+    snapshot();
+
+    objects.push(obj);
+
+    selected = obj.id;
+
+    render();
+
+    updateProperties();
+
+    setStatus(
+      tool.charAt(0).toUpperCase() +
+      tool.slice(1) +
+      " created."
+    );
+
+  }
+
+  startPoint = null;
+
+  temporary = null;
+
+  previewLayer.innerHTML = "";
+
+});
+
+
+/* ================= CREATE OBJECT ================= */
+
+function createObject(type,a,b){
+
+  if(
+    Math.abs(a.x-b.x) < .01 &&
+    Math.abs(a.y-b.y) < .01
+  ){
+
+    return null;
+
+  }
+
+  const base = {
+    id:uid(),
+    type,
+    layer:"0",
+    x1:a.x,
+    y1:a.y,
+    x2:b.x,
+    y2:b.y
+  };
+
+  if(type === "circle"){
+
+    const r =
+      Math.sqrt(
+        Math.pow(b.x-a.x,2) +
+        Math.pow(b.y-a.y,2)
+      );
+
+    return {
+      ...base,
+      cx:a.x,
+      cy:a.y,
+      r
+    };
+
+  }
+
+  return base;
+
+}
+
+
+/* ================= RENDER ================= */
+
+function render(){
+
+  objectsLayer.innerHTML = "";
+
+  objects.forEach(obj=>{
+
+    let el = null;
+
+    if(obj.type === "line"){
+
+      el = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+
+      el.setAttribute("x1",obj.x1);
+      el.setAttribute("y1",obj.y1);
+      el.setAttribute("x2",obj.x2);
+      el.setAttribute("y2",obj.y2);
+
+    }
+
+    if(obj.type === "rectangle"){
+
+      el = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "rect"
+      );
+
+      el.setAttribute(
+        "x",
+        Math.min(obj.x1,obj.x2)
+      );
+
+      el.setAttribute(
+        "y",
+        Math.min(obj.y1,obj.y2)
+      );
+
+      el.setAttribute(
+        "width",
+        Math.abs(obj.x2-obj.x1)
+      );
+
+      el.setAttribute(
+        "height",
+        Math.abs(obj.y2-obj.y1)
+      );
+
+    }
+
+    if(obj.type === "circle"){
+
+      el = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+
+      el.setAttribute("cx",obj.cx);
+      el.setAttribute("cy",obj.cy);
+      el.setAttribute("r",obj.r);
+
+    }
+
+    if(obj.type === "dimension"){
+
+      drawDimension(obj);
+
+      return;
+
+    }
+
+    if(!el){
+
+      return;
+
+    }
+
+    el.dataset.id = obj.id;
+
+    el.setAttribute(
+      "fill",
+      obj.type === "rectangle"
+        ? "rgba(23,107,79,.06)"
+        : "none"
+    );
+
+    el.setAttribute(
+      "stroke",
+      selected === obj.id
+        ? "#dcae36"
+        : "#176b4f"
+    );
+
+    el.setAttribute(
+      "stroke-width",
+      selected === obj.id
+        ? "3"
+        : "2"
+    );
+
+    el.style.cursor =
+      tool === "select"
+        ? "pointer"
+        : "default";
+
+    el.addEventListener(
+      "pointerdown",
+      function(evt){
+
+        if(tool !== "select"){
+
+          return;
+
+        }
+
+        evt.stopPropagation();
+
+        selected = obj.id;
+
+        render();
+
+        updateProperties();
+
+        setStatus(
+          obj.type + " selected."
+        );
+
+      }
+    );
+
+    objectsLayer.appendChild(el);
+
+  });
+
+  updateUI();
+
+}
+
+
+function drawDimension(obj){
+
+  const group =
+    document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "g"
+    );
+
+  group.dataset.id = obj.id;
+
+  const line =
+    document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "line"
+    );
+
+  line.setAttribute("x1",obj.x1);
+  line.setAttribute("y1",obj.y1);
+  line.setAttribute("x2",obj.x2);
+  line.setAttribute("y2",obj.y2);
+
+  line.setAttribute(
+    "stroke",
+    selected === obj.id
+      ? "#dcae36"
+      : "#b83a3a"
+  );
+
+  line.setAttribute("stroke-width","1.8");
+
+  const length =
+    Math.sqrt(
+      Math.pow(obj.x2-obj.x1,2) +
+      Math.pow(obj.y2-obj.y1,2)
+    );
+
+  const text =
+    document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "text"
+    );
+
+  text.setAttribute(
+    "x",
+    (obj.x1+obj.x2)/2
+  );
+
+  text.setAttribute(
+    "y",
+    (obj.y1+obj.y2)/2 - 7
+  );
+
+  text.setAttribute(
+    "text-anchor",
+    "middle"
+  );
+
+  text.setAttribute(
+    "font-size",
+    "14"
+  );
+
+  text.setAttribute(
+    "font-family",
+    "Arial"
+  );
+
+  text.setAttribute(
+    "fill",
+    selected === obj.id
+      ? "#b48617"
+      : "#b83a3a"
+  );
+
+  text.textContent =
+    fmt(length) + " " + unit();
+
+  group.appendChild(line);
+
+  group.appendChild(text);
+
+  group.addEventListener(
+    "pointerdown",
+    function(evt){
+
+      if(tool !== "select") return;
+
+      evt.stopPropagation();
+
+      selected = obj.id;
+
+      render();
+
+      updateProperties();
+
+    }
+  );
+
+  objectsLayer.appendChild(group);
+
+}
+
+
+function renderPreview(){
+
+  previewLayer.innerHTML = "";
+
+  if(!temporary){
+
+    return;
+
+  }
+
+  if(tool === "line"){
+
+    const line =
+      document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+
+    line.setAttribute("x1",temporary.x1);
+    line.setAttribute("y1",temporary.y1);
+    line.setAttribute("x2",temporary.x2);
+    line.setAttribute("y2",temporary.y2);
+
+    line.setAttribute(
+      "stroke",
+      "#176b4f"
+    );
+
+    line.setAttribute(
+      "stroke-width",
+      "2"
+    );
+
+    line.setAttribute(
+      "stroke-dasharray",
+      "7 5"
+    );
+
+    previewLayer.appendChild(line);
+
+  }
+
+  if(tool === "rectangle"){
+
+    const rect =
+      document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "rect"
+      );
+
+    rect.setAttribute(
+      "x",
+      Math.min(
+        temporary.x1,
+        temporary.x2
+      )
+    );
+
+    rect.setAttribute(
+      "y",
+      Math.min(
+        temporary.y1,
+        temporary.y2
+      )
+    );
+
+    rect.setAttribute(
+      "width",
+      Math.abs(
+        temporary.x2-
+        temporary.x1
+      )
+    );
+
+    rect.setAttribute(
+      "height",
+      Math.abs(
+        temporary.y2-
+        temporary.y1
+      )
+    );
+
+    rect.setAttribute(
+      "fill",
+      "rgba(23,107,79,.05)"
+    );
+
+    rect.setAttribute(
+      "stroke",
+      "#176b4f"
+    );
+
+    rect.setAttribute(
+      "stroke-dasharray",
+      "7 5"
+    );
+
+    previewLayer.appendChild(rect);
+
+  }
+
+  if(tool === "circle"){
+
+    const r =
+      Math.sqrt(
+        Math.pow(
+          temporary.x2-
+          temporary.x1,
+          2
+        ) +
+        Math.pow(
+          temporary.y2-
+          temporary.y1,
+          2
+        )
+      );
+
+    const circle =
+      document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "circle"
+      );
+
+    circle.setAttribute(
+      "cx",
+      temporary.x1
+    );
+
+    circle.setAttribute(
+      "cy",
+      temporary.y1
+    );
+
+    circle.setAttribute(
+      "r",
+      r
+    );
+
+    circle.setAttribute(
+      "fill",
+      "rgba(23,107,79,.05)"
+    );
+
+    circle.setAttribute(
+      "stroke",
+      "#176b4f"
+    );
+
+    circle.setAttribute(
+      "stroke-dasharray",
+      "7 5"
+    );
+
+    previewLayer.appendChild(circle);
+
+  }
+
+  if(tool === "dimension"){
+
+    const line =
+      document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+
+    line.setAttribute("x1",temporary.x1);
+    line.setAttribute("y1",temporary.y1);
+    line.setAttribute("x2",temporary.x2);
+    line.setAttribute("y2",temporary.y2);
+
+    line.setAttribute(
+      "stroke",
+      "#b83a3a"
+    );
+
+    line.setAttribute(
+      "stroke-dasharray",
+      "5 4"
+    );
+
+    previewLayer.appendChild(line);
+
+  }
+
+}
+
+
+/* ================= PROPERTIES ================= */
+
+function updateProperties(){
+
+  const box =
+    document.getElementById("properties");
+
+  const obj =
+    objects.find(o=>o.id === selected);
+
+  if(!obj){
+
+    box.innerHTML = `
+      <div class="empty">
+        Select an object to view its properties.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  let html = `
+    <div class="property-grid">
+
+      <div class="property">
+        <small>Type</small>
+        <strong>${obj.type}</strong>
+      </div>
+
+      <div class="property">
+        <small>Layer</small>
+        <strong>${obj.layer}</strong>
+      </div>
+  `;
+
+  if(obj.type === "circle"){
+
+    html += `
+      <div class="property">
+        <small>Center X</small>
+        <strong>${fmt(obj.cx)}</strong>
+      </div>
+
+      <div class="property">
+        <small>Center Y</small>
+        <strong>${fmt(obj.cy)}</strong>
+      </div>
+
+      <div class="property">
+        <small>Radius</small>
+        <strong>${fmt(obj.r)} ${unit()}</strong>
+      </div>
+
+      <div class="property">
+        <small>Diameter</small>
+        <strong>${fmt(obj.r*2)} ${unit()}</strong>
+      </div>
+    `;
+
+  }else{
+
+    const length =
+      Math.sqrt(
+        Math.pow(obj.x2-obj.x1,2) +
+        Math.pow(obj.y2-obj.y1,2)
+      );
+
+    html += `
+      <div class="property">
+        <small>X1</small>
+        <strong>${fmt(obj.x1)}</strong>
+      </div>
+
+      <div class="property">
+        <small>Y1</small>
+        <strong>${fmt(obj.y1)}</strong>
+      </div>
+
+      <div class="property">
+        <small>X2</small>
+        <strong>${fmt(obj.x2)}</strong>
+      </div>
+
+      <div class="property">
+        <small>Y2</small>
+        <strong>${fmt(obj.y2)}</strong>
+      </div>
+
+      <div class="property">
+        <small>Length</small>
+        <strong>${fmt(length)} ${unit()}</strong>
+      </div>
+    `;
+
+  }
+
+  html += `
+    </div>
+
+    <div style="margin-top:10px">
+      <button
+        class="action"
+        style="width:100%"
+        onclick="deleteSelected()"
+      >
+        Delete Object
+      </button>
+    </div>
+  `;
+
+  box.innerHTML = html;
+
+}
+
+
+/* ================= DELETE ================= */
+
+function deleteSelected(){
+
+  if(!selected){
+
+    setStatus("No object selected.");
+
+    return;
+
+  }
+
+  const index =
+    objects.findIndex(
+      o=>o.id === selected
+    );
+
+  if(index === -1){
+
+    return;
+
+  }
+
+  snapshot();
+
+  objects.splice(index,1);
+
+  selected = null;
+
+  render();
+
+  updateProperties();
+
+  setStatus("Object deleted.");
+
+}
+
+
+/* ================= VIEW ================= */
+
+function updateViewBox(){
+
+  svg.setAttribute(
+    "viewBox",
+    `${view.x} ${view.y} ${view.w} ${view.h}`
+  );
+
+  const zoom =
+    1200 / view.w * 100;
+
+  document.getElementById("zoomInfo").textContent =
+    "Zoom: " + Math.round(zoom) + "%";
+
+}
+
+
+function setZoom(factor){
+
+  const cx =
+    view.x + view.w/2;
+
+  const cy =
+    view.y + view.h/2;
+
+  view.w /= factor;
+
+  view.h /= factor;
+
+  view.x =
+    cx - view.w/2;
+
+  view.y =
+    cy - view.h/2;
+
+  updateViewBox();
+
+}
+
+
+function fitView(){
+
+  if(!objects.length){
+
+    view = {
+      x:0,
+      y:0,
+      w:1200,
+      h:700
+    };
+
+    updateViewBox();
+
+    setStatus("View reset.");
+
+    return;
+
+  }
+
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+
+  objects.forEach(o=>{
+
+    if(o.type === "circle"){
+
+      minX =
+        Math.min(minX,o.cx-o.r);
+
+      minY =
+        Math.min(minY,o.cy-o.r);
+
+      maxX =
+        Math.max(maxX,o.cx+o.r);
+
+      maxY =
+        Math.max(maxY,o.cy+o.r);
+
+    }else{
+
+      minX =
+        Math.min(minX,o.x1,o.x2);
+
+      minY =
+        Math.min(minY,o.y1,o.y2);
+
+      maxX =
+        Math.max(maxX,o.x1,o.x2);
+
+      maxY =
+        Math.max(maxY,o.y1,o.y2);
+
+    }
+
+  });
+
+  const pad = 80;
+
+  view.x = minX - pad;
+  view.y = minY - pad;
+  view.w = Math.max(400,(maxX-minX)+pad*2);
+  view.h = Math.max(300,(maxY-minY)+pad*2);
+
+  updateViewBox();
+
+  setStatus("Drawing fitted to view.");
+
+}
+
+
+/* ================= GRID ================= */
+
+function updateGrid(){
+
+  gridSize =
+    Math.max(
+      1,
+      Number(
+        document.getElementById("gridSize").value
+      )
+    );
+
+  const minor =
+    document.getElementById("minorGrid");
+
+  const major =
+    document.getElementById("majorGrid");
+
+  if(minor){
+
+    minor.setAttribute(
+      "width",
+      gridSize
+    );
+
+    minor.setAttribute(
+      "height",
+      gridSize
+    );
+
+  }
+
+  if(major){
+
+    major.setAttribute(
+      "width",
+      gridSize*10
+    );
+
+    major.setAttribute(
+      "height",
+      gridSize*10
+    );
+
+  }
+
+  updateUI();
+
+  setStatus(
+    "Grid set to " +
+    gridSize +
+    " " +
+    unit()
+  );
+
+}
+
+
+function updateUnits(){
+
+  updateUI();
+
+  updateProperties();
+
+  render();
+
+  setStatus(
+    "Units changed to " +
+    unit()
+  );
+
+}
+
+
+/* ================= NEW ================= */
+
+function newDrawing(){
+
+  if(
+    objects.length &&
+    !confirm(
+      "Start a new drawing? Current drawing will be cleared."
+    )
+  ){
+
+    return;
+
+  }
+
+  if(objects.length){
+
+    snapshot();
+
+  }
+
+  objects = [];
+
+  selected = null;
+
+  history = [];
+
+  redoStack = [];
+
+  view = {
+    x:0,
+    y:0,
+    w:1200,
+    h:700
+  };
+
+  updateViewBox();
+
+  render();
+
+  updateProperties();
+
+  setStatus("New drawing created.");
+
+}
+
+
+/* ================= SAVE PROJECT ================= */
+
+function saveProject(){
+
+  const project = {
+
+    app:
+      "DIGITSL CAD Studio",
+
+    version:
+      "1.0",
+
+    created:
+      new Date().toISOString(),
+
+    units:
+      unit(),
+
+    grid:
+      gridSize,
+
+    scale:
+      document.getElementById("scale").value,
+
+    objects:
+      objects
+
+  };
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          project,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+  downloadBlob(
+    blob,
+    "digitsl-cad-project.json"
+  );
+
+  setStatus(
+    "Project saved successfully."
+  );
+
+}
+
+
+/* ================= OPEN PROJECT ================= */
+
+function openProject(){
+
+  document.getElementById(
+    "fileInput"
+  ).click();
+
+}
+
+
+document.getElementById(
+  "fileInput"
+).addEventListener(
+  "change",
+  function(evt){
+
+    const file =
+      evt.target.files[0];
+
+    if(!file){
+
+      return;
+
+    }
+
+    const reader =
+      new FileReader();
+
+    reader.onload =
+      function(){
+
+        try{
+
+          const data =
+            JSON.parse(
+              reader.result
+            );
+
+          objects =
+            Array.isArray(data.objects)
+              ? data.objects
+              : [];
+
+          if(data.units){
+
+            document.getElementById(
+              "units"
+            ).value =
+              data.units;
+
+          }
+
+          if(data.grid){
+
+            gridSize =
+              Number(data.grid);
+
+            document.getElementById(
+              "gridSize"
+            ).value =
+              gridSize;
+
+          }
+
+          if(data.scale){
+
+            document.getElementById(
+              "scale"
+            ).value =
+              data.scale;
+
+          }
+
+          selected = null;
+
+          updateGrid();
+
+          render();
+
+          updateProperties();
+
+          setStatus(
+            "Project opened successfully."
+          );
+
+        }catch(error){
+
+          alert(
+            "Invalid CAD project file."
+          );
+
+        }
+
+      };
+
+    reader.readAsText(file);
+
+  }
+);
+
+
+/* ================= SVG EXPORT ================= */
+
+function exportSVG(){
+
+  const clone =
+    svg.cloneNode(true);
+
+  clone.removeAttribute("style");
+
+  const serializer =
+    new XMLSerializer();
+
+  const source =
+    serializer.serializeToString(
+      clone
+    );
+
+  const blob =
+    new Blob(
+      [source],
+      {
+        type:"image/svg+xml"
+      }
+    );
+
+  downloadBlob(
+    blob,
+    "digitsl-drawing.svg"
+  );
+
+  setStatus(
+    "SVG exported."
+  );
+
+}
+
+
+/* ================= DXF EXPORT ================= */
+
+function exportDXF(){
+
+  let dxf =
+`0
+SECTION
+2
+HEADER
+0
+ENDSEC
+0
+SECTION
+2
+ENTITIES
+`;
+
+  objects.forEach(o=>{
+
+    if(o.type === "line" || o.type === "dimension"){
+
+      dxf +=
+`0
+LINE
+8
+0
+10
+${o.x1}
+20
+${o.y1}
+30
+0
+11
+${o.x2}
+21
+${o.y2}
+31
+0
+`;
+
+    }
+
+    if(o.type === "rectangle"){
+
+      const x1 =
+        Math.min(o.x1,o.x2);
+
+      const x2 =
+        Math.max(o.x1,o.x2);
+
+      const y1 =
+        Math.min(o.y1,o.y2);
+
+      const y2 =
+        Math.max(o.y1,o.y2);
+
+      const lines = [
+
+        [x1,y1,x2,y1],
+        [x2,y1,x2,y2],
+        [x2,y2,x1,y2],
+        [x1,y2,x1,y1]
+
+      ];
+
+      lines.forEach(l=>{
+
+        dxf +=
+`0
+LINE
+8
+0
+10
+${l[0]}
+20
+${l[1]}
+30
+0
+11
+${l[2]}
+21
+${l[3]}
+31
+0
+`;
+
+      });
+
+    }
+
+    if(o.type === "circle"){
+
+      dxf +=
+`0
+CIRCLE
+8
+0
+10
+${o.cx}
+20
+${o.cy}
+30
+0
+40
+${o.r}
+`;
+
+    }
+
+  });
+
+  dxf +=
+`0
+ENDSEC
+0
+EOF
+`;
+
+  const blob =
+    new Blob(
+      [dxf],
+      {
+        type:"application/dxf"
+      }
+    );
+
+  downloadBlob(
+    blob,
+    "digitsl-drawing.dxf"
+  );
+
+  setStatus(
+    "DXF exported."
+  );
+
+}
+
+
+/* ================= DOWNLOAD ================= */
+
+function downloadBlob(blob,filename){
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.download = filename;
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  setTimeout(
+    ()=>URL.revokeObjectURL(url),
+    500
+  );
+
+}
+
+
+/* ================= PRINT ================= */
+
+function printDrawing(){
+
+  const printWindow =
+    window.open(
+      "",
+      "_blank"
+    );
+
+  if(!printWindow){
+
+    alert(
+      "Please allow pop-ups to print the drawing."
+    );
+
+    return;
+
+  }
+
+  const svgSource =
+    new XMLSerializer()
+      .serializeToString(svg);
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>DIGITSL CAD Drawing</title>
+      <style>
+        body{
+          margin:0;
+          padding:20px;
+          background:white;
+        }
+        svg{
+          width:100%;
+          height:auto;
+          border:1px solid #ddd;
+        }
+        @page{
+          size:A4 landscape;
+          margin:10mm;
+        }
+      </style>
+    </head>
+    <body>
+      ${svgSource}
+      <script>
+        window.onload=function(){
+          window.print();
+        }
+      <\/script>
+    </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+
+  setStatus(
+    "Print / PDF window opened."
+  );
+
+}
+
+
+/* ================= LAYER ================= */
+
+function addLayer(){
+
+  alert(
+    "Advanced layer management is coming in CAD Studio v2."
+  );
+
+}
+
+
+/* ================= KEYBOARD ================= */
+
+document.addEventListener(
+  "keydown",
+  function(evt){
+
+    if(evt.key === "Escape"){
+
+      cancelCurrent();
+
+      setTool("select");
+
+    }
+
+    if(
+      evt.key === "Delete" ||
+      evt.key === "Backspace"
+    ){
+
+      deleteSelected();
+
+    }
+
+    if(
+      evt.ctrlKey &&
+      evt.key.toLowerCase() === "z"
+    ){
+
+      evt.preventDefault();
+
+      undo();
+
+    }
+
+    if(
+      evt.ctrlKey &&
+      evt.key.toLowerCase() === "y"
+    ){
+
+      evt.preventDefault();
+
+      redo();
+
+    }
+
+  }
+);
+
+
+/* ================= MOUSE ZOOM ================= */
+
+svg.addEventListener(
+  "wheel",
+  function(evt){
+
+    evt.preventDefault();
+
+    const factor =
+      evt.deltaY < 0
+        ? 1.12
+        : .89;
+
+    setZoom(factor);
+
+  },
+  {
+    passive:false
+  }
+);
+
+
+/* ================= INIT ================= */
+
+updateGrid();
+
+updateViewBox();
+
+render();
+
+updateProperties();
+
+setStatus(
+  "CAD Studio ready — choose a drawing tool."
+);
+
+</script>
+
+</body>
+</html>
